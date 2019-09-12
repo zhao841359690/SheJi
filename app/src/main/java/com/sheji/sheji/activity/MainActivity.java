@@ -132,12 +132,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 headTargetAdapter.setDataList(DaoUtil.queryHeadTarget());
                 break;
             case R.id.head_target_tv:
-                mHeadTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mBodyTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mChestTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mPrecisionTargetTv.setTextColor(getResources().getColor(R.color.gray));
+                mHeadTargetTv.setTextColor(getColor(R.color.gray));
+                mBodyTargetTv.setTextColor(getColor(R.color.gray));
+                mChestTargetTv.setTextColor(getColor(R.color.gray));
+                mPrecisionTargetTv.setTextColor(getColor(R.color.gray));
 
-                mHeadTargetTv.setTextColor(getResources().getColor(R.color.white));
+                mHeadTargetTv.setTextColor(getColor(R.color.white));
                 mCumulativeShotNumberHeadTv.setVisibility(View.GONE);
                 mCumulativeShotNumberContentTv.setVisibility(View.GONE);
 
@@ -145,12 +145,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 headTargetAdapter.setDataList(headTargetList);
                 break;
             case R.id.body_target_tv:
-                mHeadTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mBodyTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mChestTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mPrecisionTargetTv.setTextColor(getResources().getColor(R.color.gray));
+                mHeadTargetTv.setTextColor(getColor(R.color.gray));
+                mBodyTargetTv.setTextColor(getColor(R.color.gray));
+                mChestTargetTv.setTextColor(getColor(R.color.gray));
+                mPrecisionTargetTv.setTextColor(getColor(R.color.gray));
 
-                mBodyTargetTv.setTextColor(getResources().getColor(R.color.white));
+                mBodyTargetTv.setTextColor(getColor(R.color.white));
                 mCumulativeShotNumberHeadTv.setVisibility(View.GONE);
                 mCumulativeShotNumberContentTv.setVisibility(View.GONE);
 
@@ -158,12 +158,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 bodyTargetAdapter.setDataList(bodyTargetList);
                 break;
             case R.id.chest_target_tv:
-                mHeadTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mBodyTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mChestTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mPrecisionTargetTv.setTextColor(getResources().getColor(R.color.gray));
+                mHeadTargetTv.setTextColor(getColor(R.color.gray));
+                mBodyTargetTv.setTextColor(getColor(R.color.gray));
+                mChestTargetTv.setTextColor(getColor(R.color.gray));
+                mPrecisionTargetTv.setTextColor(getColor(R.color.gray));
 
-                mChestTargetTv.setTextColor(getResources().getColor(R.color.white));
+                mChestTargetTv.setTextColor(getColor(R.color.white));
                 mCumulativeShotNumberHeadTv.setVisibility(View.GONE);
                 mCumulativeShotNumberContentTv.setVisibility(View.GONE);
 
@@ -171,12 +171,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 chestTargetAdapter.setDataList(chestTargetList);
                 break;
             case R.id.precision_target_tv:
-                mHeadTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mBodyTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mChestTargetTv.setTextColor(getResources().getColor(R.color.gray));
-                mPrecisionTargetTv.setTextColor(getResources().getColor(R.color.gray));
+                mHeadTargetTv.setTextColor(getColor(R.color.gray));
+                mBodyTargetTv.setTextColor(getColor(R.color.gray));
+                mChestTargetTv.setTextColor(getColor(R.color.gray));
+                mPrecisionTargetTv.setTextColor(getColor(R.color.gray));
 
-                mPrecisionTargetTv.setTextColor(getResources().getColor(R.color.white));
+                mPrecisionTargetTv.setTextColor(getColor(R.color.white));
                 mCumulativeShotNumberHeadTv.setVisibility(View.VISIBLE);
                 mCumulativeShotNumberContentTv.setVisibility(View.VISIBLE);
 
