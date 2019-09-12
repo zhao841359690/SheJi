@@ -129,7 +129,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
                 DaoUtil.insertTarget(targetBean);
-                headTargetAdapter.setDataList(DaoUtil.queryHeadTarget());
+                headTargetList=DaoUtil.queryHeadTarget();
+                headTargetAdapter.setDataList(headTargetList);
                 break;
             case R.id.head_target_tv:
                 mHeadTargetTv.setTextColor(getColor(R.color.gray));
