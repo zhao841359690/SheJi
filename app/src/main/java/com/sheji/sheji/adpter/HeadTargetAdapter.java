@@ -13,7 +13,7 @@ import com.sheji.sheji.bean.TargetBean;
 
 import java.util.List;
 
-public class HeadTargetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HeadTargetAdapter extends RecyclerView.Adapter<HeadTargetAdapter.ViewHolder> {
     private Context context;
     private List<TargetBean> dataList;
 
@@ -26,44 +26,25 @@ public class HeadTargetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
-
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view;
-        if (viewType == 0) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_head, viewGroup, false);
-            return new HeadViewHolder(view);
-        } else {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
-            return new ViewHolder(view);
-        }
+    public HeadTargetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof ViewHolder && dataList.size() > 0) {
-            ((ViewHolder) viewHolder).shootingSerialNumberTv.setText(position + "");
-            ((ViewHolder) viewHolder).hitsTv.setText(dataList.get(position).getHit());
-            ((ViewHolder) viewHolder).shootingIntervalTv.setText(dataList.get(position).getShootingInterval());
-            ((ViewHolder) viewHolder).timeTv.setText(dataList.get(position).getTime());
-            ((ViewHolder) viewHolder).dateTv.setText(dataList.get(position).getDate());
-        }
+    public void onBindViewHolder(@NonNull HeadTargetAdapter.ViewHolder viewHolder, int position) {
+        viewHolder.shootingSerialNumberTv.setText(position + "");
+        viewHolder.hitsTv.setText(dataList.get(position).getHit());
+        viewHolder.shootingIntervalTv.setText(dataList.get(position).getShootingInterval());
+        viewHolder.timeTv.setText(dataList.get(position).getTime());
+        viewHolder.dateTv.setText(dataList.get(position).getDate());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
-    }
-
-    class HeadViewHolder extends RecyclerView.ViewHolder {
-        HeadViewHolder(View itemView) {
-            super(itemView);
-        }
+        return (dataList == null || dataList.size() == 0) ? 0 : dataList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
