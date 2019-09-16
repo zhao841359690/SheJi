@@ -13,6 +13,7 @@ public class DaoUtil {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
                 .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_HEAD))
+                .orderDesc(TargetBeanDao.Properties.Id)
                 .list();
     }
 
@@ -30,6 +31,7 @@ public class DaoUtil {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
                 .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_BODY))
+                .orderDesc(TargetBeanDao.Properties.Id)
                 .list();
     }
 
@@ -47,6 +49,7 @@ public class DaoUtil {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
                 .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_CHEST))
+                .orderDesc(TargetBeanDao.Properties.Id)
                 .list();
     }
 
@@ -64,6 +67,7 @@ public class DaoUtil {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
                 .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_PRECISION))
+                .orderDesc(TargetBeanDao.Properties.Id)
                 .list();
     }
 
@@ -77,7 +81,7 @@ public class DaoUtil {
                 .list();
     }
 
-    public static List<TargetBean> queryAll() {
-        return BaseApplication.getDaoInstant().getTargetBeanDao().loadAll();
+    public static void deleteAll() {
+        BaseApplication.getDaoInstant().getTargetBeanDao().deleteAll();
     }
 }

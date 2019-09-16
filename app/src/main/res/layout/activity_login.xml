@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_back"
     tools:context=".activity.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/et_ly"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -32,12 +35,17 @@
             android:textColor="#8E8E8E" />
 
         <EditText
+            android:id="@+id/gun_number_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="请在此处输入枪械编号" />
+            android:background="@drawable/shape_black_corner"
+            android:hint="请在此处输入枪械编号"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp" />
 
         <Button
+            android:id="@+id/determine_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

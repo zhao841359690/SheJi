@@ -27,6 +27,7 @@ import com.sheji.sheji.adpter.HeadTargetAdapter;
 import com.sheji.sheji.adpter.PrecisionTargetAdapter;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.bean.TargetBean;
+import com.sheji.sheji.util.SharedPreferencesUtils;
 import com.sheji.sheji.util.SoftKeyboardUtil;
 
 import java.text.SimpleDateFormat;
@@ -104,7 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private int pageType = TargetBean.TYPE_PRECISION;
 
-    private int size = 1;
+    private int size = 10;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -148,6 +149,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTimeTv = findViewById(R.id.time_tv);
 
         mGunNumberTv = findViewById(R.id.gun_number_tv);
+        mGunNumberTv.setText(SharedPreferencesUtils.getInstance().getGunNumber());
+
         mCounterNumberTv = findViewById(R.id.counter_number_tv);
         mCounterRemainingBattery = findViewById(R.id.counter_remaining_battery);
         mCumulativeShotNumberHeadTv = findViewById(R.id.cumulative_shot_number_head_tv);
