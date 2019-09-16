@@ -420,6 +420,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.fire:
+                onFEReceive("70");
+                switch (pageType) {
+                    case TargetBean.TYPE_HEAD:
+                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        break;
+                    case TargetBean.TYPE_BODY:
+                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        break;
+                    case TargetBean.TYPE_CHEST:
+                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        break;
+                    case TargetBean.TYPE_PRECISION:
+                        onDBOrDCReceive("DC", "七环上", 7, false);
+                        break;
+                }
+                break;
             //头靶
             case R.id.head_target_tv:
                 pageType = TargetBean.TYPE_HEAD;
@@ -689,7 +706,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 mCumulativeShotNumberHeadTv.setVisibility(View.VISIBLE);
                 mCumulativeShotNumberContentTv.setVisibility(View.VISIBLE);
                 int cumulativeShotNumber = 0;
-                for (TargetBean bean : DaoUtil.queryAllHeadTarget()) {
+                for (TargetBean bean : DaoUtil.queryAllPrecisionTarget()) {
                     cumulativeShotNumber += bean.getRingNumber();
                 }
                 mCumulativeShotNumberContentTv.setText(String.valueOf(cumulativeShotNumber));
@@ -954,9 +971,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onFEReceive(String electricQuantity) {
         mFireSwitch.setChecked(true);
         if ("255".equals(electricQuantity)) {
-            mTargetNumberTv.setText("电量未测出");
+            mCounterRemainingBattery.setText("电量未测出");
         } else {
-            mTargetNumberTv.setText(electricQuantity + "%");
+            mCounterRemainingBattery.setText(electricQuantity + "%");
         }
     }
 
