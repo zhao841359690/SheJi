@@ -35,9 +35,61 @@ public class PrecisionTargetAdapter extends RecyclerView.Adapter<PrecisionTarget
 
     @Override
     public void onBindViewHolder(@NonNull PrecisionTargetAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.shootingSerialNumberTv.setText(position + "");
-        viewHolder.hitsTv.setText(dataList.get(position).getHit());
-        viewHolder.positionTv.setText(dataList.get(position).getPrecisionRingNumber());
+        viewHolder.shootingSerialNumberTv.setText(dataList.get(position).getNumber() + "");
+        if (dataList.get(position).getHit()) {
+            viewHolder.hitsTv.setText("是");
+            viewHolder.hitsTv.setTextColor(context.getColor(R.color.black));
+        } else {
+            viewHolder.hitsTv.setText("否");
+            viewHolder.hitsTv.setTextColor(context.getColor(R.color.red));
+        }
+        if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 01")) {
+            viewHolder.positionTv.setText("10环上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 02")) {
+            viewHolder.positionTv.setText("10环右");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 04")) {
+            viewHolder.positionTv.setText("10环下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 08")) {
+            viewHolder.positionTv.setText("10环左");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 10")) {
+            viewHolder.positionTv.setText("9环上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 20")) {
+            viewHolder.positionTv.setText("9环右");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 40")) {
+            viewHolder.positionTv.setText("9环下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 00 80")) {
+            viewHolder.positionTv.setText("9环左");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 01 00")) {
+            viewHolder.positionTv.setText("8环上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 02 00")) {
+            viewHolder.positionTv.setText("8环右上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 03 00")) {
+            viewHolder.positionTv.setText("8环右");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 04 00")) {
+            viewHolder.positionTv.setText("8环右下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 10 00")) {
+            viewHolder.positionTv.setText("8环下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 20 00")) {
+            viewHolder.positionTv.setText("8环左下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 40 00")) {
+            viewHolder.positionTv.setText("8环左");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 00 80 00")) {
+            viewHolder.positionTv.setText("8环左上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 01 00 00")) {
+            viewHolder.positionTv.setText("7环上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 02 00 00")) {
+            viewHolder.positionTv.setText("7环右上");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 04 00 00")) {
+            viewHolder.positionTv.setText("7环右");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 08 00 00")) {
+            viewHolder.positionTv.setText("7环右下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 10 00 00")) {
+            viewHolder.positionTv.setText("7环下");
+        } else if (dataList.get(position).getPrecisionRingNumber().equals("00 20 00 00")) {
+            viewHolder.positionTv.setText("7环左下");
+        } else {
+            viewHolder.positionTv.setText("");
+        }
         viewHolder.shootingIntervalTv.setText(dataList.get(position).getShootingInterval());
         viewHolder.timeTv.setText(dataList.get(position).getTime());
         viewHolder.dateTv.setText(dataList.get(position).getDate());
@@ -45,7 +97,7 @@ public class PrecisionTargetAdapter extends RecyclerView.Adapter<PrecisionTarget
 
     @Override
     public int getItemCount() {
-        return (dataList == null || dataList.size() == 0) ? 0 : dataList.size();
+        return dataList == null ? 0 : dataList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

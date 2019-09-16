@@ -35,8 +35,14 @@ public class ChestTargetAdapter extends RecyclerView.Adapter<ChestTargetAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ChestTargetAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.shootingSerialNumberTv.setText(position + "");
-        viewHolder.hitsTv.setText(dataList.get(position).getHit());
+        viewHolder.shootingSerialNumberTv.setText(dataList.get(position).getNumber() + "");
+        if (dataList.get(position).getHit()) {
+            viewHolder.hitsTv.setText("是");
+            viewHolder.hitsTv.setTextColor(context.getColor(R.color.black));
+        } else {
+            viewHolder.hitsTv.setText("否");
+            viewHolder.hitsTv.setTextColor(context.getColor(R.color.red));
+        }
         viewHolder.shootingIntervalTv.setText(dataList.get(position).getShootingInterval());
         viewHolder.timeTv.setText(dataList.get(position).getTime());
         viewHolder.dateTv.setText(dataList.get(position).getDate());
@@ -44,7 +50,7 @@ public class ChestTargetAdapter extends RecyclerView.Adapter<ChestTargetAdapter.
 
     @Override
     public int getItemCount() {
-        return (dataList == null || dataList.size() == 0) ? 0 : dataList.size();
+        return dataList == null ? 0 : dataList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

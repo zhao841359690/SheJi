@@ -20,7 +20,11 @@ public class TargetBean {
 
     private int type;
 
-    private String hit;
+    private int number;
+
+    private boolean hit;
+
+    private int RingNumber = 0;
 
     private String precisionRingNumber;
 
@@ -30,12 +34,15 @@ public class TargetBean {
 
     private String date;
 
-    @Generated(hash = 2067021703)
-    public TargetBean(Long id, int type, String hit, String precisionRingNumber,
-            String shootingInterval, String time, String date) {
+    @Generated(hash = 1439249859)
+    public TargetBean(Long id, int type, int number, boolean hit, int RingNumber,
+                      String precisionRingNumber, String shootingInterval, String time,
+                      String date) {
         this.id = id;
         this.type = type;
+        this.number = number;
         this.hit = hit;
+        this.RingNumber = RingNumber;
         this.precisionRingNumber = precisionRingNumber;
         this.shootingInterval = shootingInterval;
         this.time = time;
@@ -62,12 +69,28 @@ public class TargetBean {
         this.type = type;
     }
 
-    public String getHit() {
+    public int getNumber() {
+        return this.number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public boolean getHit() {
         return this.hit;
     }
 
-    public void setHit(String hit) {
+    public void setHit(boolean hit) {
         this.hit = hit;
+    }
+
+    public int getRingNumber() {
+        return this.RingNumber;
+    }
+
+    public void setRingNumber(int RingNumber) {
+        this.RingNumber = RingNumber;
     }
 
     public String getPrecisionRingNumber() {
@@ -101,5 +124,4 @@ public class TargetBean {
     public void setDate(String date) {
         this.date = date;
     }
-
 }

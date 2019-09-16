@@ -175,7 +175,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -371,6 +371,21 @@
                         android:layout_height="wrap_content"
                         android:text="共57条，每页" />
 
+                    <TextView
+                        android:id="@+id/size_tv"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/shape_black_corner"
+                        android:gravity="center"
+                        android:text="10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="条" />
+
                     <View
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -380,6 +395,8 @@
                         android:id="@+id/page_ly"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:orientation="horizontal">
 
                         <TextView
@@ -391,7 +408,10 @@
                             android:id="@+id/page_et"
                             android:layout_width="40dp"
                             android:layout_height="30dp"
-                            android:background="@drawable/shape_black_corner" />
+                            android:background="@drawable/shape_black_corner"
+                            android:imeOptions="actionSearch"
+                            android:inputType="number"
+                            android:singleLine="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
