@@ -1,10 +1,5 @@
 package com.sheji.sheji.util;
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.sheji.sheji.activity.MainActivity;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,14 +12,27 @@ import android_serialport_api.SerialPort;
  */
 
 public class SerialPortUtils {
+    private static SerialPortUtils sInstance = null;
+
     private String port = "ttyS1";//串口号
     private int baudrate = 9600;//波特率
 
-    public static SerialPort serialPort = null;
-    public static InputStream inputStream = null;
-    public static OutputStream outputStream = null;
-    public static Thread receiveThread = null;
-    public static boolean flag = false;
+    private SerialPort serialPort = null;
+    private InputStream inputStream = null;
+    private OutputStream outputStream = null;
+    private Thread receiveThread = null;
+    private boolean flag = false;
+
+    public static SerialPortUtils getInstance() {
+        if (sInstance == null) {
+            synchronized (SerialPortUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new SerialPortUtils();
+                }
+            }
+        }
+        return sInstance;
+    }
 
     /**
      * 打开串口
@@ -49,7 +57,7 @@ public class SerialPortUtils {
      * 关闭串口的方法
      * 关闭串口中的输入输出流
      */
-    public static void closeSerialPort() {
+    public void closeSerialPort() {
         try {
             if (inputStream != null) {
                 inputStream.close();
@@ -88,7 +96,7 @@ public class SerialPortUtils {
     /**
      * 接收串口数据的方法
      */
-    public static void receiveSerialPort() {
+    public void receiveSerialPort() {
         if (receiveThread != null) {
             return;
         }
@@ -106,6 +114,115 @@ public class SerialPortUtils {
                         int size = inputStream.read(readData);
                         if (size > 0 && flag) {
                             String recinfo = new String(readData, 0, size);
+                            String action = recinfo.substring(6, 8);
+                            if ("FB".equals(action)) {
+                                onLoginDataReceiveListener.onFBReceive("01".equals(recinfo.substring(15, 17)));
+                            } else if ("FE".equals(action)) {
+                                onMainDataReceiveListener.onFEReceive(recinfo.substring(10, recinfo.length() - 4));
+                            } else if ("DB".equals(action) || "DC".equals(action)) {
+                                String position = recinfo.substring(recinfo.length() - 17, recinfo.length() - 6);
+                                int precisionNumber = 0;
+                                if ("00 00 00 01".equals(position)) {
+                                    position = "10环上";
+                                    precisionNumber = 10;
+                                } else if ("00 00 00 02".equals(position)) {
+                                    position = "10环右";
+                                    precisionNumber = 10;
+                                } else if ("00 00 00 04".equals(position)) {
+                                    position = "10环下";
+                                    precisionNumber = 10;
+                                } else if ("00 00 00 08".equals(position)) {
+                                    position = "10环左";
+                                    precisionNumber = 10;
+                                } else if ("00 00 00 10".equals(position)) {
+                                    position = "9环上";
+                                    precisionNumber = 9;
+                                } else if ("00 00 00 20".equals(position)) {
+                                    position = "9环右";
+                                    precisionNumber = 9;
+                                } else if ("00 00 00 40".equals(position)) {
+                                    position = "9环下";
+                                    precisionNumber = 9;
+                                } else if ("00 00 00 80".equals(position)) {
+                                    position = "9环左";
+                                    precisionNumber = 9;
+                                } else if ("00 00 01 00".equals(position)) {
+                                    position = "8环上";
+                                    precisionNumber = 8;
+                                } else if ("00 00 02 00".equals(position)) {
+                                    position = "8环右上";
+                                    precisionNumber = 8;
+                                } else if ("00 00 04 00".equals(position)) {
+                                    position = "8环右";
+                                    precisionNumber = 8;
+                                } else if ("00 00 08 00".equals(position)) {
+                                    position = "8右下";
+                                    precisionNumber = 8;
+                                } else if ("00 00 10 00".equals(position)) {
+                                    position = "8环下";
+                                    precisionNumber = 8;
+                                } else if ("00 00 20 00".equals(position)) {
+                                    position = "8左下";
+                                    precisionNumber = 8;
+                                } else if ("00 00 40 00".equals(position)) {
+                                    position = "8环左";
+                                    precisionNumber = 8;
+                                } else if ("00 00 80 00".equals(position)) {
+                                    position = "8环左上";
+                                    precisionNumber = 8;
+                                } else if ("00 01 00 00".equals(position)) {
+                                    position = "7环上";
+                                    precisionNumber = 7;
+                                } else if ("00 02 00 00".equals(position)) {
+                                    position = "7环右上";
+                                    precisionNumber = 7;
+                                } else if ("00 04 00 00".equals(position)) {
+                                    position = "7环右";
+                                    precisionNumber = 7;
+                                } else if ("00 08 00 00".equals(position)) {
+                                    position = "7环右下";
+                                    precisionNumber = 7;
+                                } else if ("00 10 00 00".equals(position)) {
+                                    position = "7环下";
+                                    precisionNumber = 7;
+                                } else if ("00 20 00 00".equals(position)) {
+                                    position = "7环左下";
+                                    precisionNumber = 7;
+                                } else if ("00 40 00 00".equals(position)) {
+                                    position = "7环左";
+                                    precisionNumber = 7;
+                                } else if ("00 80 00 00".equals(position)) {
+                                    position = "7环左上";
+                                    precisionNumber = 7;
+                                } else if ("01 00 00 00".equals(position)) {
+                                    position = "6环上";
+                                    precisionNumber = 6;
+                                } else if ("02 00 00 00".equals(position)) {
+                                    position = "6环右上";
+                                    precisionNumber = 6;
+                                } else if ("04 00 00 00".equals(position)) {
+                                    position = "6环右";
+                                    precisionNumber = 6;
+                                } else if ("08 00 00 00".equals(position)) {
+                                    position = "6环右下";
+                                    precisionNumber = 6;
+                                } else if ("10 00 00 00".equals(position)) {
+                                    position = "6环下";
+                                    precisionNumber = 6;
+                                } else if ("20 00 00 00".equals(position)) {
+                                    position = "6环左下";
+                                    precisionNumber = 6;
+                                } else if ("40 00 00 00".equals(position)) {
+                                    position = "6环左";
+                                    precisionNumber = 6;
+                                } else if ("80 00 00 00".equals(position)) {
+                                    position = "6环左上";
+                                    precisionNumber = 6;
+                                }
+                                onMainDataReceiveListener.onDBOrDCReceive(action, position, precisionNumber, "01".equals(recinfo.substring(recinfo.length() - 6, recinfo.length() - 4)));
+                            }
+
+
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -115,5 +232,30 @@ public class SerialPortUtils {
         };
         //启动接收线程
         receiveThread.start();
+    }
+
+    public OnLoginDataReceiveListener onLoginDataReceiveListener = null;
+
+    public OnMainDataReceiveListener onMainDataReceiveListener = null;
+
+    public interface OnLoginDataReceiveListener {
+        //总控台发送Pad枪和计数器绑定的数据协议-反馈报文
+        public void onFBReceive(boolean success);
+    }
+
+    public interface OnMainDataReceiveListener {
+        //计数器同时发送PAD和总控台的数据协议(开火 单发/双发/三连发  电量百分比)
+        public void onFEReceive(String electricQuantity);
+
+        //靶机同时发送PAD和总控台的命中数据协议(精准环数 命中)
+        public void onDBOrDCReceive(String type, String position, int precisionNumber, boolean hit);
+    }
+
+    public void setOnLoginDataReceiveListener(OnLoginDataReceiveListener loginDataReceiveListener) {
+        this.onLoginDataReceiveListener = loginDataReceiveListener;
+    }
+
+    public void setOnMainDataReceiveListener(OnMainDataReceiveListener mainDataReceiveListener) {
+        this.onMainDataReceiveListener = mainDataReceiveListener;
     }
 }

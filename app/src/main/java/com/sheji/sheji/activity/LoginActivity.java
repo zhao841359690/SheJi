@@ -15,18 +15,18 @@ import android.widget.Toast;
 
 import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.R;
+import com.sheji.sheji.bean.Constant;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.dialog.TextDialog;
+import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, SerialPortUtils.OnLoginDataReceiveListener {
     private RelativeLayout mBackRl;
     private LinearLayout mEtLy;
     private EditText mGunNumberEt;
     private Button mDetermineTv;
-
-    private boolean login = true;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -34,14 +34,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case 1:
+                case Constant.LOGIN_SUCCESS:
                     textDialog.dismiss();
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                     break;
-                case 2:
+                case Constant.LOGIN_FAIL:
                     mBackRl.setBackgroundResource(R.drawable.login_back);
                     mEtLy.setVisibility(View.VISIBLE);
 
@@ -58,6 +58,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //打开串口
+//        SerialPortUtils.getInstance().openSerialPort();
+//        SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
 
         initView();
     }
@@ -86,20 +89,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
 
+        if (gunNumber.length() != 6) {
+            Toast.makeText(this, "输入枪械编号位数错误", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Pad发送总控台枪和计数器绑定的数据协议-申请报文
+        SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+    }
+
+    @Override
+    public void onFBReceive(boolean success) {
         mBackRl.setBackgroundResource(R.drawable.login_state_back);
         mEtLy.setVisibility(View.GONE);
 
-        if (login) {
+        if (success) {
             textDialog = new TextDialog(this, "√ 枪号绑定成功");
             if (!gunNumber.equals(SharedPreferencesUtils.getInstance().getGunNumber())) {
                 DaoUtil.deleteAll();
             }
             SharedPreferencesUtils.getInstance().setGunNumber(gunNumber);
 
-            handler.sendEmptyMessageDelayed(1, 1000);
+            handler.sendEmptyMessageDelayed(Constant.LOGIN_SUCCESS, 1000);
         } else {
             textDialog = new TextDialog(this, "X 枪号绑定失败\n请您重新绑定");
-            handler.sendEmptyMessageDelayed(2, 1000);
+            handler.sendEmptyMessageDelayed(Constant.LOGIN_FAIL, 1000);
         }
         textDialog.show();
     }
