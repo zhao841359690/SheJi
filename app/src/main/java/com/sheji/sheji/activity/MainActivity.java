@@ -134,6 +134,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         initData();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //TODO 关闭串口
+        SerialPortUtils.getInstance().closeSerialPort();
+    }
+
     private void initView() {
         fire = findViewById(R.id.fire);
         fire.setOnClickListener(this);
@@ -465,11 +472,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mShootingDroneTv.setText("射击靶机倒");
                     mShootingDroneSwitch.setChecked(false);
 
+                    //TODO 总控台控制靶机起倒的协议(倒下)
                     //总控台控制靶机起倒的协议(倒下)
 //                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
                 } else {
                     mShootingDroneTv.setText("射击靶机起");
                     mShootingDroneSwitch.setChecked(true);
+                    //TODO 总控台控制靶机起倒的协议(起来)
                     //总控台控制靶机起倒的协议(起来)
 //                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
                 }
@@ -623,6 +632,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mPositionTv.setVisibility(View.GONE);
         switch (type) {
             case TargetBean.TYPE_HEAD:
+                //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
 
@@ -648,6 +658,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setBottomClick(1);
                 break;
             case TargetBean.TYPE_BODY:
+                //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
                 mBodyTargetTv.setTextColor(getColor(R.color.white));
@@ -672,6 +683,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setBottomClick(1);
                 break;
             case TargetBean.TYPE_CHEST:
+                //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
 
@@ -698,6 +710,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setBottomClick(1);
                 break;
             case TargetBean.TYPE_PRECISION:
+                //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
 

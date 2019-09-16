@@ -28,6 +28,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText mGunNumberEt;
     private Button mDetermineTv;
 
+    private boolean success = false;
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -36,6 +38,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             switch (msg.what) {
                 case Constant.LOGIN_SUCCESS:
                     textDialog.dismiss();
+                    success = true;
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -58,11 +61,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //TODO 打开串口
         //打开串口
 //        SerialPortUtils.getInstance().openSerialPort();
 //        SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
 
         initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!success) {
+            //TODO 关闭串口
+            SerialPortUtils.getInstance().closeSerialPort();
+        }
     }
 
     private void initView() {
@@ -93,9 +106,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "输入枪械编号位数错误", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        //TODO 绑定操作
+        onFBReceive(true);
         // Pad发送总控台枪和计数器绑定的数据协议-申请报文
-        SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+//        SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
     }
 
     @Override
