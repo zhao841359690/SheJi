@@ -1,4 +1,4 @@
-package com.sheji.sheji;
+package com.sheji.sheji.base;
 
 import android.app.Application;
 import android.content.Context;
@@ -18,6 +18,10 @@ public class BaseApplication extends Application {
         setUpDatabase();
     }
 
+    public static Context getContext() {
+        return context;
+    }
+
     private void setUpDatabase() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "target.db", null);
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -29,7 +33,4 @@ public class BaseApplication extends Application {
         return daoSession;
     }
 
-    public static Context getContext() {
-        return context;
-    }
 }

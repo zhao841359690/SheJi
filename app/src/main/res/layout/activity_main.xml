@@ -80,6 +80,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/target_iv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
@@ -91,14 +92,41 @@
                 android:background="@color/green"
                 android:textColor="@color/white" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/green">
+                android:background="@drawable/shape_green_corner">
 
+                <RelativeLayout
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:background="#62864C">
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/menu" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="射击靶机起"
+                    android:textColor="@color/white" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/switch_selector"
+                    android:thumb="@null"
+                    android:track="@null" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -156,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:background="@color/green"
+                    android:background="@drawable/shape_green_corner"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -166,6 +194,15 @@
                         android:text="开始射击"
                         android:textColor="@color/white" />
 
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/switch_selector"
+                        android:thumb="@null"
+                        android:track="@null" />
                 </RelativeLayout>
             </LinearLayout>
 

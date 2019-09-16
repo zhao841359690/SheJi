@@ -3,7 +3,7 @@ package com.sheji.sheji.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.sheji.sheji.BaseApplication;
+import com.sheji.sheji.base.BaseApplication;
 
 public class SharedPreferencesUtils {
 

@@ -13,14 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.sheji.sheji.BaseActivity;
+import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.R;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout mBackRl;
     private LinearLayout mEtLy;
     private EditText mGunNumberEt;
@@ -58,6 +58,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         initView();
     }
 
@@ -79,7 +80,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void submit() {
-        // validate
         gunNumber = mGunNumberEt.getText().toString().trim();
         if (TextUtils.isEmpty(gunNumber)) {
             Toast.makeText(this, "请在此处输入枪械编号", Toast.LENGTH_SHORT).show();
@@ -102,6 +102,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             handler.sendEmptyMessageDelayed(2, 1000);
         }
         textDialog.show();
-
     }
 }

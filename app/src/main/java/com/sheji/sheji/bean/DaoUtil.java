@@ -1,6 +1,6 @@
 package com.sheji.sheji.bean;
 
-import com.sheji.sheji.BaseApplication;
+import com.sheji.sheji.base.BaseApplication;
 
 import java.util.List;
 

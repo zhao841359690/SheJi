@@ -1,4 +1,4 @@
-package com.sheji.sheji;
+package com.sheji.sheji.base;
 
 import android.support.v7.app.AppCompatActivity;
 

@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -19,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sheji.sheji.BaseActivity;
+import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.R;
 import com.sheji.sheji.adpter.BodyTargetAdapter;
 import com.sheji.sheji.adpter.ChestTargetAdapter;
@@ -43,6 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mChestTargetTv;
     private TextView mPrecisionTargetTv;
 
+    private ImageView mTargetIv;
     private TextView mHitTv;
     private TextView mTargetNumberTv;
     private TextView mDateTv;
@@ -141,6 +141,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mPrecisionTargetTv = findViewById(R.id.precision_target_tv);
         mPrecisionTargetTv.setOnClickListener(this);
+
+        mTargetIv = findViewById(R.id.target_iv);
+        mTargetIv.setImageResource(R.drawable.precision_target);
 
         mHitTv = findViewById(R.id.hit_tv);
         mTargetNumberTv = findViewById(R.id.target_number_tv);
@@ -720,6 +723,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setBottomClick(1);
                 break;
             case TargetBean.TYPE_CHEST:
+                mTargetIv.setImageResource(R.drawable.chest_target);
                 mChestTargetTv.setTextColor(getColor(R.color.white));
 
                 mMainRv.setAdapter(chestTargetAdapter);
@@ -732,6 +736,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setBottomClick(1);
                 break;
             case TargetBean.TYPE_PRECISION:
+                mTargetIv.setImageResource(R.drawable.precision_target);
                 mPrecisionTargetTv.setTextColor(getColor(R.color.white));
                 mCumulativeShotNumberHeadTv.setVisibility(View.VISIBLE);
                 mCumulativeShotNumberContentTv.setVisibility(View.VISIBLE);
