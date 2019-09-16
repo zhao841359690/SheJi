@@ -45,7 +45,8 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_black_corner"
             android:hint="请在此处输入枪械编号"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:singleLine="true" />
 
         <Button
             android:id="@+id/determine_tv"

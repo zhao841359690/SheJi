@@ -611,6 +611,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         getDataFromDatabase();
 
         mPageEt.setText("");
+        mPageEt.clearFocus();
 
         mHeadTargetTv.setTextColor(getColor(R.color.gray));
         mBodyTargetTv.setTextColor(getColor(R.color.gray));
