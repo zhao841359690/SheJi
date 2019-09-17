@@ -9,54 +9,18 @@ public class DaoUtil {
         BaseApplication.getDaoInstant().getTargetBeanDao().insertOrReplace(targetBean);
     }
 
-    public static List<TargetBean> queryAllHeadTarget() {
+    public static List<TargetBean> queryAllOrdinaryTarget() {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_HEAD))
+                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_ORDINARY))
                 .orderDesc(TargetBeanDao.Properties.Id)
                 .list();
     }
 
-    public static List<TargetBean> queryHeadTargetByPageAndSize(int page, int size) {
+    public static List<TargetBean> queryOrdinaryTargetByPageAndSize(int page, int size) {
         return BaseApplication.getDaoInstant().getTargetBeanDao()
                 .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_HEAD))
-                .offset(page * size)
-                .limit(size)
-                .orderDesc(TargetBeanDao.Properties.Id)
-                .list();
-    }
-
-    public static List<TargetBean> queryAllBodyTarget() {
-        return BaseApplication.getDaoInstant().getTargetBeanDao()
-                .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_BODY))
-                .orderDesc(TargetBeanDao.Properties.Id)
-                .list();
-    }
-
-    public static List<TargetBean> queryBodyTargetByPageAndSize(int page, int size) {
-        return BaseApplication.getDaoInstant().getTargetBeanDao()
-                .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_BODY))
-                .offset(page * size)
-                .limit(size)
-                .orderDesc(TargetBeanDao.Properties.Id)
-                .list();
-    }
-
-    public static List<TargetBean> queryAllChestTarget() {
-        return BaseApplication.getDaoInstant().getTargetBeanDao()
-                .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_CHEST))
-                .orderDesc(TargetBeanDao.Properties.Id)
-                .list();
-    }
-
-    public static List<TargetBean> queryChestTargetByPageAndSize(int page, int size) {
-        return BaseApplication.getDaoInstant().getTargetBeanDao()
-                .queryBuilder()
-                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_CHEST))
+                .where(TargetBeanDao.Properties.Type.eq(TargetBean.TYPE_ORDINARY))
                 .offset(page * size)
                 .limit(size)
                 .orderDesc(TargetBeanDao.Properties.Id)

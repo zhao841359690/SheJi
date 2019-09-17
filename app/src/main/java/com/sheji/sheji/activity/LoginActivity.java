@@ -116,18 +116,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onFBReceive(boolean success) {
         mBackRl.setBackgroundResource(R.drawable.login_state_back);
         mEtLy.setVisibility(View.GONE);
+        //清空数据库
+        DaoUtil.deleteAll();
 
         if (success) {
             textDialog = new TextDialog(this, "√ 枪号绑定成功");
-            if (!gunNumber.equals(SharedPreferencesUtils.getInstance().getGunNumber())) {
-                DaoUtil.deleteAll();
-            }
             SharedPreferencesUtils.getInstance().setGunNumber(gunNumber);
 
-            handler.sendEmptyMessageDelayed(Constant.LOGIN_SUCCESS, 1000);
+            handler.sendEmptyMessageDelayed(Constant.LOGIN_SUCCESS, 2000);
         } else {
             textDialog = new TextDialog(this, "X 枪号绑定失败\n请您重新绑定");
-            handler.sendEmptyMessageDelayed(Constant.LOGIN_FAIL, 1000);
+            handler.sendEmptyMessageDelayed(Constant.LOGIN_FAIL, 2000);
         }
         textDialog.show();
     }

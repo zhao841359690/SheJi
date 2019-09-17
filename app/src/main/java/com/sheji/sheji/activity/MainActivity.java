@@ -7,30 +7,23 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.sheji.sheji.adpter.OrdinaryTargetAdapter;
 import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.R;
-import com.sheji.sheji.adpter.BodyTargetAdapter;
-import com.sheji.sheji.adpter.ChestTargetAdapter;
-import com.sheji.sheji.adpter.HeadTargetAdapter;
 import com.sheji.sheji.adpter.PrecisionTargetAdapter;
+import com.sheji.sheji.bean.Constant;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.bean.TargetBean;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
-import com.sheji.sheji.util.SoftKeyboardUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,9 +57,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mPositionTv;
     private RecyclerView mMainRv;
     private TextView mTotalTv;
-    private TextView mSizeTv;
     private LinearLayout mPageLy;
-    private EditText mPageEt;
     private ImageView mPrePageIv;
     private TextView mFirstTv;
     private View mV1;
@@ -83,26 +74,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private ImageView mNextPageIv;
     private View mV7;
 
-    private HeadTargetAdapter headTargetAdapter;
-    private List<TargetBean> headTargetList = new ArrayList<>();
-    private int totalHeadTarget = 0;
-    private int totalHeadTargetPage = 0;
-    private int headTargetPage = 0;
-    private int nowHeadTargetPage = 0;
-
-    private BodyTargetAdapter bodyTargetAdapter;
-    private List<TargetBean> bodyTargetList = new ArrayList<>();
-    private int totalBodyTarget = 0;
-    private int totalBodyTargetPage = 0;
-    private int bodyTargetPage = 0;
-    private int nowBodyTargetPage = 0;
-
-    private ChestTargetAdapter chestTargetAdapter;
-    private List<TargetBean> chestTargetList = new ArrayList<>();
-    private int totalChestTarget = 0;
-    private int totalChestTargetPage = 0;
-    private int chestTargetPage = 0;
-    private int nowChestTargetPage = 0;
+    private OrdinaryTargetAdapter ordinaryTargetAdapter;
+    private List<TargetBean> ordinaryTargetList = new ArrayList<>();
+    private int totalOrdinaryTarget = 0;
+    private int totalOrdinaryTargetPage = 0;
+    private int ordinaryTargetPage = 0;
+    private int nowOrdinaryTargetPage = 0;
 
     private PrecisionTargetAdapter precisionTargetAdapter;
     private List<TargetBean> precisionTargetList = new ArrayList<>();
@@ -111,7 +88,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private int precisionTargetPage = 0;
     private int nowPrecisionTargetPage = 0;
 
-    private int pageType = TargetBean.TYPE_PRECISION;
+    private int pageType = Constant.PRECISION;
 
     private int size = 10;
 
@@ -189,141 +166,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mPageLy = findViewById(R.id.page_ly);
         mTotalTv = findViewById(R.id.total_tv);
 
-        mSizeTv = findViewById(R.id.size_tv);
-        mSizeTv.setOnClickListener(this);
-
-        mPageEt = findViewById(R.id.page_et);
-        mPageEt.setOnClickListener(this);
-        mPageEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    SoftKeyboardUtil.hideSoftKeyboard(MainActivity.this);
-                    if (TextUtils.isEmpty(v.getText())) {
-                        Toast.makeText(MainActivity.this, "页码不能为空", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                    int page = Integer.valueOf(v.getText().toString());
-                    if (page == 0) {
-                        Toast.makeText(MainActivity.this, "页码不能为0", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                    switch (pageType) {
-                        case TargetBean.TYPE_HEAD:
-                            if (page > totalHeadTargetPage) {
-                                Toast.makeText(MainActivity.this, "超过最大页码", Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (((page * 1.0f) / (5.0f)) > ((page / 5) * 1.0f)) {
-                                    nowHeadTargetPage = page / 5;
-                                    sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
-                                    if ((((nowHeadTargetPage + 1) * 5 + 1) - totalHeadTargetPage) == 0) {
-                                        setBottomClick(6);
-                                    } else if (page % 5 == 0) {
-                                        setBottomClick(5);
-                                    } else if (page % 5 == 1) {
-                                        setBottomClick(1);
-                                    } else if (page % 5 == 2) {
-                                        setBottomClick(2);
-                                    } else if (page % 5 == 3) {
-                                        setBottomClick(3);
-                                    } else if (page % 5 == 4) {
-                                        setBottomClick(4);
-                                    }
-                                } else if (((page * 1.0f) / (5.0f)) == ((page / 5) * 1.0f)) {
-                                    nowHeadTargetPage = page / 5 - 1;
-                                    sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
-                                    setBottomClick(5);
-                                }
-                            }
-                            break;
-                        case TargetBean.TYPE_BODY:
-                            if (page > totalBodyTargetPage) {
-                                Toast.makeText(MainActivity.this, "超过最大页码", Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (((page * 1.0f) / (5.0f)) > ((page / 5) * 1.0f)) {
-                                    nowBodyTargetPage = page / 5;
-                                    sendPageNumber(totalHeadTargetPage, nowBodyTargetPage);
-                                    if ((((nowBodyTargetPage + 1) * 5 + 1) - totalBodyTargetPage) == 0) {
-                                        setBottomClick(6);
-                                    } else if (page % 5 == 0) {
-                                        setBottomClick(5);
-                                    } else if (page % 5 == 1) {
-                                        setBottomClick(1);
-                                    } else if (page % 5 == 2) {
-                                        setBottomClick(2);
-                                    } else if (page % 5 == 3) {
-                                        setBottomClick(3);
-                                    } else if (page % 5 == 4) {
-                                        setBottomClick(4);
-                                    }
-                                } else if (((page * 1.0f) / (5.0f)) == ((page / 5) * 1.0f)) {
-                                    nowBodyTargetPage = page / 5 - 1;
-                                    sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                                    setBottomClick(5);
-                                }
-                            }
-                            break;
-                        case TargetBean.TYPE_CHEST:
-                            if (page > totalChestTargetPage) {
-                                Toast.makeText(MainActivity.this, "超过最大页码", Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (((page * 1.0f) / (5.0f)) > ((page / 5) * 1.0f)) {
-                                    nowChestTargetPage = page / 5;
-                                    sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                                    if ((((nowChestTargetPage + 1) * 5 + 1) - totalChestTargetPage) == 0) {
-                                        setBottomClick(6);
-                                    } else if (page % 5 == 0) {
-                                        setBottomClick(5);
-                                    } else if (page % 5 == 1) {
-                                        setBottomClick(1);
-                                    } else if (page % 5 == 2) {
-                                        setBottomClick(2);
-                                    } else if (page % 5 == 3) {
-                                        setBottomClick(3);
-                                    } else if (page % 5 == 4) {
-                                        setBottomClick(4);
-                                    }
-                                } else if (((page * 1.0f) / (5.0f)) == ((page / 5) * 1.0f)) {
-                                    nowChestTargetPage = page / 5 - 1;
-                                    sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                                    setBottomClick(5);
-                                }
-                            }
-                            break;
-                        case TargetBean.TYPE_PRECISION:
-                            if (page > totalPrecisonTargetPage) {
-                                Toast.makeText(MainActivity.this, "超过最大页码", Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (((page * 1.0f) / (5.0f)) > ((page / 5) * 1.0f)) {
-                                    nowPrecisionTargetPage = page / 5;
-                                    sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
-                                    if ((((nowPrecisionTargetPage + 1) * 5 + 1) - totalPrecisonTargetPage) == 0) {
-                                        setBottomClick(6);
-                                    } else if (page % 5 == 0) {
-                                        setBottomClick(5);
-                                    } else if (page % 5 == 1) {
-                                        setBottomClick(1);
-                                    } else if (page % 5 == 2) {
-                                        setBottomClick(2);
-                                    } else if (page % 5 == 3) {
-                                        setBottomClick(3);
-                                    } else if (page % 5 == 4) {
-                                        setBottomClick(4);
-                                    }
-                                } else if (((page * 1.0f) / (5.0f)) == ((page / 5) * 1.0f)) {
-                                    nowPrecisionTargetPage = page / 5 - 1;
-                                    sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
-                                    setBottomClick(5);
-                                }
-                            }
-                            break;
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
-
         mPrePageIv = findViewById(R.id.pre_page_iv);
         mPrePageIv.setOnClickListener(this);
 
@@ -359,8 +201,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initData() {
         getDataFromDatabase();
 
-        if (totalChestTarget > 0) {
-            if (DaoUtil.queryAllChestTarget().get(0).getHit()) {
+        if (totalPrecisionTarget > 0) {
+            if (DaoUtil.queryAllPrecisionTarget().get(0).getHit()) {
                 mHitTv.setText("已命中");
             } else {
                 mHitTv.setText("未命中");
@@ -382,14 +224,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //累计射击发数
         mCumulativeShotsTv.setText(String.valueOf(totalPrecisionTarget));
 
-        headTargetAdapter = new HeadTargetAdapter(this);
-        headTargetAdapter.setDataList(headTargetList);
-
-        bodyTargetAdapter = new BodyTargetAdapter(this);
-        bodyTargetAdapter.setDataList(bodyTargetList);
-
-        chestTargetAdapter = new ChestTargetAdapter(this);
-        chestTargetAdapter.setDataList(chestTargetList);
+        ordinaryTargetAdapter = new OrdinaryTargetAdapter(this);
+        ordinaryTargetAdapter.setDataList(ordinaryTargetList);
 
         precisionTargetAdapter = new PrecisionTargetAdapter(this);
         precisionTargetAdapter.setDataList(precisionTargetList);
@@ -399,7 +235,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mMainRv.setAdapter(precisionTargetAdapter);
 
         //一共有多少条数据
-        mTotalTv.setText("共" + totalPrecisionTarget + "条，每页");
+        mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisonTargetPage + "页");
 
         sendPageNumber(totalPrecisionTarget, nowPrecisionTargetPage);
         setBottomClick(1);
@@ -409,18 +245,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * 从数据库获取数据
      */
     private void getDataFromDatabase() {
-        totalHeadTarget = DaoUtil.queryAllHeadTarget().size();
-        totalHeadTargetPage = (int) Math.ceil((totalHeadTarget * 1.0f) / (size * 1.0f));
-        totalBodyTarget = DaoUtil.queryAllBodyTarget().size();
-        totalBodyTargetPage = (int) Math.ceil((totalBodyTarget * 1.0f) / (size * 1.0f));
-        totalChestTarget = DaoUtil.queryAllChestTarget().size();
-        totalChestTargetPage = (int) Math.ceil((totalChestTarget * 1.0f) / (size * 1.0f));
+        totalOrdinaryTarget = DaoUtil.queryAllOrdinaryTarget().size();
+        totalOrdinaryTargetPage = (int) Math.ceil((totalOrdinaryTarget * 1.0f) / (size * 1.0f));
         totalPrecisionTarget = DaoUtil.queryAllPrecisionTarget().size();
         totalPrecisonTargetPage = (int) Math.ceil((totalPrecisionTarget * 1.0f) / (size * 1.0f));
 
-        headTargetList = DaoUtil.queryHeadTargetByPageAndSize(headTargetPage, size);
-        bodyTargetList = DaoUtil.queryBodyTargetByPageAndSize(bodyTargetPage, size);
-        chestTargetList = DaoUtil.queryChestTargetByPageAndSize(chestTargetPage, size);
+        ordinaryTargetList = DaoUtil.queryOrdinaryTargetByPageAndSize(ordinaryTargetPage, size);
         precisionTargetList = DaoUtil.queryPrecisionTargetByPageAndSize(precisionTargetPage, size);
     }
 
@@ -430,38 +260,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.fire:
                 onFEReceive("70");
                 switch (pageType) {
-                    case TargetBean.TYPE_HEAD:
+                    case Constant.HEAD:
                         onDBOrDCReceive("DB", "七环上", 7, false);
                         break;
-                    case TargetBean.TYPE_BODY:
+                    case Constant.BODY:
                         onDBOrDCReceive("DB", "七环上", 7, false);
                         break;
-                    case TargetBean.TYPE_CHEST:
+                    case Constant.CHEST:
                         onDBOrDCReceive("DB", "七环上", 7, false);
                         break;
-                    case TargetBean.TYPE_PRECISION:
+                    case Constant.PRECISION:
                         onDBOrDCReceive("DC", "七环上", 7, false);
                         break;
                 }
                 break;
             //头靶
             case R.id.head_target_tv:
-                pageType = TargetBean.TYPE_HEAD;
+                pageType = Constant.HEAD;
                 setTabClick(pageType);
                 break;
             //身靶
             case R.id.body_target_tv:
-                pageType = TargetBean.TYPE_BODY;
+                pageType = Constant.BODY;
                 setTabClick(pageType);
                 break;
             //胸靶
             case R.id.chest_target_tv:
-                pageType = TargetBean.TYPE_CHEST;
+                pageType = Constant.CHEST;
                 setTabClick(pageType);
                 break;
             //精度靶
             case R.id.precision_target_tv:
-                pageType = TargetBean.TYPE_PRECISION;
+                pageType = Constant.PRECISION;
                 setTabClick(pageType);
                 break;
             case R.id.menu_rl:
@@ -483,34 +313,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 //                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
                 }
                 break;
-            case R.id.size_tv:
-                break;
-            case R.id.page_et:
-                break;
             case R.id.pre_page_iv:
                 switch (pageType) {
-                    case TargetBean.TYPE_HEAD:
-                        if (nowHeadTargetPage > 0) {
-                            nowHeadTargetPage--;
-                            sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
+                    case Constant.HEAD:
+                    case Constant.BODY:
+                    case Constant.CHEST:
+                        if (nowOrdinaryTargetPage > 0) {
+                            nowOrdinaryTargetPage--;
+                            sendPageNumber(totalOrdinaryTargetPage, nowOrdinaryTargetPage);
                             setBottomClick(5);
                         }
                         break;
-                    case TargetBean.TYPE_BODY:
-                        if (nowBodyTargetPage > 0) {
-                            nowBodyTargetPage--;
-                            sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                            setBottomClick(5);
-                        }
-                        break;
-                    case TargetBean.TYPE_CHEST:
-                        if (nowChestTargetPage > 0) {
-                            nowChestTargetPage--;
-                            sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                            setBottomClick(5);
-                        }
-                        break;
-                    case TargetBean.TYPE_PRECISION:
+                    case Constant.PRECISION:
                         if (nowPrecisionTargetPage > 0) {
                             nowPrecisionTargetPage--;
                             sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
@@ -536,34 +350,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.sixth_tv:
                 switch (pageType) {
-                    case TargetBean.TYPE_HEAD:
-                        if (totalHeadTargetPage > ((nowHeadTargetPage + 1) * 5 + 1)) {
-                            nowHeadTargetPage++;
-                            sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
+                    case Constant.HEAD:
+                    case Constant.BODY:
+                    case Constant.CHEST:
+                        if (totalOrdinaryTargetPage > ((nowOrdinaryTargetPage + 1) * 5 + 1)) {
+                            nowOrdinaryTargetPage++;
+                            sendPageNumber(totalOrdinaryTargetPage, nowOrdinaryTargetPage);
                             setBottomClick(1);
-                        } else if ((((nowHeadTargetPage + 1) * 5 + 1) - totalHeadTargetPage) == 0) {
+                        } else if ((((nowOrdinaryTargetPage + 1) * 5 + 1) - totalOrdinaryTargetPage) == 0) {
                             setBottomClick(6);
                         }
                         break;
-                    case TargetBean.TYPE_BODY:
-                        if (totalBodyTargetPage > ((nowBodyTargetPage + 1) * 5 + 1)) {
-                            nowBodyTargetPage++;
-                            sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                            setBottomClick(1);
-                        } else if ((((nowBodyTargetPage + 1) * 5 + 1) - totalBodyTargetPage) == 0) {
-                            setBottomClick(6);
-                        }
-                        break;
-                    case TargetBean.TYPE_CHEST:
-                        if (totalChestTargetPage > ((nowChestTargetPage + 1) * 5 + 1)) {
-                            nowChestTargetPage++;
-                            sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                            setBottomClick(1);
-                        } else if ((((nowChestTargetPage + 1) * 5 + 1) - totalChestTargetPage) == 0) {
-                            setBottomClick(6);
-                        }
-                        break;
-                    case TargetBean.TYPE_PRECISION:
+                    case Constant.PRECISION:
                         if (totalPrecisonTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
                             nowPrecisionTargetPage++;
                             sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
@@ -576,28 +374,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.next_page_iv:
                 switch (pageType) {
-                    case TargetBean.TYPE_HEAD:
-                        if (totalHeadTargetPage > ((nowHeadTargetPage + 1) * 5 + 1)) {
-                            nowHeadTargetPage++;
-                            sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
+                    case Constant.HEAD:
+                    case Constant.BODY:
+                    case Constant.CHEST:
+                        if (totalOrdinaryTargetPage > ((nowOrdinaryTargetPage + 1) * 5 + 1)) {
+                            nowOrdinaryTargetPage++;
+                            sendPageNumber(totalOrdinaryTargetPage, nowOrdinaryTargetPage);
                             setBottomClick(1);
                         }
                         break;
-                    case TargetBean.TYPE_BODY:
-                        if (totalBodyTargetPage > ((nowBodyTargetPage + 1) * 5 + 1)) {
-                            nowBodyTargetPage++;
-                            sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                            setBottomClick(1);
-                        }
-                        break;
-                    case TargetBean.TYPE_CHEST:
-                        if (totalChestTargetPage > ((nowChestTargetPage + 1) * 5 + 1)) {
-                            nowChestTargetPage++;
-                            sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                            setBottomClick(1);
-                        }
-                        break;
-                    case TargetBean.TYPE_PRECISION:
+                    case Constant.PRECISION:
                         if (totalPrecisonTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
                             nowPrecisionTargetPage++;
                             sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
@@ -619,9 +405,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void setTabClick(int type) {
         getDataFromDatabase();
 
-        mPageEt.setText("");
-        mPageEt.clearFocus();
-
         mHeadTargetTv.setTextColor(getColor(R.color.gray));
         mBodyTargetTv.setTextColor(getColor(R.color.gray));
         mChestTargetTv.setTextColor(getColor(R.color.gray));
@@ -631,18 +414,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mCumulativeShotNumberContentTv.setVisibility(View.GONE);
         mPositionTv.setVisibility(View.GONE);
         switch (type) {
-            case TargetBean.TYPE_HEAD:
+            case Constant.HEAD:
+            case Constant.BODY:
+            case Constant.CHEST:
                 //TODO PAD控制靶机靶子类型的协议
-                //PAD控制靶机靶子类型的协议
-//                SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
+                if (type == Constant.HEAD) {
+                    //PAD控制靶机靶子类型的协议
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
 
-                mHeadTargetTv.setTextColor(getColor(R.color.white));
+                    mHeadTargetTv.setTextColor(getColor(R.color.white));
+                } else if (type == Constant.BODY) {
+                    //PAD控制靶机靶子类型的协议
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
 
-                mMainRv.setAdapter(headTargetAdapter);
-                headTargetAdapter.setDataList(headTargetList);
+                    mBodyTargetTv.setTextColor(getColor(R.color.white));
+                } else {
+                    //PAD控制靶机靶子类型的协议
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
 
-                if (totalHeadTarget > 0) {
-                    if (DaoUtil.queryAllHeadTarget().get(0).getHit()) {
+                    mChestTargetTv.setTextColor(getColor(R.color.white));
+                    mTargetIv.setImageResource(R.drawable.chest_target);
+                }
+
+
+                mMainRv.setAdapter(ordinaryTargetAdapter);
+                ordinaryTargetAdapter.setDataList(ordinaryTargetList);
+
+                if (totalOrdinaryTarget > 0) {
+                    if (DaoUtil.queryAllOrdinaryTarget().get(0).getHit()) {
                         mHitTv.setText("已命中");
                     } else {
                         mHitTv.setText("未命中");
@@ -651,65 +450,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mHitTv.setText("");
                 }
 
-                mCumulativeShotsTv.setText(String.valueOf(totalHeadTarget));
-                mTotalTv.setText("共" + totalHeadTarget + "条，每页");
+                mCumulativeShotsTv.setText(String.valueOf(totalOrdinaryTarget));
+                mTotalTv.setText("共" + totalOrdinaryTarget + "条，共" + totalOrdinaryTargetPage + "页");
 
-                sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
                 setBottomClick(1);
                 break;
-            case TargetBean.TYPE_BODY:
-                //TODO PAD控制靶机靶子类型的协议
-                //PAD控制靶机靶子类型的协议
-//                SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
-                mBodyTargetTv.setTextColor(getColor(R.color.white));
-
-                mMainRv.setAdapter(bodyTargetAdapter);
-                bodyTargetAdapter.setDataList(bodyTargetList);
-
-                if (totalBodyTarget > 0) {
-                    if (DaoUtil.queryAllBodyTarget().get(0).getHit()) {
-                        mHitTv.setText("已命中");
-                    } else {
-                        mHitTv.setText("未命中");
-                    }
-                } else {
-                    mHitTv.setText("");
-                }
-
-                mCumulativeShotsTv.setText(String.valueOf(totalBodyTarget));
-                mTotalTv.setText("共" + totalBodyTarget + "条，每页");
-
-                sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                setBottomClick(1);
-                break;
-            case TargetBean.TYPE_CHEST:
-                //TODO PAD控制靶机靶子类型的协议
-                //PAD控制靶机靶子类型的协议
-//                SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
-
-                mChestTargetTv.setTextColor(getColor(R.color.white));
-                mTargetIv.setImageResource(R.drawable.chest_target);
-
-                mMainRv.setAdapter(chestTargetAdapter);
-                chestTargetAdapter.setDataList(chestTargetList);
-
-                if (totalChestTarget > 0) {
-                    if (DaoUtil.queryAllChestTarget().get(0).getHit()) {
-                        mHitTv.setText("已命中");
-                    } else {
-                        mHitTv.setText("未命中");
-                    }
-                } else {
-                    mHitTv.setText("");
-                }
-
-                mCumulativeShotsTv.setText(String.valueOf(totalChestTarget));
-                mTotalTv.setText("共" + totalChestTarget + "条，每页");
-
-                sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                setBottomClick(1);
-                break;
-            case TargetBean.TYPE_PRECISION:
+            case Constant.PRECISION:
                 //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
@@ -740,9 +486,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 }
 
                 mCumulativeShotsTv.setText(String.valueOf(totalPrecisionTarget));
-                mTotalTv.setText("共" + totalPrecisionTarget + "条，每页");
+                mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisonTargetPage + "页");
 
-                sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
                 setBottomClick(1);
                 break;
             default:
@@ -770,16 +515,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mSixthTv.setTextColor(getColor(R.color.black));
 
         switch (pageType) {
-            case TargetBean.TYPE_HEAD:
-                sendPageNumber(totalHeadTargetPage, nowHeadTargetPage);
+            case Constant.HEAD:
+            case Constant.BODY:
+            case Constant.CHEST:
+                sendPageNumber(totalOrdinaryTargetPage, nowOrdinaryTargetPage);
                 break;
-            case TargetBean.TYPE_BODY:
-                sendPageNumber(totalBodyTargetPage, nowBodyTargetPage);
-                break;
-            case TargetBean.TYPE_CHEST:
-                sendPageNumber(totalChestTargetPage, nowChestTargetPage);
-                break;
-            case TargetBean.TYPE_PRECISION:
+            case Constant.PRECISION:
                 sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
                 break;
         }
@@ -844,22 +585,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
 
         switch (pageType) {
-            case TargetBean.TYPE_HEAD:
-                headTargetPage = nowHeadTargetPage * 5 + (position - 1);
-                headTargetList = DaoUtil.queryHeadTargetByPageAndSize(headTargetPage, size);
-                headTargetAdapter.setDataList(headTargetList);
+            case Constant.HEAD:
+            case Constant.BODY:
+            case Constant.CHEST:
+                ordinaryTargetPage = nowOrdinaryTargetPage * 5 + (position - 1);
+                ordinaryTargetList = DaoUtil.queryOrdinaryTargetByPageAndSize(ordinaryTargetPage, size);
+                ordinaryTargetAdapter.setDataList(ordinaryTargetList);
                 break;
-            case TargetBean.TYPE_BODY:
-                bodyTargetPage = nowBodyTargetPage * 5 + (position - 1);
-                bodyTargetList = DaoUtil.queryBodyTargetByPageAndSize(bodyTargetPage, size);
-                bodyTargetAdapter.setDataList(bodyTargetList);
-                break;
-            case TargetBean.TYPE_CHEST:
-                chestTargetPage = nowChestTargetPage * 5 + (position - 1);
-                chestTargetList = DaoUtil.queryChestTargetByPageAndSize(chestTargetPage, size);
-                chestTargetAdapter.setDataList(chestTargetList);
-                break;
-            case TargetBean.TYPE_PRECISION:
+            case Constant.PRECISION:
                 precisionTargetPage = nowPrecisionTargetPage * 5 + (position - 1);
                 precisionTargetList = DaoUtil.queryPrecisionTargetByPageAndSize(precisionTargetPage, size);
                 precisionTargetAdapter.setDataList(precisionTargetList);
@@ -996,27 +729,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         TargetBean targetBean;
         if ("DB".equals(type)) {//普通靶
             targetBean = new TargetBean();
+            targetBean.setType(TargetBean.TYPE_ORDINARY);
+            targetBean.setNumber(DaoUtil.queryAllOrdinaryTarget().size() + 1);
             targetBean.setHit(hit);
             targetBean.setShootingInterval("1s");
             targetBean.setTime(new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis())));
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
-            switch (pageType) {
-                case TargetBean.TYPE_HEAD:
-                    targetBean.setType(TargetBean.TYPE_HEAD);
-                    targetBean.setNumber(DaoUtil.queryAllHeadTarget().size() + 1);
-                    DaoUtil.insertTarget(targetBean);
-                    break;
-                case TargetBean.TYPE_BODY:
-                    targetBean.setType(TargetBean.TYPE_BODY);
-                    targetBean.setNumber(DaoUtil.queryAllBodyTarget().size() + 1);
-                    DaoUtil.insertTarget(targetBean);
-                    break;
-                case TargetBean.TYPE_CHEST:
-                    targetBean.setType(TargetBean.TYPE_CHEST);
-                    targetBean.setNumber(DaoUtil.queryAllChestTarget().size() + 1);
-                    DaoUtil.insertTarget(targetBean);
-                    break;
-            }
+            DaoUtil.insertTarget(targetBean);
         } else {//精准靶
             targetBean = new TargetBean();
             targetBean.setType(TargetBean.TYPE_PRECISION);

@@ -13,11 +13,11 @@ import com.sheji.sheji.bean.TargetBean;
 
 import java.util.List;
 
-public class ChestTargetAdapter extends RecyclerView.Adapter<ChestTargetAdapter.ViewHolder> {
+public class OrdinaryTargetAdapter extends RecyclerView.Adapter<OrdinaryTargetAdapter.ViewHolder> {
     private Context context;
     private List<TargetBean> dataList;
 
-    public ChestTargetAdapter(Context context) {
+    public OrdinaryTargetAdapter(Context context) {
         this.context = context;
     }
 
@@ -26,15 +26,16 @@ public class ChestTargetAdapter extends RecyclerView.Adapter<ChestTargetAdapter.
         notifyDataSetChanged();
     }
 
+
     @NonNull
     @Override
-    public ChestTargetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public OrdinaryTargetAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChestTargetAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull OrdinaryTargetAdapter.ViewHolder viewHolder, int position) {
         viewHolder.shootingSerialNumberTv.setText(dataList.get(position).getNumber() + "");
         if (dataList.get(position).getHit()) {
             viewHolder.hitsTv.setText("是");

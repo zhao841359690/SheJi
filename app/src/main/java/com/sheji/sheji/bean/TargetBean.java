@@ -6,14 +6,10 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class TargetBean {
-    //表示头靶
-    public static final int TYPE_HEAD = 0x01;
-    //表示身靶
-    public static final int TYPE_BODY = 0x02;
-    //表示胸靶
-    public static final int TYPE_CHEST = 0x03;
+    //表示普通靶
+    public static final int TYPE_ORDINARY = 0x01;
     //表示精准靶
-    public static final int TYPE_PRECISION = 0x04;
+    public static final int TYPE_PRECISION = 0x02;
 
     @Id(autoincrement = true)
     private Long id;
