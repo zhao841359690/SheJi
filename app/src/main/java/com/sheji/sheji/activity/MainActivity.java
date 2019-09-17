@@ -15,10 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.sheji.sheji.adpter.OrdinaryTargetAdapter;
-import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.R;
+import com.sheji.sheji.adpter.OrdinaryTargetAdapter;
 import com.sheji.sheji.adpter.PrecisionTargetAdapter;
+import com.sheji.sheji.base.BaseActivity;
 import com.sheji.sheji.bean.Constant;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.bean.TargetBean;
@@ -40,6 +40,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mPrecisionTargetTv;
 
     private ImageView mTargetIv;
+    private TextView mTop10Tv;
+    private TextView mRight10Tv;
+    private TextView mBottom10Tv;
+    private TextView mLeft10Tv;
+    private TextView mTop9Tv;
+    private TextView mRight9Tv;
+    private TextView mBottom9Tv;
+    private TextView mLeft9Tv;
+    private TextView mTop8Tv;
+    private TextView mRightTop8Tv;
+    private TextView mRight8Tv;
+    private TextView mRightBottom8Tv;
+    private TextView mBottom8Tv;
+    private TextView mLeftTop8Tv;
+    private TextView mLeft8Tv;
+    private TextView mLeftBottom8Tv;
+    private TextView mTop7Tv;
+    private TextView mRightTop7Tv;
+    private TextView mRight7Tv;
+    private TextView mRightBottom7Tv;
+    private TextView mBottom7Tv;
+    private TextView mLeftTop7Tv;
+    private TextView mLeft7Tv;
+    private TextView mLeftBottom7Tv;
+    private TextView mTop6Tv;
+    private TextView mRightTop6Tv;
+    private TextView mRight6Tv;
+    private TextView mRightBottom6Tv;
+    private TextView mBottom6Tv;
+    private TextView mLeftTop6Tv;
+    private TextView mLeft6Tv;
+    private TextView mLeftBottom6Tv;
     private TextView mHitTv;
     private RelativeLayout mMenuRl;
     private TextView mShootingDroneTv;
@@ -178,6 +210,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         mTargetIv = findViewById(R.id.target_iv);
 
+        mTop10Tv = findViewById(R.id.top10_tv);
+        mRight10Tv = findViewById(R.id.right10_tv);
+        mBottom10Tv = findViewById(R.id.bottom10_tv);
+        mLeft10Tv = findViewById(R.id.left10_tv);
+        mTop9Tv = findViewById(R.id.top9_tv);
+        mRight9Tv = findViewById(R.id.right9_tv);
+        mBottom9Tv = findViewById(R.id.bottom9_tv);
+        mLeft9Tv = findViewById(R.id.left9_tv);
+        mTop8Tv = findViewById(R.id.top8_tv);
+        mRightTop8Tv = findViewById(R.id.rightTop8_tv);
+        mRight8Tv = findViewById(R.id.right8_tv);
+        mRightBottom8Tv = findViewById(R.id.rightBottom8_tv);
+        mBottom8Tv = findViewById(R.id.bottom8_tv);
+        mLeftTop8Tv = findViewById(R.id.leftTop8_tv);
+        mLeft8Tv = findViewById(R.id.left8_tv);
+        mLeftBottom8Tv = findViewById(R.id.leftBottom8_tv);
+        mTop7Tv = findViewById(R.id.top7_tv);
+        mRightTop7Tv = findViewById(R.id.rightTop7_tv);
+        mRight7Tv = findViewById(R.id.right7_tv);
+        mRightBottom7Tv = findViewById(R.id.rightBottom7_tv);
+        mBottom7Tv = findViewById(R.id.bottom7_tv);
+        mLeftTop7Tv = findViewById(R.id.leftTop7_tv);
+        mLeft7Tv = findViewById(R.id.left7_tv);
+        mLeftBottom7Tv = findViewById(R.id.leftBottom7_tv);
+        mTop6Tv = findViewById(R.id.top6_tv);
+        mRightTop6Tv = findViewById(R.id.rightTop6_tv);
+        mRight6Tv = findViewById(R.id.right6_tv);
+        mRightBottom6Tv = findViewById(R.id.rightBottom6_tv);
+        mBottom6Tv = findViewById(R.id.bottom6_tv);
+        mLeftTop6Tv = findViewById(R.id.leftTop6_tv);
+        mLeft6Tv = findViewById(R.id.left6_tv);
+        mLeftBottom6Tv = findViewById(R.id.leftBottom6_tv);
+
         mHitTv = findViewById(R.id.hit_tv);
         mTargetNumberTv = findViewById(R.id.target_number_tv);
 
@@ -238,6 +303,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mNextPageIv = findViewById(R.id.next_page_iv);
         mNextPageIv.setOnClickListener(this);
         mV7 = findViewById(R.id.v7);
+
+        hiddenRedPoint();
     }
 
     private void initData() {
@@ -480,6 +547,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mTargetIv.setImageResource(R.drawable.chest_target);
                 }
 
+                hiddenRedPoint();
 
                 mMainRv.setAdapter(ordinaryTargetAdapter);
                 ordinaryTargetAdapter.setDataList(ordinaryTargetList);
@@ -503,6 +571,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+                for (TargetBean targetBean : DaoUtil.queryAllPrecisionTarget()) {
+                    showRedPoint(targetBean.getPrecisionRingNumber());
+                }
 
                 mPrecisionTargetTv.setTextColor(getColor(R.color.white));
                 mTargetIv.setImageResource(R.drawable.precision_target);
@@ -538,6 +609,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
         }
     }
+
 
     /**
      * 底部页码点击事件
@@ -754,8 +826,111 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             mSixthTv.setVisibility(View.VISIBLE);
             mV6.setVisibility(View.VISIBLE);
 
-            mSixthTv.setText("...");
+            mSixthTv.setText("···");
         }
+    }
+
+    private void showRedPoint(String precisionRingNumber) {
+        if ("10环上".equals(precisionRingNumber)) {
+            mTop10Tv.setVisibility(View.VISIBLE);
+        } else if ("10环右".equals(precisionRingNumber)) {
+            mRight10Tv.setVisibility(View.VISIBLE);
+        } else if ("10环下".equals(precisionRingNumber)) {
+            mBottom10Tv.setVisibility(View.VISIBLE);
+        } else if ("10环左".equals(precisionRingNumber)) {
+            mLeft10Tv.setVisibility(View.VISIBLE);
+        } else if ("9环上".equals(precisionRingNumber)) {
+            mTop9Tv.setVisibility(View.VISIBLE);
+        } else if ("9环右".equals(precisionRingNumber)) {
+            mRight9Tv.setVisibility(View.VISIBLE);
+        } else if ("9环下".equals(precisionRingNumber)) {
+            mBottom9Tv.setVisibility(View.VISIBLE);
+        } else if ("9环左".equals(precisionRingNumber)) {
+            mLeft9Tv.setVisibility(View.VISIBLE);
+        } else if ("8环上".equals(precisionRingNumber)) {
+            mTop8Tv.setVisibility(View.VISIBLE);
+        } else if ("8环右上".equals(precisionRingNumber)) {
+            mRightTop8Tv.setVisibility(View.VISIBLE);
+        } else if ("8环右".equals(precisionRingNumber)) {
+            mRight8Tv.setVisibility(View.VISIBLE);
+        } else if ("8右下".equals(precisionRingNumber)) {
+            mRightBottom8Tv.setVisibility(View.VISIBLE);
+        } else if ("8环下".equals(precisionRingNumber)) {
+            mBottom8Tv.setVisibility(View.VISIBLE);
+        } else if ("8左下".equals(precisionRingNumber)) {
+            mLeftBottom8Tv.setVisibility(View.VISIBLE);
+        } else if ("8环左".equals(precisionRingNumber)) {
+            mLeft8Tv.setVisibility(View.VISIBLE);
+        } else if ("8环左上".equals(precisionRingNumber)) {
+            mLeftTop8Tv.setVisibility(View.VISIBLE);
+        } else if ("7环上".equals(precisionRingNumber)) {
+            mTop7Tv.setVisibility(View.VISIBLE);
+        } else if ("7环右上".equals(precisionRingNumber)) {
+            mRightTop7Tv.setVisibility(View.VISIBLE);
+        } else if ("7环右".equals(precisionRingNumber)) {
+            mRight7Tv.setVisibility(View.VISIBLE);
+        } else if ("7右下".equals(precisionRingNumber)) {
+            mRightBottom7Tv.setVisibility(View.VISIBLE);
+        } else if ("7环下".equals(precisionRingNumber)) {
+            mBottom7Tv.setVisibility(View.VISIBLE);
+        } else if ("7左下".equals(precisionRingNumber)) {
+            mLeftBottom7Tv.setVisibility(View.VISIBLE);
+        } else if ("7环左".equals(precisionRingNumber)) {
+            mLeft7Tv.setVisibility(View.VISIBLE);
+        } else if ("7环左上".equals(precisionRingNumber)) {
+            mLeftTop7Tv.setVisibility(View.VISIBLE);
+        } else if ("6环上".equals(precisionRingNumber)) {
+            mTop6Tv.setVisibility(View.VISIBLE);
+        } else if ("6环右上".equals(precisionRingNumber)) {
+            mRightTop6Tv.setVisibility(View.VISIBLE);
+        } else if ("6环右".equals(precisionRingNumber)) {
+            mRight6Tv.setVisibility(View.VISIBLE);
+        } else if ("6右下".equals(precisionRingNumber)) {
+            mRightBottom6Tv.setVisibility(View.VISIBLE);
+        } else if ("6环下".equals(precisionRingNumber)) {
+            mBottom6Tv.setVisibility(View.VISIBLE);
+        } else if ("6左下".equals(precisionRingNumber)) {
+            mLeftBottom6Tv.setVisibility(View.VISIBLE);
+        } else if ("6环左".equals(precisionRingNumber)) {
+            mLeft6Tv.setVisibility(View.VISIBLE);
+        } else if ("6环左上".equals(precisionRingNumber)) {
+            mLeftTop6Tv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hiddenRedPoint() {
+        mTop10Tv.setVisibility(View.GONE);
+        mRight10Tv.setVisibility(View.GONE);
+        mBottom10Tv.setVisibility(View.GONE);
+        mLeft10Tv.setVisibility(View.GONE);
+        mTop9Tv.setVisibility(View.GONE);
+        mRight9Tv.setVisibility(View.GONE);
+        mBottom9Tv.setVisibility(View.GONE);
+        mLeft9Tv.setVisibility(View.GONE);
+        mTop8Tv.setVisibility(View.GONE);
+        mRightTop8Tv.setVisibility(View.GONE);
+        mRight8Tv.setVisibility(View.GONE);
+        mRightBottom8Tv.setVisibility(View.GONE);
+        mBottom8Tv.setVisibility(View.GONE);
+        mLeftTop8Tv.setVisibility(View.GONE);
+        mLeft8Tv.setVisibility(View.GONE);
+        mLeftBottom8Tv.setVisibility(View.GONE);
+        mTop7Tv.setVisibility(View.GONE);
+        mRightTop7Tv.setVisibility(View.GONE);
+        mRight7Tv.setVisibility(View.GONE);
+        mRightBottom7Tv.setVisibility(View.GONE);
+        mBottom7Tv.setVisibility(View.GONE);
+        mLeftTop7Tv.setVisibility(View.GONE);
+        mLeft7Tv.setVisibility(View.GONE);
+        mLeftBottom7Tv.setVisibility(View.GONE);
+        mTop6Tv.setVisibility(View.GONE);
+        mRightTop6Tv.setVisibility(View.GONE);
+        mRight6Tv.setVisibility(View.GONE);
+        mRightBottom6Tv.setVisibility(View.GONE);
+        mBottom6Tv.setVisibility(View.GONE);
+        mLeftTop6Tv.setVisibility(View.GONE);
+        mLeft6Tv.setVisibility(View.GONE);
+        mLeftBottom6Tv.setVisibility(View.GONE);
     }
 
     @Override
@@ -809,6 +984,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
             DaoUtil.insertTarget(targetBean);
+
+            if (pageType == Constant.PRECISION) {
+                showRedPoint(position);
+            }
         }
         setTabClick(pageType);
     }
