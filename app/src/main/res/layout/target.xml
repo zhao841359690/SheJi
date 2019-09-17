@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/target_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/precision_target" />
+
+    <View
+        android:id="@+id/center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/top10_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/center"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="15dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/right10_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/center"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/bottom10_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/center"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/left10_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/center"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/top9_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top10_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/right9_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/right10_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/bottom9_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom10_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/left9_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/left10_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/top8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top9_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightTop8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top9_tv"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/top8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/right8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/right9_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightBottom8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/bottom8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/bottom8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftTop8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top9_tv"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@id/top8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/left8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/left9_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftBottom8_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toStartOf="@id/bottom8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/top7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top8_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightTop7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top8_tv"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/top7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/right7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/right8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightBottom7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom8_tv"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/bottom7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/bottom7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom8_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftTop7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top8_tv"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@id/top7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/left7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/left8_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftBottom7_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom8_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:layout_toStartOf="@id/bottom7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/top6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top7_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightTop6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top7_tv"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/top6_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/right6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/right7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/rightBottom6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom7_tv"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/bottom6_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/bottom6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom7_tv"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftTop6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top7_tv"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@id/top6_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/left6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/left7_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/leftBottom6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottom7_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="80dp"
+        android:layout_toStartOf="@id/bottom6_tv"
+        android:text="●"
+        android:textColor="@color/red" />
+</RelativeLayout>

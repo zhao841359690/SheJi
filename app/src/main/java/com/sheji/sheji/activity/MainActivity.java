@@ -370,16 +370,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 onFEReceive("70");
                 switch (pageType) {
                     case Constant.HEAD:
-                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        onDBOrDCReceive("DB", "7环上", 7, false);
                         break;
                     case Constant.BODY:
-                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        onDBOrDCReceive("DB", "7环上", 7, false);
                         break;
                     case Constant.CHEST:
-                        onDBOrDCReceive("DB", "七环上", 7, false);
+                        onDBOrDCReceive("DB", "7环上", 7, false);
                         break;
                     case Constant.PRECISION:
-                        onDBOrDCReceive("DC", "七环上", 7, false);
+                        onDBOrDCReceive("DC", "7环上", 7, false);
                         break;
                 }
                 break;
@@ -571,9 +571,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
 //                SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
-                for (TargetBean targetBean : DaoUtil.queryAllPrecisionTarget()) {
-                    showRedPoint(targetBean.getPrecisionRingNumber());
-                }
 
                 mPrecisionTargetTv.setTextColor(getColor(R.color.white));
                 mTargetIv.setImageResource(R.drawable.precision_target);
@@ -582,6 +579,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 mCumulativeShotNumberContentTv.setVisibility(View.VISIBLE);
                 int cumulativeShotNumber = 0;
                 for (TargetBean bean : DaoUtil.queryAllPrecisionTarget()) {
+                    showRedPoint(bean.getPrecisionRingNumber());
                     cumulativeShotNumber += bean.getRingNumber();
                 }
                 mCumulativeShotNumberContentTv.setText(String.valueOf(cumulativeShotNumber));
@@ -899,38 +897,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void hiddenRedPoint() {
-        mTop10Tv.setVisibility(View.GONE);
-        mRight10Tv.setVisibility(View.GONE);
-        mBottom10Tv.setVisibility(View.GONE);
-        mLeft10Tv.setVisibility(View.GONE);
-        mTop9Tv.setVisibility(View.GONE);
-        mRight9Tv.setVisibility(View.GONE);
-        mBottom9Tv.setVisibility(View.GONE);
-        mLeft9Tv.setVisibility(View.GONE);
-        mTop8Tv.setVisibility(View.GONE);
-        mRightTop8Tv.setVisibility(View.GONE);
-        mRight8Tv.setVisibility(View.GONE);
-        mRightBottom8Tv.setVisibility(View.GONE);
-        mBottom8Tv.setVisibility(View.GONE);
-        mLeftTop8Tv.setVisibility(View.GONE);
-        mLeft8Tv.setVisibility(View.GONE);
-        mLeftBottom8Tv.setVisibility(View.GONE);
-        mTop7Tv.setVisibility(View.GONE);
-        mRightTop7Tv.setVisibility(View.GONE);
-        mRight7Tv.setVisibility(View.GONE);
-        mRightBottom7Tv.setVisibility(View.GONE);
-        mBottom7Tv.setVisibility(View.GONE);
-        mLeftTop7Tv.setVisibility(View.GONE);
-        mLeft7Tv.setVisibility(View.GONE);
-        mLeftBottom7Tv.setVisibility(View.GONE);
-        mTop6Tv.setVisibility(View.GONE);
-        mRightTop6Tv.setVisibility(View.GONE);
-        mRight6Tv.setVisibility(View.GONE);
-        mRightBottom6Tv.setVisibility(View.GONE);
-        mBottom6Tv.setVisibility(View.GONE);
-        mLeftTop6Tv.setVisibility(View.GONE);
-        mLeft6Tv.setVisibility(View.GONE);
-        mLeftBottom6Tv.setVisibility(View.GONE);
+        mTop10Tv.setVisibility(View.INVISIBLE);
+        mRight10Tv.setVisibility(View.INVISIBLE);
+        mBottom10Tv.setVisibility(View.INVISIBLE);
+        mLeft10Tv.setVisibility(View.INVISIBLE);
+        mTop9Tv.setVisibility(View.INVISIBLE);
+        mRight9Tv.setVisibility(View.INVISIBLE);
+        mBottom9Tv.setVisibility(View.INVISIBLE);
+        mLeft9Tv.setVisibility(View.INVISIBLE);
+        mTop8Tv.setVisibility(View.INVISIBLE);
+        mRightTop8Tv.setVisibility(View.INVISIBLE);
+        mRight8Tv.setVisibility(View.INVISIBLE);
+        mRightBottom8Tv.setVisibility(View.INVISIBLE);
+        mBottom8Tv.setVisibility(View.INVISIBLE);
+        mLeftTop8Tv.setVisibility(View.INVISIBLE);
+        mLeft8Tv.setVisibility(View.INVISIBLE);
+        mLeftBottom8Tv.setVisibility(View.INVISIBLE);
+        mTop7Tv.setVisibility(View.INVISIBLE);
+        mRightTop7Tv.setVisibility(View.INVISIBLE);
+        mRight7Tv.setVisibility(View.INVISIBLE);
+        mRightBottom7Tv.setVisibility(View.INVISIBLE);
+        mBottom7Tv.setVisibility(View.INVISIBLE);
+        mLeftTop7Tv.setVisibility(View.INVISIBLE);
+        mLeft7Tv.setVisibility(View.INVISIBLE);
+        mLeftBottom7Tv.setVisibility(View.INVISIBLE);
+        mTop6Tv.setVisibility(View.INVISIBLE);
+        mRightTop6Tv.setVisibility(View.INVISIBLE);
+        mRight6Tv.setVisibility(View.INVISIBLE);
+        mRightBottom6Tv.setVisibility(View.INVISIBLE);
+        mBottom6Tv.setVisibility(View.INVISIBLE);
+        mLeftTop6Tv.setVisibility(View.INVISIBLE);
+        mLeft6Tv.setVisibility(View.INVISIBLE);
+        mLeftBottom6Tv.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -984,10 +982,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
             DaoUtil.insertTarget(targetBean);
-
-            if (pageType == Constant.PRECISION) {
-                showRedPoint(position);
-            }
         }
         setTabClick(pageType);
     }
