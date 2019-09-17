@@ -23,7 +23,6 @@ import com.sheji.sheji.bean.Constant;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.bean.TargetBean;
 import com.sheji.sheji.dialog.TargetDialog;
-import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
@@ -129,7 +128,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 case 2:
                     cyclesNumber--;
                     if (cyclesNumber > 0) {
-                        cyclesHandler.sendEmptyMessageDelayed(2, erectTime);
+                        cyclesHandler.sendEmptyMessageDelayed(1, erectTime);
 
                         mShootingDroneTv.setText("射击靶机起");
                         mShootingDroneSwitch.setChecked(true);
@@ -761,8 +760,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void cycles(long erectTime, long lodgingTime, int cyclesNumber) {
-        this.erectTime = erectTime;
-        this.lodgingTime = lodgingTime;
+        this.erectTime = erectTime * 1000;
+        this.lodgingTime = lodgingTime * 1000;
         this.cyclesNumber = cyclesNumber;
 
         cyclesHandler.removeMessages(1);
@@ -773,7 +772,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //TODO 总控台控制靶机起倒的协议(起来)
         //总控台控制靶机起倒的协议(起来)
 //                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
-        cyclesHandler.sendEmptyMessageDelayed(1, erectTime);
+        cyclesHandler.sendEmptyMessageDelayed(1, erectTime * 1000);
     }
 
     @Override

@@ -133,7 +133,7 @@ public class TargetDialog extends Dialog implements View.OnClickListener {
                         mErectTv.setText(time + "秒");
                     }
                 } else {
-                    lodgingTime = 0;
+                    lodgingTime = time;
                     if (time == 0) {
                         mLodgingTv.setText("");
                     } else {
