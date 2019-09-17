@@ -22,6 +22,8 @@ import com.sheji.sheji.adpter.PrecisionTargetAdapter;
 import com.sheji.sheji.bean.Constant;
 import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.bean.TargetBean;
+import com.sheji.sheji.dialog.TargetDialog;
+import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, SerialPortUtils.OnMainDataReceiveListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, TargetDialog.OnTargetDiaLogCyclesListener, SerialPortUtils.OnMainDataReceiveListener {
     private Button fire;
 
     private TextView mHeadTargetTv;
@@ -103,6 +105,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     };
 
+
+    private long erectTime = 0;
+    private long lodgingTime = 0;
+    private int cyclesNumber = 0;
+
+    @SuppressLint("HandlerLeak")
+    private Handler cyclesHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    cyclesHandler.sendEmptyMessageDelayed(2, lodgingTime);
+
+                    mShootingDroneTv.setText("射击靶机倒");
+                    mShootingDroneSwitch.setChecked(false);
+
+                    //TODO 总控台控制靶机起倒的协议(倒下)
+                    //总控台控制靶机起倒的协议(倒下)
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                    break;
+                case 2:
+                    cyclesNumber--;
+                    if (cyclesNumber > 0) {
+                        cyclesHandler.sendEmptyMessageDelayed(2, erectTime);
+
+                        mShootingDroneTv.setText("射击靶机起");
+                        mShootingDroneSwitch.setChecked(true);
+                        //TODO 总控台控制靶机起倒的协议(起来)
+                        //总控台控制靶机起倒的协议(起来)
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                    }
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,8 +153,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        timeHandler.removeMessages(1);
+
+        cyclesHandler.removeMessages(1);
+        cyclesHandler.removeMessages(2);
         //TODO 关闭串口
-        SerialPortUtils.getInstance().closeSerialPort();
+//        SerialPortUtils.getInstance().closeSerialPort();
     }
 
     private void initView() {
@@ -295,6 +338,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setTabClick(pageType);
                 break;
             case R.id.menu_rl:
+                TargetDialog dialog = new TargetDialog(this, this);
+                dialog.show();
                 break;
             //控制靶机起倒
             case R.id.shooting_drone_rl:
@@ -712,6 +757,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
             mSixthTv.setText("...");
         }
+    }
+
+    @Override
+    public void cycles(long erectTime, long lodgingTime, int cyclesNumber) {
+        this.erectTime = erectTime;
+        this.lodgingTime = lodgingTime;
+        this.cyclesNumber = cyclesNumber;
+
+        cyclesHandler.removeMessages(1);
+        cyclesHandler.removeMessages(2);
+
+        mShootingDroneTv.setText("射击靶机起");
+        mShootingDroneSwitch.setChecked(true);
+        //TODO 总控台控制靶机起倒的协议(起来)
+        //总控台控制靶机起倒的协议(起来)
+//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+        cyclesHandler.sendEmptyMessageDelayed(1, erectTime);
     }
 
     @Override
