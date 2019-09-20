@@ -65,6 +65,7 @@ public class TargetDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_target);
         setCanceledOnTouchOutside(false);
+        getWindow().setBackgroundDrawableResource(R.color.translate);
 
         initView();
     }

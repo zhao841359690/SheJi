@@ -516,10 +516,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void setTabClick(int type) {
         getDataFromDatabase();
 
-        mHeadTargetTv.setTextColor(getColor(R.color.gray));
-        mBodyTargetTv.setTextColor(getColor(R.color.gray));
-        mChestTargetTv.setTextColor(getColor(R.color.gray));
-        mPrecisionTargetTv.setTextColor(getColor(R.color.gray));
+        mHeadTargetTv.setTextColor(getColor(R.color.lightWhite));
+        mBodyTargetTv.setTextColor(getColor(R.color.lightWhite));
+        mChestTargetTv.setTextColor(getColor(R.color.lightWhite));
+        mPrecisionTargetTv.setTextColor(getColor(R.color.lightWhite));
 
         mCumulativeShotNumberHeadTv.setVisibility(View.GONE);
         mCumulativeShotNumberContentTv.setVisibility(View.GONE);

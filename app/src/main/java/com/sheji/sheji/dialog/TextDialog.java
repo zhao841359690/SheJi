@@ -40,6 +40,7 @@ public class TextDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_text);
         setCanceledOnTouchOutside(false);
+        getWindow().setBackgroundDrawableResource(R.color.translate);
 
         initView();
     }

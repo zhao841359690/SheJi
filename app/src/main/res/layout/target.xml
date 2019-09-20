@@ -3,12 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/target_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/precision_target" />
-
     <View
         android:id="@+id/center"
         android:layout_width="0dp"
@@ -21,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/center"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -30,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/center"
         android:text="●"
         android:textColor="@color/red" />
@@ -41,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/center"
         android:layout_centerInParent="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -50,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="5dp"
         android:layout_toStartOf="@+id/center"
         android:text="●"
         android:textColor="@color/red" />
@@ -61,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/top10_tv"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="3dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -70,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/right10_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -81,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom10_tv"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -90,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         android:layout_toStartOf="@+id/left10_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -101,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/top9_tv"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="3dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -109,10 +103,10 @@
         android:id="@+id/rightTop8_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/top9_tv"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@id/top8_tv"
+        android:layout_above="@+id/top10_tv"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/top9_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -130,10 +124,10 @@
         android:id="@+id/rightBottom8_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom9_tv"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/bottom8_tv"
+        android:layout_below="@+id/bottom10_tv"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/bottom9_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -143,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom9_tv"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -151,10 +145,10 @@
         android:id="@+id/leftTop8_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/top9_tv"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toStartOf="@id/top8_tv"
+        android:layout_above="@+id/top10_tv"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@id/top9_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -172,10 +166,10 @@
         android:id="@+id/leftBottom8_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom9_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:layout_toStartOf="@id/bottom8_tv"
+        android:layout_below="@+id/bottom10_tv"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="35dp"
+        android:layout_toStartOf="@id/bottom9_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -185,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/top8_tv"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -193,10 +187,10 @@
         android:id="@+id/rightTop7_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/top8_tv"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@id/top7_tv"
+        android:layout_above="@+id/top9_tv"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@id/top8_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -214,10 +208,9 @@
         android:id="@+id/rightBottom7_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom8_tv"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/bottom7_tv"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginStart="55dp"
+        android:layout_toEndOf="@id/bottom8_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -227,7 +220,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom8_tv"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -235,10 +228,10 @@
         android:id="@+id/leftTop7_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/top8_tv"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toStartOf="@id/top7_tv"
+        android:layout_above="@+id/top9_tv"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toStartOf="@id/top8_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -256,10 +249,9 @@
         android:id="@+id/leftBottom7_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom8_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:layout_toStartOf="@id/bottom7_tv"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginEnd="55dp"
+        android:layout_toStartOf="@id/bottom8_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -269,7 +261,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/top7_tv"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -278,8 +270,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/top7_tv"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
         android:layout_toEndOf="@id/top6_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -289,7 +280,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/right7_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -298,10 +289,10 @@
         android:id="@+id/rightBottom6_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom7_tv"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/bottom6_tv"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@id/bottom8_tv"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -311,7 +302,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bottom7_tv"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="●"
         android:textColor="@color/red" />
 
@@ -320,8 +311,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/top7_tv"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_toStartOf="@id/top6_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -331,7 +321,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="13dp"
         android:layout_toStartOf="@+id/left7_tv"
         android:text="●"
         android:textColor="@color/red" />
@@ -340,10 +330,10 @@
         android:id="@+id/leftBottom6_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bottom7_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="80dp"
-        android:layout_toStartOf="@id/bottom6_tv"
+        android:layout_below="@+id/bottom9_tv"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="75dp"
+        android:layout_toStartOf="@id/bottom8_tv"
         android:text="●"
         android:textColor="@color/red" />
 </RelativeLayout>

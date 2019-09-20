@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/et_ly"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:background="#ffffff"
         android:focusable="true"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="欢迎使用"
             android:textColor="#54773F"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -36,25 +36,29 @@
             android:layout_marginBottom="3dp"
             android:text="枪械编号"
             android:textColor="#8E8E8E"
-            android:textSize="16sp" />
+            android:textSize="11sp" />
 
         <EditText
             android:id="@+id/gun_number_et"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/shape_black_corner"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/shape_gray_corner"
+            android:gravity="center_vertical"
             android:hint="请在此处输入枪械编号"
-            android:padding="5dp"
-            android:singleLine="true" />
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:singleLine="true"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/determine_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@color/green"
             android:text="确定"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 </RelativeLayout>

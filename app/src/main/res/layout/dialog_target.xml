@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp">
+    android:background="@drawable/shape_white_corner"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:text="竖起维持时间"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/erect_tv"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/shape_black_corner"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_light_white1_corner"
             android:padding="5dp"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -31,21 +34,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:text="倒伏维持时间"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/lodging_tv"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/shape_black_corner"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_light_white1_corner"
             android:padding="5dp"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -53,7 +60,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
@@ -62,14 +71,16 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:text="循环次数"
             android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/cycles_et"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@drawable/shape_black_corner"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/shape_light_white1_corner"
             android:inputType="number"
             android:padding="5dp"
             android:singleLine="true"
@@ -78,9 +89,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/black" />
+        android:layout_height="0.5dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/lightWhite" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="18dp"
             android:text="取消"
             android:textColor="@color/black" />
 
@@ -103,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="18dp"
             android:text="确定"
             android:textColor="@color/black" />
     </LinearLayout>

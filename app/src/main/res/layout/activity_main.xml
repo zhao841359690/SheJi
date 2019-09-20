@@ -13,7 +13,8 @@
         android:background="#63864C"
         android:gravity="center"
         android:text="射击训练辅助系统"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,15 +31,9 @@
             android:paddingEnd="10dp"
             android:paddingBottom="20dp">
 
-            <Button
-                android:id="@+id/fire"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="开火" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:background="@color/green"
                 android:orientation="horizontal">
 
@@ -49,7 +44,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="头靶"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/lightWhite" />
 
                 <TextView
                     android:id="@+id/body_target_tv"
@@ -58,7 +53,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="身靶"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/lightWhite" />
 
                 <TextView
                     android:id="@+id/chest_target_tv"
@@ -67,7 +62,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="胸靶"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/lightWhite" />
 
                 <TextView
                     android:id="@+id/precision_target_tv"
@@ -79,31 +74,44 @@
                     android:textColor="@color/white" />
             </LinearLayout>
 
-            <include
-                layout="@layout/target"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/target_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/precision_target" />
+
+                <include
+                    layout="@layout/target"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="45dp" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/hit_tv"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:background="@color/green"
                 android:gravity="center"
                 android:textColor="@color/white" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_green_corner">
 
                 <RelativeLayout
                     android:id="@+id/menu_rl"
                     android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:background="#62864C">
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_menu_corner">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -130,7 +138,7 @@
 
                     <Switch
                         android:id="@+id/shooting_drone_switch"
-                        android:layout_width="wrap_content"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@drawable/switch_selector"
@@ -153,14 +161,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_white_corner"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -179,7 +187,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2019-09-01"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -188,7 +195,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="09：00：00"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -196,7 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:background="@drawable/shape_green_corner"
                     android:gravity="center_vertical">
 
@@ -209,7 +215,7 @@
 
                     <Switch
                         android:id="@+id/fire_switch"
-                        android:layout_width="wrap_content"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
@@ -226,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
+                android:background="@drawable/shape_white_corner"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
@@ -265,7 +271,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
@@ -273,7 +279,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="XXXX-XXXX"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -281,7 +286,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="20"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -289,7 +293,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="70"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -321,7 +324,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
@@ -329,7 +332,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="1024"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -337,7 +339,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="20"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -362,7 +363,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="射击序号"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -370,7 +372,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="是否命中"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/position_tv"
@@ -379,7 +382,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="环数/位置"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -387,7 +391,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="射击间隔"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -395,7 +400,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="时间"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -403,7 +409,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="日期"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
@@ -423,7 +430,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="共57条，每页" />
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/fire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开火" />
+
 
                     <LinearLayout
                         android:id="@+id/page_ly"
@@ -437,7 +451,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_marginStart="5dp"
-                            android:background="@drawable/shape_black_corner"
+                            android:background="@drawable/shape_light_white_corner"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -448,87 +462,93 @@
 
                             <View
                                 android:id="@+id/v1"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/first_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="1" />
+                                android:text="1"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v2"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/second_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="2" />
+                                android:text="2"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v3"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/third_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="3" />
+                                android:text="3"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v4"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/fourth_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="4" />
+                                android:text="4"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v5"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/fifth_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="5" />
+                                android:text="5"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v6"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <TextView
                                 android:id="@+id/sixth_tv"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:gravity="center"
-                                android:text="···" />
+                                android:text="···"
+                                android:textSize="11sp" />
 
                             <View
                                 android:id="@+id/v7"
-                                android:layout_width="1dp"
+                                android:layout_width="0.5dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/black" />
+                                android:background="@color/lightWhite" />
 
                             <ImageView
                                 android:id="@+id/next_page_iv"

@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/hits_tv"
@@ -25,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/position"
@@ -33,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/shooting_interval_tv"
@@ -41,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/time_tv"
@@ -49,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/date_tv"
@@ -57,12 +62,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="#3A3A3A"
+            android:textSize="11sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+        android:layout_height="0.5dp"
+        android:background="@color/lightWhite" />
 </LinearLayout>
