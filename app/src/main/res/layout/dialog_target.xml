@@ -27,8 +27,11 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
-            android:padding="5dp"
-            android:textColor="@color/black" />
+            android:gravity="center_vertical"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,8 +56,11 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
-            android:padding="5dp"
-            android:textColor="@color/black" />
+            android:gravity="center_vertical"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,10 +87,13 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
+            android:gravity="center_vertical"
             android:inputType="number"
-            android:padding="5dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
             android:singleLine="true"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <View
@@ -103,19 +112,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/selector_target_dialog_no"
             android:gravity="center"
             android:padding="18dp"
             android:text="取消"
-            android:textColor="@color/black" />
+            android:textColor="@drawable/selector_target_text" />
 
         <TextView
             android:id="@+id/determine_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/selector_target_dialog_yes"
             android:gravity="center"
             android:padding="18dp"
             android:text="确定"
-            android:textColor="@color/black" />
+            android:textColor="@drawable/selector_target_text" />
     </LinearLayout>
 </LinearLayout>
