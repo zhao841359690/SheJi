@@ -63,8 +63,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         setContentView(R.layout.activity_login);
         //TODO 打开串口
         //打开串口
-//        SerialPortUtils.getInstance().openSerialPort();
-//        SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
+        SerialPortUtils.getInstance().openSerialPort();
+        SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
 
         initView();
     }
