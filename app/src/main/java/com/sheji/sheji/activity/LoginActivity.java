@@ -1,7 +1,6 @@
 package com.sheji.sheji.activity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,15 +60,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //TODO 打开串口
-        //打开串口
-        SerialPortUtils.getInstance().openSerialPort();
-        if (SerialPortUtils.getInstance().openSerialPort() == null) {
-            Toast.makeText(this, "设备打开异常", Toast.LENGTH_SHORT).show();
-        } else {
-            SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
-        }
-
         initView();
     }
 
@@ -110,13 +100,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "输入枪械编号位数错误", Toast.LENGTH_SHORT).show();
             return;
         }
-        //TODO 绑定操作
+        //TODO 打开串口 绑定操作
         // Pad发送总控台枪和计数器绑定的数据协议-申请报文
         if (SerialPortUtils.getInstance().openSerialPort() == null) {
             Toast.makeText(this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
             SerialPortUtils.getInstance().openSerialPort();
         } else {
             SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+            SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
         }
     }
 
