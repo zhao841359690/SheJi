@@ -1,6 +1,7 @@
 package com.sheji.sheji.activity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +21,6 @@ import com.sheji.sheji.bean.DaoUtil;
 import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
-
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, SerialPortUtils.OnLoginDataReceiveListener {
     private RelativeLayout mBackRl;
@@ -64,7 +64,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         //TODO 打开串口
         //打开串口
         SerialPortUtils.getInstance().openSerialPort();
-        SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
+        if (SerialPortUtils.getInstance().openSerialPort() == null) {
+            Toast.makeText(this, "设备打开异常", Toast.LENGTH_SHORT).show();
+        } else {
+            SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
+        }
 
         initView();
     }
@@ -107,9 +111,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         }
         //TODO 绑定操作
-        onFBReceive(true);
         // Pad发送总控台枪和计数器绑定的数据协议-申请报文
-//        SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+        if (SerialPortUtils.getInstance().openSerialPort() == null) {
+            Toast.makeText(this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+            SerialPortUtils.getInstance().openSerialPort();
+        } else {
+            SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+        }
     }
 
     @Override

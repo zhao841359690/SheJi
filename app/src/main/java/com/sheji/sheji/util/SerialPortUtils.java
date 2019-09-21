@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.InvalidParameterException;
 
 import android_serialport_api.SerialPort;
 
@@ -14,7 +15,7 @@ import android_serialport_api.SerialPort;
 public class SerialPortUtils {
     private static SerialPortUtils sInstance = null;
 
-    private String port = "ttyS1";//串口号
+    private String port = "ttyUSB0";//串口号
     private int baudrate = 9600;//波特率
 
     private SerialPort serialPort = null;
@@ -43,12 +44,21 @@ public class SerialPortUtils {
         try {
             serialPort = new SerialPort(new File("/dev/" + port), baudrate, 0);
             //获取打开的串口中的输入输出流，以便于串口数据的收发
-            inputStream = serialPort.getInputStream();
-            outputStream = serialPort.getOutputStream();
-            flag = true;
-            receiveSerialPort();
+            if (serialPort != null) {
+                inputStream = serialPort.getInputStream();
+                outputStream = serialPort.getOutputStream();
+
+                flag = true;
+                receiveSerialPort();
+            } else {
+                return null;
+            }
+        } catch (InvalidParameterException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            return serialPort;
+            e.printStackTrace();
         }
         return serialPort;
     }
