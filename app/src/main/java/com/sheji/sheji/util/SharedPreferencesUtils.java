@@ -29,4 +29,12 @@ public class SharedPreferencesUtils {
     public String getGunNumber() {
         return mPreferences.getString("gun_number", null);
     }
+
+    public void setEquipmentNumber(String equipmentNumber) {
+        mPreferences.edit().putString("equipment_number", equipmentNumber).apply();
+    }
+
+    public String getEquipmentNumber() {
+        return mPreferences.getString("equipment_number", null);
+    }
 }

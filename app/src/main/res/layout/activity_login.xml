@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/et_ly"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="400dp"
         android:layout_centerInParent="true"
         android:background="#ffffff"
         android:focusable="true"
@@ -34,6 +34,29 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="3dp"
+            android:text="本设备编号"
+            android:textColor="#8E8E8E"
+            android:textSize="11sp" />
+
+        <EditText
+            android:id="@+id/equipment_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/shape_gray_corner"
+            android:gravity="center_vertical"
+            android:hint="请在此处输入本设备编号"
+            android:inputType="number"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:singleLine="true"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="3dp"
             android:text="枪械编号"
             android:textColor="#8E8E8E"
             android:textSize="11sp" />
@@ -44,6 +67,27 @@
             android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/shape_gray_corner"
+            android:gravity="center_vertical"
+            android:hint="请在此处输入枪械编号"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:singleLine="true"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="串口结点"
+            android:textColor="#8E8E8E"
+            android:textSize="11sp" />
+
+        <Spinner
+            android:id="@+id/node_sp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
             android:gravity="center_vertical"
             android:hint="请在此处输入枪械编号"
             android:paddingStart="3dp"

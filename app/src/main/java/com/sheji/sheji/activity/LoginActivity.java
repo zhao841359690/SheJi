@@ -7,10 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sheji.sheji.base.BaseActivity;
@@ -21,10 +24,17 @@ import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android_serialport_api.SerialPortFinder;
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener, SerialPortUtils.OnLoginDataReceiveListener {
     private RelativeLayout mBackRl;
     private LinearLayout mEtLy;
+    private EditText mEquipmentNumberEt;
     private EditText mGunNumberEt;
+    private Spinner mNodeSp;
     private Button mDetermineTv;
 
     private boolean success = false;
@@ -54,6 +64,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     };
     private TextDialog textDialog;
+
+    private String equipmentNumber;
     private String gunNumber;
 
     @Override
@@ -75,7 +87,33 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private void initView() {
         mBackRl = findViewById(R.id.back_rl);
         mEtLy = findViewById(R.id.et_ly);
+        mEquipmentNumberEt = findViewById(R.id.equipment_number_et);
         mGunNumberEt = findViewById(R.id.gun_number_et);
+
+        mNodeSp = findViewById(R.id.node_sp);
+        mNodeSp.setPrompt("选择设备节点");
+        SerialPortFinder mSerialPortFinder = new SerialPortFinder();
+        List<String> allNode = new ArrayList<String>();
+        String[] mStr = mSerialPortFinder.getAllDevicesName();
+        for (int i = 0; i < mStr.length; i++) {
+            allNode.add(mStr[i]);
+        }
+        ArrayAdapter<String> node_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allNode);
+        node_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mNodeSp.setAdapter(node_adapter);
+        mNodeSp.setSelection(0, true);
+        mNodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                SerialPortUtils.getInstance().setPort((String) mNodeSp.getSelectedItem());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         mDetermineTv = findViewById(R.id.determine_tv);
         mDetermineTv.setOnClickListener(this);
     }
@@ -90,14 +128,26 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void submit() {
+        equipmentNumber = mEquipmentNumberEt.getText().toString().trim();
         gunNumber = mGunNumberEt.getText().toString().trim();
+        if (TextUtils.isEmpty(equipmentNumber)) {
+            Toast.makeText(this, "请在此处输入本设备编号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int equipment = Integer.valueOf(equipmentNumber);
+        if (equipment < 1 || equipment > 20) {
+            Toast.makeText(this, "请在此处输入本设备编号(编号为1-20)", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (TextUtils.isEmpty(gunNumber)) {
             Toast.makeText(this, "请在此处输入枪械编号", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (gunNumber.length() != 6) {
-            Toast.makeText(this, "输入枪械编号位数错误", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请在此处输入枪械编号(6位)", Toast.LENGTH_SHORT).show();
             return;
         }
         //TODO 打开串口 绑定操作
@@ -106,7 +156,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
             SerialPortUtils.getInstance().openSerialPort();
         } else {
-            SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + "这里放计数器号" + "0A0D");
+            SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + equipmentNumber + "0A0D");
             SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
         }
     }
@@ -120,6 +170,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         if (success) {
             textDialog = new TextDialog(this, "√ 枪号绑定成功");
+            SharedPreferencesUtils.getInstance().setEquipmentNumber(equipmentNumber);
             SharedPreferencesUtils.getInstance().setGunNumber(gunNumber);
 
             handler.sendEmptyMessageDelayed(Constant.LOGIN_SUCCESS, 2000);

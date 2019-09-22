@@ -334,11 +334,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             mHitTv.setText("");
         }
+        //靶道号
+        mTargetNumberTv.setText("靶道号--" + SharedPreferencesUtils.getInstance().getEquipmentNumber() + "号靶");
+        //时间
         timeHandler.sendEmptyMessage(1);
         //枪支编号
         mGunNumberTv.setText(SharedPreferencesUtils.getInstance().getGunNumber());
         //计数器编号
-        mCounterNumberTv.setText("");
+        mCounterNumberTv.setText(SharedPreferencesUtils.getInstance().getEquipmentNumber());
         //累计射击环数
         int cumulativeShotNumber = 0;
         for (TargetBean bean : DaoUtil.queryAllPrecisionTarget()) {

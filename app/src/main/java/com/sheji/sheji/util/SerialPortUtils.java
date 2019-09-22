@@ -40,7 +40,7 @@ public class SerialPortUtils {
             if ("FB".equals(action)) {
                 onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(15, 17)));
             } else if ("FE".equals(action)) {
-                onMainDataReceiveListener.onFEReceive(recInfo.substring(18, recInfo.length() - 4));
+                onMainDataReceiveListener.onFEReceive(recInfo.substring(17, recInfo.length() - 4));
             } else if ("DB".equals(action) || "DC".equals(action)) {
                 boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
                 String position;
@@ -162,6 +162,10 @@ public class SerialPortUtils {
             }
         }
         return sInstance;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 
     /**
