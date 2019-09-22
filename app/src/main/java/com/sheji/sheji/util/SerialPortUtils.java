@@ -1,5 +1,9 @@
 package com.sheji.sheji.util;
 
+import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.os.Message;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +27,131 @@ public class SerialPortUtils {
     private OutputStream outputStream = null;
     private Thread receiveThread = null;
     private boolean flag = false;
+
+    private StringBuffer stringBuffer = new StringBuffer();
+    private String recInfo;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            String action = recInfo.substring(6, 8);
+            if ("FB".equals(action)) {
+                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(15, 17)));
+            } else if ("FE".equals(action)) {
+                onMainDataReceiveListener.onFEReceive(recInfo.substring(18, recInfo.length() - 4));
+            } else if ("DB".equals(action) || "DC".equals(action)) {
+                boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
+                String position;
+                int precisionNumber = 0;
+                if (hit) {
+                    position = recInfo.substring(recInfo.length() - 17, recInfo.length() - 6);
+                    if ("00 00 00 01".equals(position)) {
+                        position = "10环上";
+                        precisionNumber = 10;
+                    } else if ("00 00 00 02".equals(position)) {
+                        position = "10环右";
+                        precisionNumber = 10;
+                    } else if ("00 00 00 04".equals(position)) {
+                        position = "10环下";
+                        precisionNumber = 10;
+                    } else if ("00 00 00 08".equals(position)) {
+                        position = "10环左";
+                        precisionNumber = 10;
+                    } else if ("00 00 00 10".equals(position)) {
+                        position = "9环上";
+                        precisionNumber = 9;
+                    } else if ("00 00 00 20".equals(position)) {
+                        position = "9环右";
+                        precisionNumber = 9;
+                    } else if ("00 00 00 40".equals(position)) {
+                        position = "9环下";
+                        precisionNumber = 9;
+                    } else if ("00 00 00 80".equals(position)) {
+                        position = "9环左";
+                        precisionNumber = 9;
+                    } else if ("00 00 01 00".equals(position)) {
+                        position = "8环上";
+                        precisionNumber = 8;
+                    } else if ("00 00 02 00".equals(position)) {
+                        position = "8环右上";
+                        precisionNumber = 8;
+                    } else if ("00 00 04 00".equals(position)) {
+                        position = "8环右";
+                        precisionNumber = 8;
+                    } else if ("00 00 08 00".equals(position)) {
+                        position = "8右下";
+                        precisionNumber = 8;
+                    } else if ("00 00 10 00".equals(position)) {
+                        position = "8环下";
+                        precisionNumber = 8;
+                    } else if ("00 00 20 00".equals(position)) {
+                        position = "8左下";
+                        precisionNumber = 8;
+                    } else if ("00 00 40 00".equals(position)) {
+                        position = "8环左";
+                        precisionNumber = 8;
+                    } else if ("00 00 80 00".equals(position)) {
+                        position = "8环左上";
+                        precisionNumber = 8;
+                    } else if ("00 01 00 00".equals(position)) {
+                        position = "7环上";
+                        precisionNumber = 7;
+                    } else if ("00 02 00 00".equals(position)) {
+                        position = "7环右上";
+                        precisionNumber = 7;
+                    } else if ("00 04 00 00".equals(position)) {
+                        position = "7环右";
+                        precisionNumber = 7;
+                    } else if ("00 08 00 00".equals(position)) {
+                        position = "7环右下";
+                        precisionNumber = 7;
+                    } else if ("00 10 00 00".equals(position)) {
+                        position = "7环下";
+                        precisionNumber = 7;
+                    } else if ("00 20 00 00".equals(position)) {
+                        position = "7环左下";
+                        precisionNumber = 7;
+                    } else if ("00 40 00 00".equals(position)) {
+                        position = "7环左";
+                        precisionNumber = 7;
+                    } else if ("00 80 00 00".equals(position)) {
+                        position = "7环左上";
+                        precisionNumber = 7;
+                    } else if ("01 00 00 00".equals(position)) {
+                        position = "6环上";
+                        precisionNumber = 6;
+                    } else if ("02 00 00 00".equals(position)) {
+                        position = "6环右上";
+                        precisionNumber = 6;
+                    } else if ("04 00 00 00".equals(position)) {
+                        position = "6环右";
+                        precisionNumber = 6;
+                    } else if ("08 00 00 00".equals(position)) {
+                        position = "6环右下";
+                        precisionNumber = 6;
+                    } else if ("10 00 00 00".equals(position)) {
+                        position = "6环下";
+                        precisionNumber = 6;
+                    } else if ("20 00 00 00".equals(position)) {
+                        position = "6环左下";
+                        precisionNumber = 6;
+                    } else if ("40 00 00 00".equals(position)) {
+                        position = "6环左";
+                        precisionNumber = 6;
+                    } else if ("80 00 00 00".equals(position)) {
+                        position = "6环左上";
+                        precisionNumber = 6;
+                    }
+                } else {
+                    position = "无记录";
+                    precisionNumber = 0;
+                }
+                onMainDataReceiveListener.onDBOrDCReceive(action, position, precisionNumber, hit);
+            }
+        }
+    };
 
     public static SerialPortUtils getInstance() {
         if (sInstance == null) {
@@ -123,124 +252,13 @@ public class SerialPortUtils {
                         }
                         int size = inputStream.read(readData);
                         if (size > 0 && flag) {
-                            String recInfo = new String(readData, 0, size);
-                            String action = recInfo.substring(6, 8);
-                            if ("FB".equals(action)) {
-                                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(15, 17)));
-                            } else if ("FE".equals(action)) {
-                                onMainDataReceiveListener.onFEReceive(recInfo.substring(10, recInfo.length() - 4));
-                            } else if ("DB".equals(action) || "DC".equals(action)) {
-                                boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
-                                String position;
-                                int precisionNumber = 0;
-                                if (hit) {
-                                    position = recInfo.substring(recInfo.length() - 17, recInfo.length() - 6);
-                                    if ("00 00 00 01".equals(position)) {
-                                        position = "10环上";
-                                        precisionNumber = 10;
-                                    } else if ("00 00 00 02".equals(position)) {
-                                        position = "10环右";
-                                        precisionNumber = 10;
-                                    } else if ("00 00 00 04".equals(position)) {
-                                        position = "10环下";
-                                        precisionNumber = 10;
-                                    } else if ("00 00 00 08".equals(position)) {
-                                        position = "10环左";
-                                        precisionNumber = 10;
-                                    } else if ("00 00 00 10".equals(position)) {
-                                        position = "9环上";
-                                        precisionNumber = 9;
-                                    } else if ("00 00 00 20".equals(position)) {
-                                        position = "9环右";
-                                        precisionNumber = 9;
-                                    } else if ("00 00 00 40".equals(position)) {
-                                        position = "9环下";
-                                        precisionNumber = 9;
-                                    } else if ("00 00 00 80".equals(position)) {
-                                        position = "9环左";
-                                        precisionNumber = 9;
-                                    } else if ("00 00 01 00".equals(position)) {
-                                        position = "8环上";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 02 00".equals(position)) {
-                                        position = "8环右上";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 04 00".equals(position)) {
-                                        position = "8环右";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 08 00".equals(position)) {
-                                        position = "8右下";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 10 00".equals(position)) {
-                                        position = "8环下";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 20 00".equals(position)) {
-                                        position = "8左下";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 40 00".equals(position)) {
-                                        position = "8环左";
-                                        precisionNumber = 8;
-                                    } else if ("00 00 80 00".equals(position)) {
-                                        position = "8环左上";
-                                        precisionNumber = 8;
-                                    } else if ("00 01 00 00".equals(position)) {
-                                        position = "7环上";
-                                        precisionNumber = 7;
-                                    } else if ("00 02 00 00".equals(position)) {
-                                        position = "7环右上";
-                                        precisionNumber = 7;
-                                    } else if ("00 04 00 00".equals(position)) {
-                                        position = "7环右";
-                                        precisionNumber = 7;
-                                    } else if ("00 08 00 00".equals(position)) {
-                                        position = "7环右下";
-                                        precisionNumber = 7;
-                                    } else if ("00 10 00 00".equals(position)) {
-                                        position = "7环下";
-                                        precisionNumber = 7;
-                                    } else if ("00 20 00 00".equals(position)) {
-                                        position = "7环左下";
-                                        precisionNumber = 7;
-                                    } else if ("00 40 00 00".equals(position)) {
-                                        position = "7环左";
-                                        precisionNumber = 7;
-                                    } else if ("00 80 00 00".equals(position)) {
-                                        position = "7环左上";
-                                        precisionNumber = 7;
-                                    } else if ("01 00 00 00".equals(position)) {
-                                        position = "6环上";
-                                        precisionNumber = 6;
-                                    } else if ("02 00 00 00".equals(position)) {
-                                        position = "6环右上";
-                                        precisionNumber = 6;
-                                    } else if ("04 00 00 00".equals(position)) {
-                                        position = "6环右";
-                                        precisionNumber = 6;
-                                    } else if ("08 00 00 00".equals(position)) {
-                                        position = "6环右下";
-                                        precisionNumber = 6;
-                                    } else if ("10 00 00 00".equals(position)) {
-                                        position = "6环下";
-                                        precisionNumber = 6;
-                                    } else if ("20 00 00 00".equals(position)) {
-                                        position = "6环左下";
-                                        precisionNumber = 6;
-                                    } else if ("40 00 00 00".equals(position)) {
-                                        position = "6环左";
-                                        precisionNumber = 6;
-                                    } else if ("80 00 00 00".equals(position)) {
-                                        position = "6环左上";
-                                        precisionNumber = 6;
-                                    }
-                                } else {
-                                    position = "无记录";
-                                    precisionNumber = 0;
-                                }
-
-                                onMainDataReceiveListener.onDBOrDCReceive(action, position, precisionNumber, hit);
+                            recInfo = new String(readData, 0, size);
+                            stringBuffer.append(recInfo);
+                            if (stringBuffer.length() > 4 && "0A0D".equals(stringBuffer.substring(stringBuffer.length() - 4, stringBuffer.length()))) {
+                                recInfo = stringBuffer.toString();
+                                stringBuffer = new StringBuffer();
+                                handler.sendEmptyMessage(1);
                             }
-
-
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

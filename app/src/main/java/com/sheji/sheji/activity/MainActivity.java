@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sheji.sheji.R;
 import com.sheji.sheji.adpter.OrdinaryTargetAdapter;
@@ -32,8 +33,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, TargetDialog.OnTargetDiaLogCyclesListener, SerialPortUtils.OnMainDataReceiveListener {
-    private Button fire;
-
     private TextView mHeadTargetTv;
     private TextView mBodyTargetTv;
     private TextView mChestTargetTv;
@@ -155,7 +154,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                     //TODO 总控台控制靶机起倒的协议(倒下)
                     //总控台控制靶机起倒的协议(倒下)
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                    }
                     break;
                 case 2:
                     cyclesNumber--;
@@ -166,7 +170,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         mShootingDroneSwitch.setChecked(true);
                         //TODO 总控台控制靶机起倒的协议(起来)
                         //总控台控制靶机起倒的协议(起来)
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                        if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                            Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                            SerialPortUtils.getInstance().openSerialPort();
+                        } else {
+                            SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                        }
                     }
                     break;
             }
@@ -177,6 +186,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //TODO PAD控制靶机靶子类型的协议
+        //PAD控制靶机靶子类型的协议
+        if (SerialPortUtils.getInstance().openSerialPort() == null) {
+            Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+            SerialPortUtils.getInstance().openSerialPort();
+        } else {
+            SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+            SerialPortUtils.getInstance().setOnMainDataReceiveListener(this);
+        }
         initView();
         initData();
     }
@@ -189,13 +207,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         cyclesHandler.removeMessages(1);
         cyclesHandler.removeMessages(2);
         //TODO 关闭串口
-//        SerialPortUtils.getInstance().closeSerialPort();
+        SerialPortUtils.getInstance().closeSerialPort();
     }
 
     private void initView() {
-        fire = findViewById(R.id.fire);
-        fire.setOnClickListener(this);
-
         mHeadTargetTv = findViewById(R.id.head_target_tv);
         mHeadTargetTv.setOnClickListener(this);
 
@@ -366,23 +381,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fire:
-                onFEReceive("70");
-                switch (pageType) {
-                    case Constant.HEAD:
-                        onDBOrDCReceive("DB", "7环上", 7, false);
-                        break;
-                    case Constant.BODY:
-                        onDBOrDCReceive("DB", "7环上", 7, false);
-                        break;
-                    case Constant.CHEST:
-                        onDBOrDCReceive("DB", "7环上", 7, false);
-                        break;
-                    case Constant.PRECISION:
-                        onDBOrDCReceive("DC", "7环上", 7, false);
-                        break;
-                }
-                break;
             //头靶
             case R.id.head_target_tv:
                 pageType = Constant.HEAD;
@@ -415,13 +413,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                     //TODO 总控台控制靶机起倒的协议(倒下)
                     //总控台控制靶机起倒的协议(倒下)
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                    }
                 } else {
                     mShootingDroneTv.setText("射击靶机起");
                     mShootingDroneSwitch.setChecked(true);
                     //TODO 总控台控制靶机起倒的协议(起来)
                     //总控台控制靶机起倒的协议(起来)
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                    }
                 }
                 break;
             case R.id.pre_page_iv:
@@ -531,17 +539,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 //TODO PAD控制靶机靶子类型的协议
                 if (type == Constant.HEAD) {
                     //PAD控制靶机靶子类型的协议
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
+                    }
 
                     mHeadTargetTv.setTextColor(getColor(R.color.white));
                 } else if (type == Constant.BODY) {
                     //PAD控制靶机靶子类型的协议
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
+                    }
 
                     mBodyTargetTv.setTextColor(getColor(R.color.white));
                 } else {
                     //PAD控制靶机靶子类型的协议
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
+                    }
 
                     mChestTargetTv.setTextColor(getColor(R.color.white));
                     mTargetIv.setImageResource(R.drawable.chest_target);
@@ -570,7 +593,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case Constant.PRECISION:
                 //TODO PAD控制靶机靶子类型的协议
                 //PAD控制靶机靶子类型的协议
-//                SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+                if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                    Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                    SerialPortUtils.getInstance().openSerialPort();
+                } else {
+                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+                }
 
                 mPrecisionTargetTv.setTextColor(getColor(R.color.white));
                 mTargetIv.setImageResource(R.drawable.precision_target);
@@ -944,7 +972,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mShootingDroneSwitch.setChecked(true);
         //TODO 总控台控制靶机起倒的协议(起来)
         //总控台控制靶机起倒的协议(起来)
-//                    SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+        if (SerialPortUtils.getInstance().openSerialPort() == null) {
+            Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+            SerialPortUtils.getInstance().openSerialPort();
+        } else {
+            SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+        }
         cyclesHandler.sendEmptyMessageDelayed(1, erectTime * 1000);
     }
 
@@ -970,6 +1003,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setTime(new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis())));
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
             DaoUtil.insertTarget(targetBean);
+
+            if (pageType != Constant.PRECISION) {
+                setTabClick(pageType);
+            }
         } else {//精准靶
             targetBean = new TargetBean();
             targetBean.setType(TargetBean.TYPE_PRECISION);
@@ -982,7 +1019,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
             DaoUtil.insertTarget(targetBean);
+
+            if (pageType == Constant.PRECISION) {
+                setTabClick(pageType);
+            }
         }
-        setTabClick(pageType);
     }
 }
