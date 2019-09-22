@@ -4,6 +4,8 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.util.Date;
+
 @Entity
 public class TargetBean {
     //表示普通靶
@@ -26,14 +28,16 @@ public class TargetBean {
 
     private String shootingInterval;
 
+    private Date nowTime;
+
     private String time;
 
     private String date;
 
-    @Generated(hash = 1439249859)
+    @Generated(hash = 1273340889)
     public TargetBean(Long id, int type, int number, boolean hit, int RingNumber,
-                      String precisionRingNumber, String shootingInterval, String time,
-                      String date) {
+            String precisionRingNumber, String shootingInterval, Date nowTime,
+            String time, String date) {
         this.id = id;
         this.type = type;
         this.number = number;
@@ -41,6 +45,7 @@ public class TargetBean {
         this.RingNumber = RingNumber;
         this.precisionRingNumber = precisionRingNumber;
         this.shootingInterval = shootingInterval;
+        this.nowTime = nowTime;
         this.time = time;
         this.date = date;
     }
@@ -105,6 +110,14 @@ public class TargetBean {
         this.shootingInterval = shootingInterval;
     }
 
+    public Date getNowTime() {
+        return this.nowTime;
+    }
+
+    public void setNowTime(Date nowTime) {
+        this.nowTime = nowTime;
+    }
+
     public String getTime() {
         return this.time;
     }
@@ -120,4 +133,5 @@ public class TargetBean {
     public void setDate(String date) {
         this.date = date;
     }
+
 }

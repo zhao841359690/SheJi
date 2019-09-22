@@ -1002,7 +1002,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setType(TargetBean.TYPE_ORDINARY);
             targetBean.setNumber(DaoUtil.queryAllOrdinaryTarget().size() + 1);
             targetBean.setHit(hit);
-            targetBean.setShootingInterval("1s");
+            if (DaoUtil.queryAllOrdinaryTarget().size() > 0) {
+                Date lastDate = DaoUtil.queryAllOrdinaryTarget().get(DaoUtil.queryAllOrdinaryTarget().size() - 1).getNowTime();
+                Date nowDate = new Date(System.currentTimeMillis());
+                long diff = nowDate.getTime() - lastDate.getTime();
+                targetBean.setShootingInterval(diff / 1000 + "s");
+            } else {
+                targetBean.setShootingInterval("");
+            }
+            targetBean.setNowTime(new Date(System.currentTimeMillis()));
             targetBean.setTime(new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis())));
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
             DaoUtil.insertTarget(targetBean);
@@ -1017,7 +1025,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setHit(hit);
             targetBean.setPrecisionRingNumber(position);
             targetBean.setRingNumber(precisionNumber);
-            targetBean.setShootingInterval("1s");
+            if (DaoUtil.queryAllPrecisionTarget().size() > 0) {
+                Date lastDate = DaoUtil.queryAllPrecisionTarget().get(DaoUtil.queryAllPrecisionTarget().size() - 1).getNowTime();
+                Date nowDate = new Date(System.currentTimeMillis());
+                long diff = nowDate.getTime() - lastDate.getTime();
+                targetBean.setShootingInterval(diff / 1000 + "s");
+            } else {
+                targetBean.setShootingInterval("");
+            }
+            targetBean.setNowTime(new Date(System.currentTimeMillis()));
             targetBean.setTime(new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis())));
             targetBean.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
