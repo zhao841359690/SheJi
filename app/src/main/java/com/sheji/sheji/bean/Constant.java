@@ -1,5 +1,8 @@
 package com.sheji.sheji.bean;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class Constant {
     public static final int LOGIN_SUCCESS = 1;
     public static final int LOGIN_FAIL = 2;

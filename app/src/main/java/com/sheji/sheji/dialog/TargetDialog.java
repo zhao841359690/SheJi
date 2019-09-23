@@ -39,6 +39,9 @@ import com.sheji.sheji.R;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class TargetDialog extends Dialog implements View.OnClickListener {
     private Context context;
 

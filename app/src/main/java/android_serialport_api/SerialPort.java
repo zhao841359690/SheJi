@@ -26,6 +26,9 @@ import java.io.OutputStream;
 
 import android.util.Log;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class SerialPort {
 
 	private static final String TAG = "SerialPort";

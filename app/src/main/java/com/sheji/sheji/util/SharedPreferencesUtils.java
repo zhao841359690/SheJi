@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.sheji.sheji.base.BaseApplication;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class SharedPreferencesUtils {
 
     private static SharedPreferencesUtils sInstance;

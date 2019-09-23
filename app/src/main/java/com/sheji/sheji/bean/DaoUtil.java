@@ -4,6 +4,9 @@ import com.sheji.sheji.base.BaseApplication;
 
 import java.util.List;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class DaoUtil {
     public static void insertTarget(TargetBean targetBean) {
         BaseApplication.getDaoInstant().getTargetBeanDao().insertOrReplace(targetBean);

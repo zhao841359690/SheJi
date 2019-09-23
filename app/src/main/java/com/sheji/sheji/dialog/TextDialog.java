@@ -25,6 +25,9 @@ import android.widget.TextView;
 
 import com.sheji.sheji.R;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class TextDialog extends Dialog {
     private String text;
     private TextView mContentTv;

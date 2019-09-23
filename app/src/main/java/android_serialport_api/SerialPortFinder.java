@@ -25,6 +25,9 @@ import java.util.Vector;
 
 import android.util.Log;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class SerialPortFinder {
 
     public class Driver {

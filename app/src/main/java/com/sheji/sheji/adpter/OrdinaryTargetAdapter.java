@@ -13,6 +13,9 @@ import com.sheji.sheji.bean.TargetBean;
 
 import java.util.List;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class OrdinaryTargetAdapter extends RecyclerView.Adapter<OrdinaryTargetAdapter.ViewHolder> {
     private Context context;
     private List<TargetBean> dataList;

@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.sheji.sheji.bean.DaoMaster;
 import com.sheji.sheji.bean.DaoSession;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class BaseApplication extends Application {
     private static Context context;
     private static DaoSession daoSession;

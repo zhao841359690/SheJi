@@ -12,6 +12,9 @@ import java.security.InvalidParameterException;
 
 import android_serialport_api.SerialPort;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class SerialPortUtils {
     private static SerialPortUtils sInstance = null;
 
@@ -271,15 +274,31 @@ public class SerialPortUtils {
     public OnMainDataReceiveListener onMainDataReceiveListener = null;
 
     public interface OnLoginDataReceiveListener {
-        //总控台发送Pad枪和计数器绑定的数据协议-反馈报文
+        /**
+         * 总控台发送Pad枪和计数器绑定的数据协议-反馈报文
+         *
+         * @param success 成功/失败
+         */
         public void onFBReceive(boolean success);
     }
 
     public interface OnMainDataReceiveListener {
-        //计数器同时发送PAD和总控台的数据协议(开火 单发/双发/三连发  电量百分比)
+        /**
+         * 计数器同时发送PAD和总控台的数据协议(开火 单发/双发/三连发  电量百分比)
+         *
+         * @param electricQuantity 电量百分比
+         */
         public void onFEReceive(String electricQuantity);
 
-        //靶机同时发送PAD和总控台的命中数据协议(精准环数 命中)
+
+        /**
+         * 靶机同时发送PAD和总控台的命中数据协议(精准环数 命中)
+         *
+         * @param type            靶子类型(普通靶/精准靶)
+         * @param position        精准环数
+         * @param precisionNumber 环数
+         * @param hit             命中/未命中
+         */
         public void onDBOrDCReceive(String type, String position, int precisionNumber, boolean hit);
     }
 

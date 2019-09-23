@@ -13,6 +13,9 @@ import com.sheji.sheji.bean.TargetBean;
 
 import java.util.List;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class PrecisionTargetAdapter extends RecyclerView.Adapter<PrecisionTargetAdapter.ViewHolder> {
     private Context context;
     private List<TargetBean> dataList;

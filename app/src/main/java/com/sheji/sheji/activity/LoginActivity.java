@@ -29,6 +29,9 @@ import java.util.List;
 
 import android_serialport_api.SerialPortFinder;
 
+/**
+ * @author kk-zhaoqingfeng
+ */
 public class LoginActivity extends BaseActivity implements View.OnClickListener, SerialPortUtils.OnLoginDataReceiveListener {
     private RelativeLayout mBackRl;
     private LinearLayout mEtLy;
