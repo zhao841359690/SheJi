@@ -34,7 +34,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private LinearLayout mEtLy;
     private EditText mEquipmentNumberEt;
     private EditText mGunNumberEt;
-    private Spinner mNodeSp;
     private Button mDetermineTv;
 
     private boolean success = false;
@@ -89,30 +88,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mEtLy = findViewById(R.id.et_ly);
         mEquipmentNumberEt = findViewById(R.id.equipment_number_et);
         mGunNumberEt = findViewById(R.id.gun_number_et);
-
-        mNodeSp = findViewById(R.id.node_sp);
-        mNodeSp.setPrompt("选择设备节点");
-        SerialPortFinder mSerialPortFinder = new SerialPortFinder();
-        List<String> allNode = new ArrayList<String>();
-        String[] mStr = mSerialPortFinder.getAllDevicesName();
-        for (int i = 0; i < mStr.length; i++) {
-            allNode.add(mStr[i]);
-        }
-        ArrayAdapter<String> node_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allNode);
-        node_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mNodeSp.setAdapter(node_adapter);
-        mNodeSp.setSelection(0, true);
-        mNodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                SerialPortUtils.getInstance().setPort((String) mNodeSp.getSelectedItem());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         mDetermineTv = findViewById(R.id.determine_tv);
         mDetermineTv.setOnClickListener(this);

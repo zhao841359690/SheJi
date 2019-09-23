@@ -12,15 +12,8 @@ import java.security.InvalidParameterException;
 
 import android_serialport_api.SerialPort;
 
-/**
- * Created by WangChaowei on 2017/12/7.
- */
-
 public class SerialPortUtils {
     private static SerialPortUtils sInstance = null;
-
-    private String port = "ttyUSB0";//串口号
-    private int baudrate = 9600;//波特率
 
     private SerialPort serialPort = null;
     private InputStream inputStream = null;
@@ -164,10 +157,6 @@ public class SerialPortUtils {
         return sInstance;
     }
 
-    public void setPort(String port) {
-        this.port = port;
-    }
-
     /**
      * 打开串口
      *
@@ -175,7 +164,10 @@ public class SerialPortUtils {
      */
     public SerialPort openSerialPort() {
         try {
-            serialPort = new SerialPort(new File("/dev/" + port), baudrate, 0);
+            serialPort = new SerialPort(new File("/dev/ttyUSB0"), 9600, 0);
+            if (serialPort == null) {
+                serialPort = new SerialPort(new File("/dev/ttyUSB1"), 9600, 0);
+            }
             //获取打开的串口中的输入输出流，以便于串口数据的收发
             if (serialPort != null) {
                 inputStream = serialPort.getInputStream();
