@@ -1006,7 +1006,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setNumber(DaoUtil.queryAllOrdinaryTarget().size() + 1);
             targetBean.setHit(hit);
             if (DaoUtil.queryAllOrdinaryTarget().size() > 0) {
-                Date lastDate = DaoUtil.queryAllOrdinaryTarget().get(DaoUtil.queryAllOrdinaryTarget().size() - 1).getNowTime();
+                Date lastDate = DaoUtil.queryAllOrdinaryTarget().get(0).getNowTime();
                 Date nowDate = new Date(System.currentTimeMillis());
                 long diff = nowDate.getTime() - lastDate.getTime();
                 targetBean.setShootingInterval(diff / 1000 + "s");
@@ -1029,7 +1029,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             targetBean.setPrecisionRingNumber(position);
             targetBean.setRingNumber(precisionNumber);
             if (DaoUtil.queryAllPrecisionTarget().size() > 0) {
-                Date lastDate = DaoUtil.queryAllPrecisionTarget().get(DaoUtil.queryAllPrecisionTarget().size() - 1).getNowTime();
+                Date lastDate = DaoUtil.queryAllPrecisionTarget().get(0).getNowTime();
                 Date nowDate = new Date(System.currentTimeMillis());
                 long diff = nowDate.getTime() - lastDate.getTime();
                 targetBean.setShootingInterval(diff / 1000 + "s");
