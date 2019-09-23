@@ -105,7 +105,7 @@ public class TargetDialog extends Dialog implements View.OnClickListener {
                 if (TextUtils.isEmpty(mErectTv.getText().toString().trim())
                         || TextUtils.isEmpty(mLodgingTv.getText().toString().trim())
                         || TextUtils.isEmpty(mCyclesEt.getText().toString().trim())) {
-                    Toast.makeText(context, "竖起维持时间，倒伏维持时间，循环次数", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "竖起维持时间，倒伏维持时间，循环次数不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 cycles = Integer.valueOf(mCyclesEt.getText().toString().trim());
