@@ -1,19 +1,17 @@
 package com.sheji.sheji.activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sheji.sheji.base.BaseActivity;
@@ -24,11 +22,6 @@ import com.sheji.sheji.dialog.TextDialog;
 import com.sheji.sheji.util.SerialPortUtils;
 import com.sheji.sheji.util.SharedPreferencesUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android_serialport_api.SerialPortFinder;
-
 /**
  * @author kk-zhaoqingfeng
  */
@@ -38,6 +31,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText mEquipmentNumberEt;
     private EditText mGunNumberEt;
     private Button mDetermineTv;
+
+    private ProgressDialog progressDialog = null;
 
     private boolean success = false;
 
@@ -94,6 +89,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         mDetermineTv = findViewById(R.id.determine_tv);
         mDetermineTv.setOnClickListener(this);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("登陆中...");
+        progressDialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
@@ -131,16 +130,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         //TODO 打开串口 绑定操作
         // Pad发送总控台枪和计数器绑定的数据协议-申请报文
         if (SerialPortUtils.getInstance().openSerialPort() == null) {
-            Toast.makeText(this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "设备打开异常,请再次点击确认按钮", Toast.LENGTH_SHORT).show();
+            if ("ttyUSB0".equals(SerialPortUtils.getInstance().getPort())) {
+                SerialPortUtils.getInstance().setPort("ttyUSB1");
+            } else {
+                SerialPortUtils.getInstance().setPort("ttyUSB0");
+            }
             SerialPortUtils.getInstance().openSerialPort();
         } else {
-            SerialPortUtils.getInstance().sendSerialPort("CC23AABD0-65535" + gunNumber + equipmentNumber + "0A0D");
+            progressDialog.show();
+
+            SerialPortUtils.getInstance().sendSerialPort("CC23AABD" + equipmentNumber + gunNumber + "0A0D");
             SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
         }
     }
 
     @Override
     public void onFBReceive(boolean success) {
+        progressDialog.dismiss();
+
         mBackRl.setBackgroundResource(R.drawable.login_state_back);
         mEtLy.setVisibility(View.GONE);
         //清空数据库

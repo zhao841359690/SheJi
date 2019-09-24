@@ -984,7 +984,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
         }
-        cyclesHandler.sendEmptyMessageDelayed(1, erectTime * 1000);
+        cyclesHandler.sendEmptyMessageDelayed(1, this.erectTime);
     }
 
     @Override

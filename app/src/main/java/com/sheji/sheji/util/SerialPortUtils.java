@@ -18,6 +18,8 @@ import android_serialport_api.SerialPort;
 public class SerialPortUtils {
     private static SerialPortUtils sInstance = null;
 
+    private String port = "ttyUSB0";
+
     private SerialPort serialPort = null;
     private InputStream inputStream = null;
     private OutputStream outputStream = null;
@@ -27,6 +29,14 @@ public class SerialPortUtils {
     private StringBuffer stringBuffer = new StringBuffer();
     private String recInfo;
 
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -34,7 +44,7 @@ public class SerialPortUtils {
             super.handleMessage(msg);
             String action = recInfo.substring(6, 8);
             if ("FB".equals(action)) {
-                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(15, 17)));
+                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4)));
             } else if ("FE".equals(action)) {
                 onMainDataReceiveListener.onFEReceive(recInfo.substring(17, recInfo.length() - 4));
             } else if ("DB".equals(action) || "DC".equals(action)) {
@@ -42,101 +52,101 @@ public class SerialPortUtils {
                 String position;
                 int precisionNumber = 0;
                 if (hit) {
-                    position = recInfo.substring(recInfo.length() - 17, recInfo.length() - 6);
-                    if ("00 00 00 01".equals(position)) {
+                    position = recInfo.substring(recInfo.length() - 14, recInfo.length() - 6);
+                    if ("00000001".equals(position)) {
                         position = "10环上";
                         precisionNumber = 10;
-                    } else if ("00 00 00 02".equals(position)) {
+                    } else if ("00000002".equals(position)) {
                         position = "10环右";
                         precisionNumber = 10;
-                    } else if ("00 00 00 04".equals(position)) {
+                    } else if ("00000004".equals(position)) {
                         position = "10环下";
                         precisionNumber = 10;
-                    } else if ("00 00 00 08".equals(position)) {
+                    } else if ("00000008".equals(position)) {
                         position = "10环左";
                         precisionNumber = 10;
-                    } else if ("00 00 00 10".equals(position)) {
+                    } else if ("00000010".equals(position)) {
                         position = "9环上";
                         precisionNumber = 9;
-                    } else if ("00 00 00 20".equals(position)) {
+                    } else if ("00000020".equals(position)) {
                         position = "9环右";
                         precisionNumber = 9;
-                    } else if ("00 00 00 40".equals(position)) {
+                    } else if ("00000040".equals(position)) {
                         position = "9环下";
                         precisionNumber = 9;
-                    } else if ("00 00 00 80".equals(position)) {
+                    } else if ("00000080".equals(position)) {
                         position = "9环左";
                         precisionNumber = 9;
-                    } else if ("00 00 01 00".equals(position)) {
+                    } else if ("00000100".equals(position)) {
                         position = "8环上";
                         precisionNumber = 8;
-                    } else if ("00 00 02 00".equals(position)) {
+                    } else if ("00000200".equals(position)) {
                         position = "8环右上";
                         precisionNumber = 8;
-                    } else if ("00 00 04 00".equals(position)) {
+                    } else if ("00000400".equals(position)) {
                         position = "8环右";
                         precisionNumber = 8;
-                    } else if ("00 00 08 00".equals(position)) {
+                    } else if ("00000800".equals(position)) {
                         position = "8右下";
                         precisionNumber = 8;
-                    } else if ("00 00 10 00".equals(position)) {
+                    } else if ("00001000".equals(position)) {
                         position = "8环下";
                         precisionNumber = 8;
-                    } else if ("00 00 20 00".equals(position)) {
+                    } else if ("00002000".equals(position)) {
                         position = "8左下";
                         precisionNumber = 8;
-                    } else if ("00 00 40 00".equals(position)) {
+                    } else if ("00004000".equals(position)) {
                         position = "8环左";
                         precisionNumber = 8;
-                    } else if ("00 00 80 00".equals(position)) {
+                    } else if ("00008000".equals(position)) {
                         position = "8环左上";
                         precisionNumber = 8;
-                    } else if ("00 01 00 00".equals(position)) {
+                    } else if ("00010000".equals(position)) {
                         position = "7环上";
                         precisionNumber = 7;
-                    } else if ("00 02 00 00".equals(position)) {
+                    } else if ("00020000".equals(position)) {
                         position = "7环右上";
                         precisionNumber = 7;
-                    } else if ("00 04 00 00".equals(position)) {
+                    } else if ("00040000".equals(position)) {
                         position = "7环右";
                         precisionNumber = 7;
-                    } else if ("00 08 00 00".equals(position)) {
+                    } else if ("00080000".equals(position)) {
                         position = "7环右下";
                         precisionNumber = 7;
-                    } else if ("00 10 00 00".equals(position)) {
+                    } else if ("00100000".equals(position)) {
                         position = "7环下";
                         precisionNumber = 7;
-                    } else if ("00 20 00 00".equals(position)) {
+                    } else if ("00200000".equals(position)) {
                         position = "7环左下";
                         precisionNumber = 7;
-                    } else if ("00 40 00 00".equals(position)) {
+                    } else if ("00400000".equals(position)) {
                         position = "7环左";
                         precisionNumber = 7;
-                    } else if ("00 80 00 00".equals(position)) {
+                    } else if ("00800000".equals(position)) {
                         position = "7环左上";
                         precisionNumber = 7;
-                    } else if ("01 00 00 00".equals(position)) {
+                    } else if ("01000000".equals(position)) {
                         position = "6环上";
                         precisionNumber = 6;
-                    } else if ("02 00 00 00".equals(position)) {
+                    } else if ("02000000".equals(position)) {
                         position = "6环右上";
                         precisionNumber = 6;
-                    } else if ("04 00 00 00".equals(position)) {
+                    } else if ("04000000".equals(position)) {
                         position = "6环右";
                         precisionNumber = 6;
-                    } else if ("08 00 00 00".equals(position)) {
+                    } else if ("08000000".equals(position)) {
                         position = "6环右下";
                         precisionNumber = 6;
-                    } else if ("10 00 00 00".equals(position)) {
+                    } else if ("10000000".equals(position)) {
                         position = "6环下";
                         precisionNumber = 6;
-                    } else if ("20 00 00 00".equals(position)) {
+                    } else if ("20000000".equals(position)) {
                         position = "6环左下";
                         precisionNumber = 6;
-                    } else if ("40 00 00 00".equals(position)) {
+                    } else if ("40000000".equals(position)) {
                         position = "6环左";
                         precisionNumber = 6;
-                    } else if ("80 00 00 00".equals(position)) {
+                    } else if ("80000000".equals(position)) {
                         position = "6环左上";
                         precisionNumber = 6;
                     }
@@ -167,10 +177,7 @@ public class SerialPortUtils {
      */
     public SerialPort openSerialPort() {
         try {
-            serialPort = new SerialPort(new File("/dev/ttyUSB0"), 9600, 0);
-            if (serialPort == null) {
-                serialPort = new SerialPort(new File("/dev/ttyUSB1"), 9600, 0);
-            }
+            serialPort = new SerialPort(new File("/dev/" + port), 9600, 0);
             //获取打开的串口中的输入输出流，以便于串口数据的收发
             if (serialPort != null) {
                 inputStream = serialPort.getInputStream();

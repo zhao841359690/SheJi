@@ -21,15 +21,18 @@
             android:text="竖起维持时间"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/erect_tv"
+        <EditText
+            android:id="@+id/erect_et"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
             android:gravity="center_vertical"
+            android:hint="请输入竖起维持时间"
+            android:inputType="number"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>
@@ -50,15 +53,18 @@
             android:text="倒伏维持时间"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/lodging_tv"
+        <EditText
+            android:id="@+id/lodging_et"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
             android:gravity="center_vertical"
+            android:hint="请输入倒伏维持时间"
+            android:inputType="number"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>
@@ -88,6 +94,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_light_white1_corner"
             android:gravity="center_vertical"
+            android:hint="请输入循环次数"
             android:inputType="number"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
