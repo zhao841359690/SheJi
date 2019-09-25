@@ -46,7 +46,7 @@ public class SerialPortUtils {
             if ("FB".equals(action)) {
                 onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4)));
             } else if ("FE".equals(action)) {
-                onMainDataReceiveListener.onFEReceive(recInfo.substring(17, recInfo.length() - 4));
+                onMainDataReceiveListener.onFEReceive(recInfo.substring(10 + SharedPreferencesUtils.getInstance().getEquipmentNumber().length(), recInfo.length() - 4));
             } else if ("DB".equals(action) || "DC".equals(action)) {
                 boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
                 String position;
