@@ -149,6 +149,9 @@ public class SerialPortUtils {
                     } else if ("80000000".equals(position)) {
                         position = "6环左上";
                         precisionNumber = 6;
+                    } else {
+                        position = "";
+                        precisionNumber = 0;
                     }
                 } else {
                     position = "无记录";
