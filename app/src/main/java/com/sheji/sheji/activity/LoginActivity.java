@@ -136,7 +136,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             } else {
                 SerialPortUtils.getInstance().setPort("ttyUSB0");
             }
-            SerialPortUtils.getInstance().openSerialPort();
         } else {
             progressDialog.show();
 
