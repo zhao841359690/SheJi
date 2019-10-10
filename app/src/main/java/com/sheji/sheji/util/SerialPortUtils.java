@@ -51,7 +51,7 @@ public class SerialPortUtils {
                 boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
                 String position;
                 int precisionNumber = 0;
-                if (hit) {
+                if (hit && "DC".equals(action)) {
                     position = recInfo.substring(recInfo.length() - 14, recInfo.length() - 6);
                     if ("00000001".equals(position)) {
                         position = "10环上";

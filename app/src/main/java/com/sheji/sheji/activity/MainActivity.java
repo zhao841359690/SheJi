@@ -553,6 +553,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     }
 
                     mHeadTargetTv.setTextColor(getColor(R.color.white));
+                    mTargetIv.setImageResource(R.drawable.head_target);
                 } else if (type == Constant.BODY) {
                     //PAD控制靶机靶子类型的协议
                     if (SerialPortUtils.getInstance().openSerialPort() == null) {
@@ -563,6 +564,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     }
 
                     mBodyTargetTv.setTextColor(getColor(R.color.white));
+                    mTargetIv.setImageResource(R.drawable.body_target);
                 } else {
                     //PAD控制靶机靶子类型的协议
                     if (SerialPortUtils.getInstance().openSerialPort() == null) {
