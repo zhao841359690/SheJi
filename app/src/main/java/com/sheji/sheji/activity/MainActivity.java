@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -93,7 +92,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private RecyclerView mMainRv;
     private TextView mTotalTv;
     private LinearLayout mPageLy;
-    private ImageView mPrePageIv;
+    private TextView mPrePageTv;
     private TextView mFirstTv;
     private View mV1;
     private TextView mSecondTv;
@@ -106,7 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private View mV5;
     private TextView mSixthTv;
     private View mV6;
-    private ImageView mNextPageIv;
+    private TextView mNextPageTv;
     private View mV7;
 
     private OrdinaryTargetAdapter ordinaryTargetAdapter;
@@ -291,8 +290,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mPageLy = findViewById(R.id.page_ly);
         mTotalTv = findViewById(R.id.total_tv);
 
-        mPrePageIv = findViewById(R.id.pre_page_iv);
-        mPrePageIv.setOnClickListener(this);
+        mPrePageTv = findViewById(R.id.pre_page_tv);
+        mPrePageTv.setOnClickListener(this);
 
         mFirstTv = findViewById(R.id.first_tv);
         mFirstTv.setOnClickListener(this);
@@ -318,8 +317,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mSixthTv.setOnClickListener(this);
         mV6 = findViewById(R.id.v6);
 
-        mNextPageIv = findViewById(R.id.next_page_iv);
-        mNextPageIv.setOnClickListener(this);
+        mNextPageTv = findViewById(R.id.next_page_tv);
+        mNextPageTv.setOnClickListener(this);
         mV7 = findViewById(R.id.v7);
 
         hiddenRedPoint();
@@ -438,7 +437,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     }
                 }
                 break;
-            case R.id.pre_page_iv:
+            case R.id.pre_page_tv:
                 switch (pageType) {
                     case Constant.HEAD:
                     case Constant.BODY:
@@ -497,7 +496,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         break;
                 }
                 break;
-            case R.id.next_page_iv:
+            case R.id.next_page_tv:
                 switch (pageType) {
                     case Constant.HEAD:
                     case Constant.BODY:
