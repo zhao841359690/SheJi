@@ -225,11 +225,10 @@ public class SerialPortUtils {
     /**
      * 发送串口数据的方法
      *
-     * @param data 要发送的数据
+     * @param sendData 要发送的数据
      */
-    public void sendSerialPort(String data) {
+    public void sendSerialPort(byte[] sendData) {
         try {
-            byte[] sendData = data.getBytes();
             if (sendData.length > 0) {
                 outputStream.write(sendData);
                 outputStream.write('\n');

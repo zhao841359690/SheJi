@@ -117,18 +117,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "请在此处输入本设备编号(编号为1-20)", Toast.LENGTH_SHORT).show();
             return;
         }
+        equipmentNumber = String.format("%04d", equipment);
 
         if (TextUtils.isEmpty(gunNumber)) {
             Toast.makeText(this, "请在此处输入枪械编号", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (gunNumber.length() != 6) {
-            Toast.makeText(this, "请在此处输入枪械编号(6位)", Toast.LENGTH_SHORT).show();
+        if (gunNumber.length() != 8) {
+            Toast.makeText(this, "请在此处输入枪械编号(8位)", Toast.LENGTH_SHORT).show();
             return;
         }
-        //TODO 打开串口 绑定操作
-        // Pad发送总控台枪和计数器绑定的数据协议-申请报文
+//        //TODO 打开串口 绑定操作
+//        // Pad发送总控台枪和计数器绑定的数据协议-申请报文
         if (SerialPortUtils.getInstance().openSerialPort() == null) {
             Toast.makeText(this, "设备打开异常,请再次点击确认按钮", Toast.LENGTH_SHORT).show();
             if ("ttyUSB0".equals(SerialPortUtils.getInstance().getPort())) {
@@ -139,7 +140,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         } else {
             progressDialog.show();
 
-            SerialPortUtils.getInstance().sendSerialPort("CC23AABD" + equipmentNumber + gunNumber + "0A0D");
+            byte[] sendByte = new byte[18];
+            sendByte[0] = (byte) Integer.parseInt("CC", 16);
+            sendByte[1] = (byte) Integer.parseInt("23", 16);
+            sendByte[2] = (byte) Integer.parseInt("AA", 16);
+            sendByte[3] = (byte) Integer.parseInt("BD", 16);
+
+            sendByte[4] = (byte) Integer.parseInt(equipmentNumber.substring(0, 1), 16);
+            sendByte[5] = (byte) Integer.parseInt(equipmentNumber.substring(1, 2), 16);
+            sendByte[6] = (byte) Integer.parseInt(equipmentNumber.substring(2, 3), 16);
+            sendByte[7] = (byte) Integer.parseInt(equipmentNumber.substring(3, 4), 16);
+
+            sendByte[8] = (byte) Integer.parseInt(gunNumber.substring(0, 1), 16);
+            sendByte[9] = (byte) Integer.parseInt(gunNumber.substring(1, 2), 16);
+            sendByte[10] = (byte) Integer.parseInt(gunNumber.substring(2, 3), 16);
+            sendByte[11] = (byte) Integer.parseInt(gunNumber.substring(3, 4), 16);
+            sendByte[12] = (byte) Integer.parseInt(gunNumber.substring(4, 5), 16);
+            sendByte[13] = (byte) Integer.parseInt(gunNumber.substring(5, 6), 16);
+            sendByte[14] = (byte) Integer.parseInt(gunNumber.substring(6, 7), 16);
+            sendByte[15] = (byte) Integer.parseInt(gunNumber.substring(7, 8), 16);
+
+            sendByte[16] = (byte) Integer.parseInt("0A", 16);
+            sendByte[17] = (byte) Integer.parseInt("0D", 16);
+
+            SerialPortUtils.getInstance().sendSerialPort(sendByte);
             SerialPortUtils.getInstance().setOnLoginDataReceiveListener(this);
         }
     }

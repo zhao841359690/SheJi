@@ -160,7 +160,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DD", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
                     break;
                 case 2:
@@ -176,7 +187,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                             Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                             SerialPortUtils.getInstance().openSerialPort();
                         } else {
-                            SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                            byte[] sendByte = new byte[7];
+                            sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                            sendByte[1] = (byte) Integer.parseInt("23", 16);
+                            sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                            sendByte[3] = (byte) Integer.parseInt("DD", 16);
+
+                            sendByte[4] = (byte) Integer.parseInt("01", 16);
+
+                            sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                            sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                            SerialPortUtils.getInstance().sendSerialPort(sendByte);
                         }
                     }
                     break;
@@ -194,7 +216,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
             SerialPortUtils.getInstance().openSerialPort();
         } else {
-            SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+            byte[] sendByte = new byte[7];
+            sendByte[0] = (byte) Integer.parseInt("CC", 16);
+            sendByte[1] = (byte) Integer.parseInt("23", 16);
+            sendByte[2] = (byte) Integer.parseInt("AA", 16);
+            sendByte[3] = (byte) Integer.parseInt("DE", 16);
+
+            sendByte[4] = (byte) Integer.parseInt("04", 16);
+
+            sendByte[5] = (byte) Integer.parseInt("0A", 16);
+            sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+            SerialPortUtils.getInstance().sendSerialPort(sendByte);
             SerialPortUtils.getInstance().setOnMainDataReceiveListener(this);
         }
         initView();
@@ -422,7 +455,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD000A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DD", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
                 } else {
                     mShootingDroneTv.setText("射击靶机起");
@@ -433,7 +477,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DD", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("01", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
                 }
                 break;
@@ -548,7 +603,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE010A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DE", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("01", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
 
                     mHeadTargetTv.setTextColor(getColor(R.color.white));
@@ -559,7 +625,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE020A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DE", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("02", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
 
                     mBodyTargetTv.setTextColor(getColor(R.color.white));
@@ -570,7 +647,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                         SerialPortUtils.getInstance().openSerialPort();
                     } else {
-                        SerialPortUtils.getInstance().sendSerialPort("CC23AADE030A0D");
+                        byte[] sendByte = new byte[7];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DE", 16);
+
+                        sendByte[4] = (byte) Integer.parseInt("03", 16);
+
+                        sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
 
                     mChestTargetTv.setTextColor(getColor(R.color.white));
@@ -604,7 +692,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
                     SerialPortUtils.getInstance().openSerialPort();
                 } else {
-                    SerialPortUtils.getInstance().sendSerialPort("CC23AADE040A0D");
+                    byte[] sendByte = new byte[7];
+                    sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                    sendByte[1] = (byte) Integer.parseInt("23", 16);
+                    sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                    sendByte[3] = (byte) Integer.parseInt("DE", 16);
+
+                    sendByte[4] = (byte) Integer.parseInt("04", 16);
+
+                    sendByte[5] = (byte) Integer.parseInt("0A", 16);
+                    sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                    SerialPortUtils.getInstance().sendSerialPort(sendByte);
                 }
 
                 mPrecisionTargetTv.setTextColor(getColor(R.color.white));
@@ -983,7 +1082,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
             SerialPortUtils.getInstance().openSerialPort();
         } else {
-            SerialPortUtils.getInstance().sendSerialPort("CC23AADD010A0D");
+            byte[] sendByte = new byte[7];
+            sendByte[0] = (byte) Integer.parseInt("CC", 16);
+            sendByte[1] = (byte) Integer.parseInt("23", 16);
+            sendByte[2] = (byte) Integer.parseInt("AA", 16);
+            sendByte[3] = (byte) Integer.parseInt("DD", 16);
+
+            sendByte[4] = (byte) Integer.parseInt("01", 16);
+
+            sendByte[5] = (byte) Integer.parseInt("0A", 16);
+            sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+            SerialPortUtils.getInstance().sendSerialPort(sendByte);
         }
         cyclesHandler.sendEmptyMessageDelayed(1, this.erectTime);
     }
