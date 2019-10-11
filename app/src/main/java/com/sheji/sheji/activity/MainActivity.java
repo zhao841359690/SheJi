@@ -1101,10 +1101,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onFEReceive(String electricQuantity) {
         mFireSwitch.setChecked(true);
-        if ("255".equals(electricQuantity)) {
+        if ("FF".equals(electricQuantity)) {
             mCounterRemainingBattery.setText("电量未测出");
         } else {
-            mCounterRemainingBattery.setText(electricQuantity + "%");
+            if ("64".equals(electricQuantity)) {
+                mCounterRemainingBattery.setText("100%");
+            } else {
+                if ("0".equals(electricQuantity.substring(0, 1))) {
+                    mCounterRemainingBattery.setText(electricQuantity.substring(1, 2) + "%");
+                } else {
+                    mCounterRemainingBattery.setText(electricQuantity + "%");
+                }
+            }
         }
     }
 
