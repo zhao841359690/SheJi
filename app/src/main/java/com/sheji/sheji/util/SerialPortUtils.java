@@ -16,6 +16,9 @@ import android_serialport_api.SerialPort;
  * @author kk-zhaoqingfeng
  */
 public class SerialPortUtils {
+    //CC 23 DD FB 00 00 00 01 01 0A 0D
+    //CC 23 BB FE 00 00 00 01 01 70 0A 0D
+    //CC 23 BB FE 00 00 00 01 00 00 00 01 01 0A 0D
     private static SerialPortUtils sInstance = null;
 
     private String port = "ttyUSB0";
@@ -44,15 +47,15 @@ public class SerialPortUtils {
             super.handleMessage(msg);
             String action = recInfo.substring(6, 8);
             if ("FB".equals(action)) {
-                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4)));
+                onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(16, 18)));
             } else if ("FE".equals(action)) {
-                onMainDataReceiveListener.onFEReceive(recInfo.substring(10 + SharedPreferencesUtils.getInstance().getEquipmentNumber().length(), recInfo.length() - 4));
+                onMainDataReceiveListener.onFEReceive(recInfo.substring(18, 20));
             } else if ("DB".equals(action) || "DC".equals(action)) {
-                boolean hit = "01".equals(recInfo.substring(recInfo.length() - 6, recInfo.length() - 4));
+                boolean hit = "01".equals(recInfo.substring(24, 26));
                 String position;
                 int precisionNumber = 0;
                 if (hit && "DC".equals(action)) {
-                    position = recInfo.substring(recInfo.length() - 14, recInfo.length() - 6);
+                    position = recInfo.substring(16, 24);
                     if ("00000001".equals(position)) {
                         position = "10环上";
                         precisionNumber = 10;
@@ -260,7 +263,7 @@ public class SerialPortUtils {
                         }
                         int size = inputStream.read(readData);
                         if (size > 0 && flag) {
-                            recInfo = new String(readData, 0, size);
+                            recInfo = formatHex2String(readData);
                             stringBuffer.append(recInfo);
                             if (stringBuffer.length() > 4 && "0A0D".equals(stringBuffer.substring(stringBuffer.length() - 4, stringBuffer.length()))) {
                                 recInfo = stringBuffer.toString();
@@ -317,5 +320,13 @@ public class SerialPortUtils {
 
     public void setOnMainDataReceiveListener(OnMainDataReceiveListener mainDataReceiveListener) {
         this.onMainDataReceiveListener = mainDataReceiveListener;
+    }
+
+    private String formatHex2String(byte[] data) {
+        final StringBuilder stringBuilder = new StringBuilder(data.length);
+        for (byte byteChar : data) {
+            stringBuilder.append(String.format("%02X ", byteChar).trim());
+        }
+        return stringBuilder.toString();
     }
 }
