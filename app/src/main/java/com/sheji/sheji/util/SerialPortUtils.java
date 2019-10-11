@@ -17,7 +17,7 @@ import android_serialport_api.SerialPort;
  */
 public class SerialPortUtils {
     //CC 23 DD FB 00 00 00 01 01 0A 0D
-    //CC 23 BB FE 00 00 00 01 01 70 0A 0D
+    //CC 23 BB FE 00 00 00 01 01 70 0A 0D     100是64 255是FF
     //CC 23 BB FE 00 00 00 01 00 00 00 01 01 0A 0D
     private static SerialPortUtils sInstance = null;
 
