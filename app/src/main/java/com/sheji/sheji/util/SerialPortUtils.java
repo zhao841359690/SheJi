@@ -263,7 +263,7 @@ public class SerialPortUtils {
                         }
                         int size = inputStream.read(readData);
                         if (size > 0 && flag) {
-                            recInfo = formatHex2String(readData);
+                            recInfo = HexToString(readData,0, size);
                             stringBuffer.append(recInfo);
                             if (stringBuffer.length() > 4 && "0A0D".equals(stringBuffer.substring(stringBuffer.length() - 4, stringBuffer.length()))) {
                                 recInfo = stringBuffer.toString();
@@ -322,11 +322,24 @@ public class SerialPortUtils {
         this.onMainDataReceiveListener = mainDataReceiveListener;
     }
 
-    private String formatHex2String(byte[] data) {
-        final StringBuilder stringBuilder = new StringBuilder(data.length);
-        for (byte byteChar : data) {
-            stringBuilder.append(String.format("%02X ", byteChar).trim());
+    private String HexToString(byte[] data, int start, int end) {
+        char[] HEX_CODE = {'0', '1', '2', '3', '4', '5', '6', '7',
+                '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+        if (data == null) {
+            return null;
         }
-        return stringBuilder.toString();
+        int length = data.length;
+        if (start < 0 || end < 0 || end < start ||
+                start > length || end > length) {
+            return null;
+        }
+        String mystring = "";
+        for (int i = start; i < end; i++) {
+            byte b = data[i];
+            mystring += HEX_CODE[(b >> 4) & 0x0F];
+            mystring += HEX_CODE[b & 0x0F];
+        }
+        return mystring;
     }
 }
