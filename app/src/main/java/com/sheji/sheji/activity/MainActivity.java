@@ -118,9 +118,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private PrecisionTargetAdapter precisionTargetAdapter;
     private List<TargetBean> precisionTargetList = new ArrayList<>();
     private int totalPrecisionTarget = 0;
-    private int totalPrecisonTargetPage = 0;
+    private int totalPrecisionTargetPage = 0;
     private int precisionTargetPage = 0;
     private int nowPrecisionTargetPage = 0;
+
+    private int fireNumber;
 
     private int pageType = Constant.PRECISION;
 
@@ -384,7 +386,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
         mCumulativeShotNumberContentTv.setText(String.valueOf(cumulativeShotNumber));
         //累计射击发数
-        mCumulativeShotsTv.setText(String.valueOf(totalPrecisionTarget));
+        mCumulativeShotsTv.setText("0");
 
         ordinaryTargetAdapter = new OrdinaryTargetAdapter(this);
         ordinaryTargetAdapter.setDataList(ordinaryTargetList);
@@ -397,7 +399,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mMainRv.setAdapter(precisionTargetAdapter);
 
         //一共有多少条数据
-        mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisonTargetPage + "页");
+        mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisionTargetPage + "页");
 
         sendPageNumber(totalPrecisionTarget, nowPrecisionTargetPage);
         setBottomClick(1);
@@ -410,7 +412,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         totalOrdinaryTarget = DaoUtil.queryAllOrdinaryTarget().size();
         totalOrdinaryTargetPage = (int) Math.ceil((totalOrdinaryTarget * 1.0f) / (size * 1.0f));
         totalPrecisionTarget = DaoUtil.queryAllPrecisionTarget().size();
-        totalPrecisonTargetPage = (int) Math.ceil((totalPrecisionTarget * 1.0f) / (size * 1.0f));
+        totalPrecisionTargetPage = (int) Math.ceil((totalPrecisionTarget * 1.0f) / (size * 1.0f));
 
         ordinaryTargetList = DaoUtil.queryOrdinaryTargetByPageAndSize(ordinaryTargetPage, size);
         precisionTargetList = DaoUtil.queryPrecisionTargetByPageAndSize(precisionTargetPage, size);
@@ -506,7 +508,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     case Constant.PRECISION:
                         if (nowPrecisionTargetPage > 0) {
                             nowPrecisionTargetPage--;
-                            sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
+                            sendPageNumber(totalPrecisionTargetPage, nowPrecisionTargetPage);
                             setBottomClick(5);
                         }
                         break;
@@ -541,11 +543,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         }
                         break;
                     case Constant.PRECISION:
-                        if (totalPrecisonTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
+                        if (totalPrecisionTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
                             nowPrecisionTargetPage++;
-                            sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
+                            sendPageNumber(totalPrecisionTargetPage, nowPrecisionTargetPage);
                             setBottomClick(1);
-                        } else if ((((nowPrecisionTargetPage + 1) * 5 + 1) - totalPrecisonTargetPage) == 0) {
+                        } else if ((((nowPrecisionTargetPage + 1) * 5 + 1) - totalPrecisionTargetPage) == 0) {
                             setBottomClick(6);
                         }
                         break;
@@ -563,9 +565,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         }
                         break;
                     case Constant.PRECISION:
-                        if (totalPrecisonTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
+                        if (totalPrecisionTargetPage > ((nowPrecisionTargetPage + 1) * 5 + 1)) {
                             nowPrecisionTargetPage++;
-                            sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
+                            sendPageNumber(totalPrecisionTargetPage, nowPrecisionTargetPage);
                             setBottomClick(1);
                         }
                         break;
@@ -680,7 +682,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mHitTv.setText("");
                 }
 
-                mCumulativeShotsTv.setText(String.valueOf(totalOrdinaryTarget));
                 mTotalTv.setText("共" + totalOrdinaryTarget + "条，共" + totalOrdinaryTargetPage + "页");
 
                 setBottomClick(1);
@@ -732,8 +733,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     mHitTv.setText("");
                 }
 
-                mCumulativeShotsTv.setText(String.valueOf(totalPrecisionTarget));
-                mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisonTargetPage + "页");
+                mTotalTv.setText("共" + totalPrecisionTarget + "条，共" + totalPrecisionTargetPage + "页");
 
                 setBottomClick(1);
                 break;
@@ -769,7 +769,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 sendPageNumber(totalOrdinaryTargetPage, nowOrdinaryTargetPage);
                 break;
             case Constant.PRECISION:
-                sendPageNumber(totalPrecisonTargetPage, nowPrecisionTargetPage);
+                sendPageNumber(totalPrecisionTargetPage, nowPrecisionTargetPage);
                 break;
         }
 
@@ -1099,8 +1099,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void onFEReceive(String electricQuantity) {
+    public void onFEReceive(String fire, String electricQuantity) {
         mFireSwitch.setChecked(true);
+        fireNumber += Integer.valueOf(fire);
+        //累计射击发数
+        mCumulativeShotsTv.setText(String.valueOf(fireNumber));
+
         if ("FF".equals(electricQuantity)) {
             mCounterRemainingBattery.setText("电量未测出");
         } else {

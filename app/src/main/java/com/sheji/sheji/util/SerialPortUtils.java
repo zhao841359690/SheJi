@@ -49,7 +49,7 @@ public class SerialPortUtils {
             if ("FB".equals(action)) {
                 onLoginDataReceiveListener.onFBReceive("01".equals(recInfo.substring(16, 18)));
             } else if ("FE".equals(action)) {
-                onMainDataReceiveListener.onFEReceive(recInfo.substring(18, 20));
+                onMainDataReceiveListener.onFEReceive(recInfo.substring(16, 18), recInfo.substring(18, 20));
             } else if ("DB".equals(action) || "DC".equals(action)) {
                 boolean hit = "01".equals(recInfo.substring(24, 26));
                 String position;
@@ -263,7 +263,7 @@ public class SerialPortUtils {
                         }
                         int size = inputStream.read(readData);
                         if (size > 0 && flag) {
-                            recInfo = HexToString(readData,0, size);
+                            recInfo = HexToString(readData, 0, size);
                             stringBuffer.append(recInfo);
                             if (stringBuffer.length() > 4 && "0A0D".equals(stringBuffer.substring(stringBuffer.length() - 4, stringBuffer.length()))) {
                                 recInfo = stringBuffer.toString();
@@ -298,9 +298,10 @@ public class SerialPortUtils {
         /**
          * 计数器同时发送PAD和总控台的数据协议(开火 单发/双发/三连发  电量百分比)
          *
+         * @param fire             开火 单发/双发/三连发
          * @param electricQuantity 电量百分比
          */
-        public void onFEReceive(String electricQuantity);
+        public void onFEReceive(String fire, String electricQuantity);
 
 
         /**
