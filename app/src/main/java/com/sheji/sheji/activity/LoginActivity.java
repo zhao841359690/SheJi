@@ -123,10 +123,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         }
 
-        if (gunNumber.length() != 8) {
-            Toast.makeText(this, "请在此处输入枪械编号(8位)", Toast.LENGTH_SHORT).show();
-            return;
-        }
 //        //TODO 打开串口 绑定操作
 //        // Pad发送总控台枪和计数器绑定的数据协议-申请报文
         if (SerialPortUtils.getInstance().openSerialPort() == null) {
@@ -153,14 +149,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3));
             sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4));
 
-            sendByte[8] = (byte) Integer.parseInt(strTo16(gunNumber.substring(0, 1)), 16);
-            sendByte[9] = (byte) Integer.parseInt(strTo16(gunNumber.substring(1, 2)), 16);
-            sendByte[10] = (byte) Integer.parseInt(strTo16(gunNumber.substring(2, 3)), 16);
-            sendByte[11] = (byte) Integer.parseInt(strTo16(gunNumber.substring(3, 4)), 16);
-            sendByte[12] = (byte) Integer.parseInt(strTo16(gunNumber.substring(4, 5)), 16);
-            sendByte[13] = (byte) Integer.parseInt(strTo16(gunNumber.substring(5, 6)), 16);
-            sendByte[14] = (byte) Integer.parseInt(strTo16(gunNumber.substring(6, 7)), 16);
-            sendByte[15] = (byte) Integer.parseInt(strTo16(gunNumber.substring(7, 8)), 16);
+            String g = String.format("%08d", Integer.valueOf(gunNumber));
+            sendByte[8] = (byte) Integer.parseInt(strTo16(g.substring(0, 1)), 16);
+            sendByte[9] = (byte) Integer.parseInt(strTo16(g.substring(1, 2)), 16);
+            sendByte[10] = (byte) Integer.parseInt(strTo16(g.substring(2, 3)), 16);
+            sendByte[11] = (byte) Integer.parseInt(strTo16(g.substring(3, 4)), 16);
+            sendByte[12] = (byte) Integer.parseInt(strTo16(g.substring(4, 5)), 16);
+            sendByte[13] = (byte) Integer.parseInt(strTo16(g.substring(5, 6)), 16);
+            sendByte[14] = (byte) Integer.parseInt(strTo16(g.substring(6, 7)), 16);
+            sendByte[15] = (byte) Integer.parseInt(strTo16(g.substring(7, 8)), 16);
 
             sendByte[16] = (byte) Integer.parseInt("0A", 16);
             sendByte[17] = (byte) Integer.parseInt("0D", 16);
