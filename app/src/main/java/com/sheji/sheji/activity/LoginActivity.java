@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -117,7 +118,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "请在此处输入本设备编号(编号为1-20)", Toast.LENGTH_SHORT).show();
             return;
         }
-        equipmentNumber = String.format("%04d", equipment);
 
         if (TextUtils.isEmpty(gunNumber)) {
             Toast.makeText(this, "请在此处输入枪械编号", Toast.LENGTH_SHORT).show();
@@ -146,19 +146,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             sendByte[2] = (byte) Integer.parseInt("AA", 16);
             sendByte[3] = (byte) Integer.parseInt("BD", 16);
 
-            sendByte[4] = (byte) Integer.parseInt(equipmentNumber.substring(0, 1), 16);
-            sendByte[5] = (byte) Integer.parseInt(equipmentNumber.substring(1, 2), 16);
-            sendByte[6] = (byte) Integer.parseInt(equipmentNumber.substring(2, 3), 16);
-            sendByte[7] = (byte) Integer.parseInt(equipmentNumber.substring(3, 4), 16);
+            String e = Integer.toHexString(equipment);
+            e = String.format("%04d", Integer.valueOf(e));
 
-            sendByte[8] = (byte) Integer.parseInt(gunNumber.substring(0, 1), 16);
-            sendByte[9] = (byte) Integer.parseInt(gunNumber.substring(1, 2), 16);
-            sendByte[10] = (byte) Integer.parseInt(gunNumber.substring(2, 3), 16);
-            sendByte[11] = (byte) Integer.parseInt(gunNumber.substring(3, 4), 16);
-            sendByte[12] = (byte) Integer.parseInt(gunNumber.substring(4, 5), 16);
-            sendByte[13] = (byte) Integer.parseInt(gunNumber.substring(5, 6), 16);
-            sendByte[14] = (byte) Integer.parseInt(gunNumber.substring(6, 7), 16);
-            sendByte[15] = (byte) Integer.parseInt(gunNumber.substring(7, 8), 16);
+            sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1));
+            sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2));
+            sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3));
+            sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4));
+
+            sendByte[8] = (byte) Integer.parseInt(strTo16(gunNumber.substring(0, 1)), 16);
+            sendByte[9] = (byte) Integer.parseInt(strTo16(gunNumber.substring(1, 2)), 16);
+            sendByte[10] = (byte) Integer.parseInt(strTo16(gunNumber.substring(2, 3)), 16);
+            sendByte[11] = (byte) Integer.parseInt(strTo16(gunNumber.substring(3, 4)), 16);
+            sendByte[12] = (byte) Integer.parseInt(strTo16(gunNumber.substring(4, 5)), 16);
+            sendByte[13] = (byte) Integer.parseInt(strTo16(gunNumber.substring(5, 6)), 16);
+            sendByte[14] = (byte) Integer.parseInt(strTo16(gunNumber.substring(6, 7)), 16);
+            sendByte[15] = (byte) Integer.parseInt(strTo16(gunNumber.substring(7, 8)), 16);
 
             sendByte[16] = (byte) Integer.parseInt("0A", 16);
             sendByte[17] = (byte) Integer.parseInt("0D", 16);
@@ -188,5 +191,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             handler.sendEmptyMessageDelayed(Constant.LOGIN_FAIL, 2000);
         }
         textDialog.show();
+    }
+
+    private String strTo16(String s) {
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            int ch = (int) s.charAt(i);
+            String s4 = Integer.toHexString(ch);
+            str = str + s4;
+        }
+        return str;
     }
 }
