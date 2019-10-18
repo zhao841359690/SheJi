@@ -654,7 +654,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         sendByte[6] = (byte) Integer.parseInt("00", 16);
                         sendByte[7] = (byte) Integer.parseInt(e, 16);
 
-                        sendByte[8] = (byte) Integer.parseInt("02", 16);
+                        sendByte[8] = (byte) Integer.parseInt("03", 16);
 
                         sendByte[9] = (byte) Integer.parseInt("0A", 16);
                         sendByte[10] = (byte) Integer.parseInt("0D", 16);
@@ -683,7 +683,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         sendByte[6] = (byte) Integer.parseInt("00", 16);
                         sendByte[7] = (byte) Integer.parseInt(e, 16);
 
-                        sendByte[8] = (byte) Integer.parseInt("03", 16);
+                        sendByte[8] = (byte) Integer.parseInt("02", 16);
 
                         sendByte[9] = (byte) Integer.parseInt("0A", 16);
                         sendByte[10] = (byte) Integer.parseInt("0D", 16);
