@@ -226,11 +226,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
             int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
             String e = Integer.toHexString(equipment);
-            e = String.format("%4s", e).replace(' ', '0');
-            sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-            sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-            sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-            sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+            sendByte[4] = (byte) Integer.parseInt("00", 16);
+            sendByte[5] = (byte) Integer.parseInt("00", 16);
+            sendByte[6] = (byte) Integer.parseInt("00", 16);
+            sendByte[7] = (byte) Integer.parseInt(e, 16);
 
             sendByte[8] = (byte) Integer.parseInt("04", 16);
 
@@ -621,11 +620,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                         int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
                         String e = Integer.toHexString(equipment);
-                        e = String.format("%4s", e).replace(' ', '0');
-                        sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-                        sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-                        sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-                        sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+                        sendByte[5] = (byte) Integer.parseInt("00", 16);
+                        sendByte[6] = (byte) Integer.parseInt("00", 16);
+                        sendByte[7] = (byte) Integer.parseInt(e, 16);
 
                         sendByte[8] = (byte) Integer.parseInt("01", 16);
 
@@ -651,11 +649,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                         int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
                         String e = Integer.toHexString(equipment);
-                        e = String.format("%4s", e).replace(' ', '0');
-                        sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-                        sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-                        sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-                        sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+                        sendByte[5] = (byte) Integer.parseInt("00", 16);
+                        sendByte[6] = (byte) Integer.parseInt("00", 16);
+                        sendByte[7] = (byte) Integer.parseInt(e, 16);
 
                         sendByte[8] = (byte) Integer.parseInt("02", 16);
 
@@ -681,11 +678,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                         int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
                         String e = Integer.toHexString(equipment);
-                        e = String.format("%4s", e).replace(' ', '0');
-                        sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-                        sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-                        sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-                        sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+                        sendByte[5] = (byte) Integer.parseInt("00", 16);
+                        sendByte[6] = (byte) Integer.parseInt("00", 16);
+                        sendByte[7] = (byte) Integer.parseInt(e, 16);
 
                         sendByte[8] = (byte) Integer.parseInt("03", 16);
 
@@ -733,11 +729,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                     int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
                     String e = Integer.toHexString(equipment);
-                    e = String.format("%4s", e).replace(' ', '0');
-                    sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-                    sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-                    sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-                    sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+                    sendByte[4] = (byte) Integer.parseInt("00", 16);
+                    sendByte[5] = (byte) Integer.parseInt("00", 16);
+                    sendByte[6] = (byte) Integer.parseInt("00", 16);
+                    sendByte[7] = (byte) Integer.parseInt(e, 16);
 
                     sendByte[8] = (byte) Integer.parseInt("04", 16);
 

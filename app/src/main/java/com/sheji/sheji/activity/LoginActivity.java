@@ -142,12 +142,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             sendByte[3] = (byte) Integer.parseInt("BD", 16);
 
             String e = Integer.toHexString(equipment);
-            e = String.format("%4s", e).replace(' ', '0');
-
-            sendByte[4] = (byte) Integer.parseInt(e.substring(0, 1), 16);
-            sendByte[5] = (byte) Integer.parseInt(e.substring(1, 2), 16);
-            sendByte[6] = (byte) Integer.parseInt(e.substring(2, 3), 16);
-            sendByte[7] = (byte) Integer.parseInt(e.substring(3, 4), 16);
+            sendByte[4] = (byte) Integer.parseInt("00", 16);
+            sendByte[5] = (byte) Integer.parseInt("00", 16);
+            sendByte[6] = (byte) Integer.parseInt("00", 16);
+            sendByte[7] = (byte) Integer.parseInt(e, 16);
 
             String g = String.format("%8s", gunNumber).replace(' ', '0');
             sendByte[8] = (byte) Integer.parseInt(strTo16(g.substring(0, 1)), 16);
