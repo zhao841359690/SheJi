@@ -183,7 +183,7 @@ public class SerialPortUtils {
      */
     public SerialPort openSerialPort() {
         try {
-            serialPort = new SerialPort(new File("/dev/" + port), 9600, 0);
+            serialPort = new SerialPort(new File("/dev/" + port), 1200, 0);
             //获取打开的串口中的输入输出流，以便于串口数据的收发
             if (serialPort != null) {
                 inputStream = serialPort.getInputStream();
