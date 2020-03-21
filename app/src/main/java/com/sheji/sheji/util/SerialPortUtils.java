@@ -56,102 +56,222 @@ public class SerialPortUtils {
                 int precisionNumber = 0;
                 if (hit && "DC".equals(action)) {
                     position = recInfo.substring(16, 24);
-                    if ("00000001".equals(position)) {
-                        position = "10环上";
+                    if ("F50AFF00".equals(position)) {
+                        position = "0点钟10环";
                         precisionNumber = 10;
-                    } else if ("00000002".equals(position)) {
-                        position = "10环右";
+                    } else if ("F50AFE01".equals(position)) {
+                        position = "1点钟10环";
                         precisionNumber = 10;
-                    } else if ("00000004".equals(position)) {
-                        position = "10环下";
+                    } else if ("F50AFD02".equals(position)) {
+                        position = "2点钟10环";
                         precisionNumber = 10;
-                    } else if ("00000008".equals(position)) {
-                        position = "10环左";
+                    } else if ("F50AFC03".equals(position)) {
+                        position = "3点钟10环";
                         precisionNumber = 10;
-                    } else if ("00000010".equals(position)) {
-                        position = "9环上";
-                        precisionNumber = 9;
-                    } else if ("00000020".equals(position)) {
-                        position = "9环右";
-                        precisionNumber = 9;
-                    } else if ("00000040".equals(position)) {
-                        position = "9环下";
-                        precisionNumber = 9;
-                    } else if ("00000080".equals(position)) {
-                        position = "9环左";
-                        precisionNumber = 9;
-                    } else if ("00000100".equals(position)) {
-                        position = "8环上";
-                        precisionNumber = 8;
-                    } else if ("00000200".equals(position)) {
-                        position = "8环右上";
-                        precisionNumber = 8;
-                    } else if ("00000400".equals(position)) {
-                        position = "8环右";
-                        precisionNumber = 8;
-                    } else if ("00000800".equals(position)) {
-                        position = "8右下";
-                        precisionNumber = 8;
-                    } else if ("00001000".equals(position)) {
-                        position = "8环下";
-                        precisionNumber = 8;
-                    } else if ("00002000".equals(position)) {
-                        position = "8左下";
-                        precisionNumber = 8;
-                    } else if ("00004000".equals(position)) {
-                        position = "8环左";
-                        precisionNumber = 8;
-                    } else if ("00008000".equals(position)) {
-                        position = "8环左上";
-                        precisionNumber = 8;
-                    } else if ("00010000".equals(position)) {
-                        position = "7环上";
-                        precisionNumber = 7;
-                    } else if ("00020000".equals(position)) {
-                        position = "7环右上";
-                        precisionNumber = 7;
-                    } else if ("00040000".equals(position)) {
-                        position = "7环右";
-                        precisionNumber = 7;
-                    } else if ("00080000".equals(position)) {
-                        position = "7环右下";
-                        precisionNumber = 7;
-                    } else if ("00100000".equals(position)) {
-                        position = "7环下";
-                        precisionNumber = 7;
-                    } else if ("00200000".equals(position)) {
-                        position = "7环左下";
-                        precisionNumber = 7;
-                    } else if ("00400000".equals(position)) {
-                        position = "7环左";
-                        precisionNumber = 7;
-                    } else if ("00800000".equals(position)) {
-                        position = "7环左上";
-                        precisionNumber = 7;
-                    } else if ("01000000".equals(position)) {
-                        position = "6环上";
-                        precisionNumber = 6;
-                    } else if ("02000000".equals(position)) {
-                        position = "6环右上";
-                        precisionNumber = 6;
-                    } else if ("04000000".equals(position)) {
-                        position = "6环右";
-                        precisionNumber = 6;
-                    } else if ("08000000".equals(position)) {
-                        position = "6环右下";
-                        precisionNumber = 6;
-                    } else if ("10000000".equals(position)) {
-                        position = "6环下";
-                        precisionNumber = 6;
-                    } else if ("20000000".equals(position)) {
-                        position = "6环左下";
-                        precisionNumber = 6;
-                    } else if ("40000000".equals(position)) {
-                        position = "6环左";
-                        precisionNumber = 6;
-                    } else if ("80000000".equals(position)) {
-                        position = "6环左上";
-                        precisionNumber = 6;
+                    } else if ("F50AFB04".equals(position)) {
+                        position = "4点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AFA05".equals(position)) {
+                        position = "5点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AF906".equals(position)) {
+                        position = "6点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AF807".equals(position)) {
+                        position = "7点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AF708".equals(position)) {
+                        position = "8点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AF609".equals(position)) {
+                        position = "9点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AEF10".equals(position)) {
+                        position = "10点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F50AEE11".equals(position)) {
+                        position = "11点钟10环";
+                        precisionNumber = 10;
+                    } else if ("F609FF00".equals(position)) {
+                        position = "0点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609FE01".equals(position)) {
+                        position = "1点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609FD02".equals(position)) {
+                        position = "2点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609FC03".equals(position)) {
+                        position = "3点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609FB04".equals(position)) {
+                        position = "4点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609FA05".equals(position)) {
+                        position = "5点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609F906".equals(position)) {
+                        position = "6点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609F807".equals(position)) {
+                        position = "7点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609F708".equals(position)) {
+                        position = "8点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609F609".equals(position)) {
+                        position = "9点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609EF10".equals(position)) {
+                        position = "10点钟9环";
+                        precisionNumber = 10;
+                    } else if ("F609EE11".equals(position)) {
+                        position = "11点钟9环";
+                        precisionNumber = 10;
+                    }else if ("F708FF00".equals(position)) {
+                        position = "0点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708FE01".equals(position)) {
+                        position = "1点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708FD02".equals(position)) {
+                        position = "2点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708FC03".equals(position)) {
+                        position = "3点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708FB04".equals(position)) {
+                        position = "4点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708FA05".equals(position)) {
+                        position = "5点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708F906".equals(position)) {
+                        position = "6点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708F807".equals(position)) {
+                        position = "7点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708F708".equals(position)) {
+                        position = "8点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708F609".equals(position)) {
+                        position = "9点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708EF10".equals(position)) {
+                        position = "10点钟8环";
+                        precisionNumber = 10;
+                    } else if ("F708EE11".equals(position)) {
+                        position = "11点钟8环";
+                        precisionNumber = 10;
+                    }else if ("F807FF00".equals(position)) {
+                        position = "0点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807FE01".equals(position)) {
+                        position = "1点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807FD02".equals(position)) {
+                        position = "2点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807FC03".equals(position)) {
+                        position = "3点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807FB04".equals(position)) {
+                        position = "4点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807FA05".equals(position)) {
+                        position = "5点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807F906".equals(position)) {
+                        position = "6点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807F807".equals(position)) {
+                        position = "7点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807F708".equals(position)) {
+                        position = "8点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807F609".equals(position)) {
+                        position = "9点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807EF10".equals(position)) {
+                        position = "10点钟7环";
+                        precisionNumber = 10;
+                    } else if ("F807EE11".equals(position)) {
+                        position = "11点钟7环";
+                        precisionNumber = 10;
+                    }else if ("F906FF00".equals(position)) {
+                        position = "0点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906FE01".equals(position)) {
+                        position = "1点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906FD02".equals(position)) {
+                        position = "2点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906FC03".equals(position)) {
+                        position = "3点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906FB04".equals(position)) {
+                        position = "4点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906FA05".equals(position)) {
+                        position = "5点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906F906".equals(position)) {
+                        position = "6点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906F807".equals(position)) {
+                        position = "7点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906F708".equals(position)) {
+                        position = "8点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906F609".equals(position)) {
+                        position = "9点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906EF10".equals(position)) {
+                        position = "10点钟6环";
+                        precisionNumber = 10;
+                    } else if ("F906EE11".equals(position)) {
+                        position = "11点钟6环";
+                        precisionNumber = 10;
+                    }else if ("FA05FF00".equals(position)) {
+                        position = "0点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05FE01".equals(position)) {
+                        position = "1点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05FD02".equals(position)) {
+                        position = "2点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05FC03".equals(position)) {
+                        position = "3点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05FB04".equals(position)) {
+                        position = "4点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05FA05".equals(position)) {
+                        position = "5点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05F906".equals(position)) {
+                        position = "6点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05F807".equals(position)) {
+                        position = "7点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05F708".equals(position)) {
+                        position = "8点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05F609".equals(position)) {
+                        position = "9点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05EF10".equals(position)) {
+                        position = "10点钟5环";
+                        precisionNumber = 10;
+                    } else if ("FA05EE11".equals(position)) {
+                        position = "11点钟5环";
+                        precisionNumber = 10;
                     } else {
                         position = "";
                         precisionNumber = 0;

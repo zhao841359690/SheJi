@@ -41,38 +41,68 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mPrecisionTargetTv;
 
     private ImageView mTargetIv;
-    private TextView mTop10Tv;
-    private TextView mRight10Tv;
-    private TextView mBottom10Tv;
-    private TextView mLeft10Tv;
-    private TextView mTop9Tv;
-    private TextView mRight9Tv;
-    private TextView mBottom9Tv;
-    private TextView mLeft9Tv;
-    private TextView mTop8Tv;
-    private TextView mRightTop8Tv;
-    private TextView mRight8Tv;
-    private TextView mRightBottom8Tv;
-    private TextView mBottom8Tv;
-    private TextView mLeftTop8Tv;
-    private TextView mLeft8Tv;
-    private TextView mLeftBottom8Tv;
-    private TextView mTop7Tv;
-    private TextView mRightTop7Tv;
-    private TextView mRight7Tv;
-    private TextView mRightBottom7Tv;
-    private TextView mBottom7Tv;
-    private TextView mLeftTop7Tv;
-    private TextView mLeft7Tv;
-    private TextView mLeftBottom7Tv;
-    private TextView mTop6Tv;
-    private TextView mRightTop6Tv;
-    private TextView mRight6Tv;
-    private TextView mRightBottom6Tv;
-    private TextView mBottom6Tv;
-    private TextView mLeftTop6Tv;
-    private TextView mLeft6Tv;
-    private TextView mLeftBottom6Tv;
+    private TextView mRed10Tv0;
+    private TextView mRed10Tv1;
+    private TextView mRed10Tv2;
+    private TextView mRed10Tv3;
+    private TextView mRed10Tv4;
+    private TextView mRed10Tv5;
+    private TextView mRed10Tv6;
+    private TextView mRed10Tv7;
+    private TextView mRed10Tv8;
+    private TextView mRed10Tv9;
+    private TextView mRed10Tv10;
+    private TextView mRed10Tv11;
+    private TextView mRed9Tv0;
+    private TextView mRed9Tv1;
+    private TextView mRed9Tv2;
+    private TextView mRed9Tv3;
+    private TextView mRed9Tv4;
+    private TextView mRed9Tv5;
+    private TextView mRed9Tv6;
+    private TextView mRed9Tv7;
+    private TextView mRed9Tv8;
+    private TextView mRed9Tv9;
+    private TextView mRed9Tv10;
+    private TextView mRed9Tv11;
+    private TextView mRed8Tv0;
+    private TextView mRed8Tv1;
+    private TextView mRed8Tv2;
+    private TextView mRed8Tv3;
+    private TextView mRed8Tv4;
+    private TextView mRed8Tv5;
+    private TextView mRed8Tv6;
+    private TextView mRed8Tv7;
+    private TextView mRed8Tv8;
+    private TextView mRed8Tv9;
+    private TextView mRed8Tv10;
+    private TextView mRed8Tv11;
+    private TextView mRed7Tv0;
+    private TextView mRed7Tv1;
+    private TextView mRed7Tv2;
+    private TextView mRed7Tv3;
+    private TextView mRed7Tv4;
+    private TextView mRed7Tv5;
+    private TextView mRed7Tv6;
+    private TextView mRed7Tv7;
+    private TextView mRed7Tv8;
+    private TextView mRed7Tv9;
+    private TextView mRed7Tv10;
+    private TextView mRed7Tv11;
+    private TextView mRed6Tv0;
+    private TextView mRed6Tv1;
+    private TextView mRed6Tv2;
+    private TextView mRed6Tv3;
+    private TextView mRed6Tv4;
+    private TextView mRed6Tv5;
+    private TextView mRed6Tv6;
+    private TextView mRed6Tv7;
+    private TextView mRed6Tv8;
+    private TextView mRed6Tv9;
+    private TextView mRed6Tv10;
+    private TextView mRed6Tv11;
+
+
     private TextView mHitTv;
     private RelativeLayout mMenuRl;
     private TextView mShootingDroneTv;
@@ -269,38 +299,71 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         mTargetIv = findViewById(R.id.target_iv);
 
-        mTop10Tv = findViewById(R.id.top10_tv);
-        mRight10Tv = findViewById(R.id.right10_tv);
-        mBottom10Tv = findViewById(R.id.bottom10_tv);
-        mLeft10Tv = findViewById(R.id.left10_tv);
-        mTop9Tv = findViewById(R.id.top9_tv);
-        mRight9Tv = findViewById(R.id.right9_tv);
-        mBottom9Tv = findViewById(R.id.bottom9_tv);
-        mLeft9Tv = findViewById(R.id.left9_tv);
-        mTop8Tv = findViewById(R.id.top8_tv);
-        mRightTop8Tv = findViewById(R.id.rightTop8_tv);
-        mRight8Tv = findViewById(R.id.right8_tv);
-        mRightBottom8Tv = findViewById(R.id.rightBottom8_tv);
-        mBottom8Tv = findViewById(R.id.bottom8_tv);
-        mLeftTop8Tv = findViewById(R.id.leftTop8_tv);
-        mLeft8Tv = findViewById(R.id.left8_tv);
-        mLeftBottom8Tv = findViewById(R.id.leftBottom8_tv);
-        mTop7Tv = findViewById(R.id.top7_tv);
-        mRightTop7Tv = findViewById(R.id.rightTop7_tv);
-        mRight7Tv = findViewById(R.id.right7_tv);
-        mRightBottom7Tv = findViewById(R.id.rightBottom7_tv);
-        mBottom7Tv = findViewById(R.id.bottom7_tv);
-        mLeftTop7Tv = findViewById(R.id.leftTop7_tv);
-        mLeft7Tv = findViewById(R.id.left7_tv);
-        mLeftBottom7Tv = findViewById(R.id.leftBottom7_tv);
-        mTop6Tv = findViewById(R.id.top6_tv);
-        mRightTop6Tv = findViewById(R.id.rightTop6_tv);
-        mRight6Tv = findViewById(R.id.right6_tv);
-        mRightBottom6Tv = findViewById(R.id.rightBottom6_tv);
-        mBottom6Tv = findViewById(R.id.bottom6_tv);
-        mLeftTop6Tv = findViewById(R.id.leftTop6_tv);
-        mLeft6Tv = findViewById(R.id.left6_tv);
-        mLeftBottom6Tv = findViewById(R.id.leftBottom6_tv);
+        mRed10Tv0 = findViewById(R.id.red10_tv0);
+        mRed10Tv1 = findViewById(R.id.red10_tv1);
+        mRed10Tv2 = findViewById(R.id.red10_tv2);
+        mRed10Tv3 = findViewById(R.id.red10_tv3);
+        mRed10Tv4 = findViewById(R.id.red10_tv4);
+        mRed10Tv5 = findViewById(R.id.red10_tv5);
+        mRed10Tv6 = findViewById(R.id.red10_tv6);
+        mRed10Tv7 = findViewById(R.id.red10_tv7);
+        mRed10Tv8 = findViewById(R.id.red10_tv8);
+        mRed10Tv9 = findViewById(R.id.red10_tv9);
+        mRed10Tv10 = findViewById(R.id.red10_tv10);
+        mRed10Tv11 = findViewById(R.id.red10_tv11);
+
+        mRed9Tv0 = findViewById(R.id.red9_tv0);
+        mRed9Tv1 = findViewById(R.id.red9_tv1);
+        mRed9Tv2 = findViewById(R.id.red9_tv2);
+        mRed9Tv3 = findViewById(R.id.red9_tv3);
+        mRed9Tv4 = findViewById(R.id.red9_tv4);
+        mRed9Tv5 = findViewById(R.id.red9_tv5);
+        mRed9Tv6 = findViewById(R.id.red9_tv6);
+        mRed9Tv7 = findViewById(R.id.red9_tv7);
+        mRed9Tv8 = findViewById(R.id.red9_tv8);
+        mRed9Tv9 = findViewById(R.id.red9_tv9);
+        mRed9Tv10 = findViewById(R.id.red9_tv10);
+        mRed9Tv11 = findViewById(R.id.red9_tv11);
+
+        mRed8Tv0 = findViewById(R.id.red8_tv0);
+        mRed8Tv1 = findViewById(R.id.red8_tv1);
+        mRed8Tv2 = findViewById(R.id.red8_tv2);
+        mRed8Tv3 = findViewById(R.id.red8_tv3);
+        mRed8Tv4 = findViewById(R.id.red8_tv4);
+        mRed8Tv5 = findViewById(R.id.red8_tv5);
+        mRed8Tv6 = findViewById(R.id.red8_tv6);
+        mRed8Tv7 = findViewById(R.id.red8_tv7);
+        mRed8Tv8 = findViewById(R.id.red8_tv8);
+        mRed8Tv9 = findViewById(R.id.red8_tv9);
+        mRed8Tv10 = findViewById(R.id.red8_tv10);
+        mRed8Tv11 = findViewById(R.id.red8_tv11);
+
+        mRed7Tv0 = findViewById(R.id.red7_tv0);
+        mRed7Tv1 = findViewById(R.id.red7_tv1);
+        mRed7Tv2 = findViewById(R.id.red7_tv2);
+        mRed7Tv3 = findViewById(R.id.red7_tv3);
+        mRed7Tv4 = findViewById(R.id.red7_tv4);
+        mRed7Tv5 = findViewById(R.id.red7_tv5);
+        mRed7Tv6 = findViewById(R.id.red7_tv6);
+        mRed7Tv7 = findViewById(R.id.red7_tv7);
+        mRed7Tv8 = findViewById(R.id.red7_tv8);
+        mRed7Tv9 = findViewById(R.id.red7_tv9);
+        mRed7Tv10 = findViewById(R.id.red7_tv10);
+        mRed7Tv11 = findViewById(R.id.red7_tv11);
+
+        mRed6Tv0 = findViewById(R.id.red6_tv0);
+        mRed6Tv1 = findViewById(R.id.red6_tv1);
+        mRed6Tv2 = findViewById(R.id.red6_tv2);
+        mRed6Tv3 = findViewById(R.id.red6_tv3);
+        mRed6Tv4 = findViewById(R.id.red6_tv4);
+        mRed6Tv5 = findViewById(R.id.red6_tv5);
+        mRed6Tv6 = findViewById(R.id.red6_tv6);
+        mRed6Tv7 = findViewById(R.id.red6_tv7);
+        mRed6Tv8 = findViewById(R.id.red6_tv8);
+        mRed6Tv9 = findViewById(R.id.red6_tv9);
+        mRed6Tv10 = findViewById(R.id.red6_tv10);
+        mRed6Tv11 = findViewById(R.id.red6_tv11);
+
 
         mHitTv = findViewById(R.id.hit_tv);
         mTargetNumberTv = findViewById(R.id.target_number_tv);
@@ -998,106 +1061,190 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void showRedPoint(String precisionRingNumber) {
-        if ("10环上".equals(precisionRingNumber)) {
-            mTop10Tv.setVisibility(View.VISIBLE);
-        } else if ("10环右".equals(precisionRingNumber)) {
-            mRight10Tv.setVisibility(View.VISIBLE);
-        } else if ("10环下".equals(precisionRingNumber)) {
-            mBottom10Tv.setVisibility(View.VISIBLE);
-        } else if ("10环左".equals(precisionRingNumber)) {
-            mLeft10Tv.setVisibility(View.VISIBLE);
-        } else if ("9环上".equals(precisionRingNumber)) {
-            mTop9Tv.setVisibility(View.VISIBLE);
-        } else if ("9环右".equals(precisionRingNumber)) {
-            mRight9Tv.setVisibility(View.VISIBLE);
-        } else if ("9环下".equals(precisionRingNumber)) {
-            mBottom9Tv.setVisibility(View.VISIBLE);
-        } else if ("9环左".equals(precisionRingNumber)) {
-            mLeft9Tv.setVisibility(View.VISIBLE);
-        } else if ("8环上".equals(precisionRingNumber)) {
-            mTop8Tv.setVisibility(View.VISIBLE);
-        } else if ("8环右上".equals(precisionRingNumber)) {
-            mRightTop8Tv.setVisibility(View.VISIBLE);
-        } else if ("8环右".equals(precisionRingNumber)) {
-            mRight8Tv.setVisibility(View.VISIBLE);
-        } else if ("8右下".equals(precisionRingNumber)) {
-            mRightBottom8Tv.setVisibility(View.VISIBLE);
-        } else if ("8环下".equals(precisionRingNumber)) {
-            mBottom8Tv.setVisibility(View.VISIBLE);
-        } else if ("8左下".equals(precisionRingNumber)) {
-            mLeftBottom8Tv.setVisibility(View.VISIBLE);
-        } else if ("8环左".equals(precisionRingNumber)) {
-            mLeft8Tv.setVisibility(View.VISIBLE);
-        } else if ("8环左上".equals(precisionRingNumber)) {
-            mLeftTop8Tv.setVisibility(View.VISIBLE);
-        } else if ("7环上".equals(precisionRingNumber)) {
-            mTop7Tv.setVisibility(View.VISIBLE);
-        } else if ("7环右上".equals(precisionRingNumber)) {
-            mRightTop7Tv.setVisibility(View.VISIBLE);
-        } else if ("7环右".equals(precisionRingNumber)) {
-            mRight7Tv.setVisibility(View.VISIBLE);
-        } else if ("7右下".equals(precisionRingNumber)) {
-            mRightBottom7Tv.setVisibility(View.VISIBLE);
-        } else if ("7环下".equals(precisionRingNumber)) {
-            mBottom7Tv.setVisibility(View.VISIBLE);
-        } else if ("7左下".equals(precisionRingNumber)) {
-            mLeftBottom7Tv.setVisibility(View.VISIBLE);
-        } else if ("7环左".equals(precisionRingNumber)) {
-            mLeft7Tv.setVisibility(View.VISIBLE);
-        } else if ("7环左上".equals(precisionRingNumber)) {
-            mLeftTop7Tv.setVisibility(View.VISIBLE);
-        } else if ("6环上".equals(precisionRingNumber)) {
-            mTop6Tv.setVisibility(View.VISIBLE);
-        } else if ("6环右上".equals(precisionRingNumber)) {
-            mRightTop6Tv.setVisibility(View.VISIBLE);
-        } else if ("6环右".equals(precisionRingNumber)) {
-            mRight6Tv.setVisibility(View.VISIBLE);
-        } else if ("6右下".equals(precisionRingNumber)) {
-            mRightBottom6Tv.setVisibility(View.VISIBLE);
-        } else if ("6环下".equals(precisionRingNumber)) {
-            mBottom6Tv.setVisibility(View.VISIBLE);
-        } else if ("6左下".equals(precisionRingNumber)) {
-            mLeftBottom6Tv.setVisibility(View.VISIBLE);
-        } else if ("6环左".equals(precisionRingNumber)) {
-            mLeft6Tv.setVisibility(View.VISIBLE);
-        } else if ("6环左上".equals(precisionRingNumber)) {
-            mLeftTop6Tv.setVisibility(View.VISIBLE);
+        if ("0点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv0.setVisibility(View.VISIBLE);
+        } else if ("1点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv1.setVisibility(View.VISIBLE);
+        } else if ("2点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv2.setVisibility(View.VISIBLE);
+        } else if ("3点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv3.setVisibility(View.VISIBLE);
+        } else if ("4点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv4.setVisibility(View.VISIBLE);
+        } else if ("5点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv5.setVisibility(View.VISIBLE);
+        } else if ("6点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv6.setVisibility(View.VISIBLE);
+        } else if ("7点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv7.setVisibility(View.VISIBLE);
+        } else if ("8点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv8.setVisibility(View.VISIBLE);
+        } else if ("9点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv9.setVisibility(View.VISIBLE);
+        } else if ("10点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv10.setVisibility(View.VISIBLE);
+        } else if ("11点钟10环".equals(precisionRingNumber)) {
+            mRed10Tv11.setVisibility(View.VISIBLE);
+        } else if ("0点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv0.setVisibility(View.VISIBLE);
+        } else if ("1点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv1.setVisibility(View.VISIBLE);
+        } else if ("2点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv2.setVisibility(View.VISIBLE);
+        } else if ("3点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv3.setVisibility(View.VISIBLE);
+        } else if ("4点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv4.setVisibility(View.VISIBLE);
+        } else if ("5点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv5.setVisibility(View.VISIBLE);
+        } else if ("6点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv6.setVisibility(View.VISIBLE);
+        } else if ("7点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv7.setVisibility(View.VISIBLE);
+        } else if ("8点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv8.setVisibility(View.VISIBLE);
+        } else if ("9点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv9.setVisibility(View.VISIBLE);
+        } else if ("10点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv10.setVisibility(View.VISIBLE);
+        } else if ("11点钟9环".equals(precisionRingNumber)) {
+            mRed9Tv11.setVisibility(View.VISIBLE);
+        } else if ("0点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv0.setVisibility(View.VISIBLE);
+        } else if ("1点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv1.setVisibility(View.VISIBLE);
+        } else if ("2点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv2.setVisibility(View.VISIBLE);
+        } else if ("3点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv3.setVisibility(View.VISIBLE);
+        } else if ("4点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv4.setVisibility(View.VISIBLE);
+        } else if ("5点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv5.setVisibility(View.VISIBLE);
+        } else if ("6点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv6.setVisibility(View.VISIBLE);
+        } else if ("7点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv7.setVisibility(View.VISIBLE);
+        } else if ("8点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv8.setVisibility(View.VISIBLE);
+        } else if ("9点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv9.setVisibility(View.VISIBLE);
+        } else if ("10点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv10.setVisibility(View.VISIBLE);
+        } else if ("11点钟8环".equals(precisionRingNumber)) {
+            mRed8Tv11.setVisibility(View.VISIBLE);
+        } else if ("0点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv0.setVisibility(View.VISIBLE);
+        } else if ("1点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv1.setVisibility(View.VISIBLE);
+        } else if ("2点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv2.setVisibility(View.VISIBLE);
+        } else if ("3点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv3.setVisibility(View.VISIBLE);
+        } else if ("4点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv4.setVisibility(View.VISIBLE);
+        } else if ("5点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv5.setVisibility(View.VISIBLE);
+        } else if ("6点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv6.setVisibility(View.VISIBLE);
+        } else if ("7点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv7.setVisibility(View.VISIBLE);
+        } else if ("8点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv8.setVisibility(View.VISIBLE);
+        } else if ("9点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv9.setVisibility(View.VISIBLE);
+        } else if ("10点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv10.setVisibility(View.VISIBLE);
+        } else if ("11点钟7环".equals(precisionRingNumber)) {
+            mRed7Tv11.setVisibility(View.VISIBLE);
+        } else if ("0点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv0.setVisibility(View.VISIBLE);
+        } else if ("1点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv1.setVisibility(View.VISIBLE);
+        } else if ("2点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv2.setVisibility(View.VISIBLE);
+        } else if ("3点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv3.setVisibility(View.VISIBLE);
+        } else if ("4点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv4.setVisibility(View.VISIBLE);
+        } else if ("5点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv5.setVisibility(View.VISIBLE);
+        } else if ("6点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv6.setVisibility(View.VISIBLE);
+        } else if ("7点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv7.setVisibility(View.VISIBLE);
+        } else if ("8点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv8.setVisibility(View.VISIBLE);
+        } else if ("9点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv9.setVisibility(View.VISIBLE);
+        } else if ("10点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv10.setVisibility(View.VISIBLE);
+        } else if ("11点钟6环".equals(precisionRingNumber)) {
+            mRed6Tv11.setVisibility(View.VISIBLE);
         }
     }
 
     private void hiddenRedPoint() {
-        mTop10Tv.setVisibility(View.INVISIBLE);
-        mRight10Tv.setVisibility(View.INVISIBLE);
-        mBottom10Tv.setVisibility(View.INVISIBLE);
-        mLeft10Tv.setVisibility(View.INVISIBLE);
-        mTop9Tv.setVisibility(View.INVISIBLE);
-        mRight9Tv.setVisibility(View.INVISIBLE);
-        mBottom9Tv.setVisibility(View.INVISIBLE);
-        mLeft9Tv.setVisibility(View.INVISIBLE);
-        mTop8Tv.setVisibility(View.INVISIBLE);
-        mRightTop8Tv.setVisibility(View.INVISIBLE);
-        mRight8Tv.setVisibility(View.INVISIBLE);
-        mRightBottom8Tv.setVisibility(View.INVISIBLE);
-        mBottom8Tv.setVisibility(View.INVISIBLE);
-        mLeftTop8Tv.setVisibility(View.INVISIBLE);
-        mLeft8Tv.setVisibility(View.INVISIBLE);
-        mLeftBottom8Tv.setVisibility(View.INVISIBLE);
-        mTop7Tv.setVisibility(View.INVISIBLE);
-        mRightTop7Tv.setVisibility(View.INVISIBLE);
-        mRight7Tv.setVisibility(View.INVISIBLE);
-        mRightBottom7Tv.setVisibility(View.INVISIBLE);
-        mBottom7Tv.setVisibility(View.INVISIBLE);
-        mLeftTop7Tv.setVisibility(View.INVISIBLE);
-        mLeft7Tv.setVisibility(View.INVISIBLE);
-        mLeftBottom7Tv.setVisibility(View.INVISIBLE);
-        mTop6Tv.setVisibility(View.INVISIBLE);
-        mRightTop6Tv.setVisibility(View.INVISIBLE);
-        mRight6Tv.setVisibility(View.INVISIBLE);
-        mRightBottom6Tv.setVisibility(View.INVISIBLE);
-        mBottom6Tv.setVisibility(View.INVISIBLE);
-        mLeftTop6Tv.setVisibility(View.INVISIBLE);
-        mLeft6Tv.setVisibility(View.INVISIBLE);
-        mLeftBottom6Tv.setVisibility(View.INVISIBLE);
+        mRed10Tv0.setVisibility(View.INVISIBLE);
+        mRed10Tv1.setVisibility(View.INVISIBLE);
+        mRed10Tv2.setVisibility(View.INVISIBLE);
+        mRed10Tv3.setVisibility(View.INVISIBLE);
+        mRed10Tv4.setVisibility(View.INVISIBLE);
+        mRed10Tv5.setVisibility(View.INVISIBLE);
+        mRed10Tv6.setVisibility(View.INVISIBLE);
+        mRed10Tv7.setVisibility(View.INVISIBLE);
+        mRed10Tv8.setVisibility(View.INVISIBLE);
+        mRed10Tv9.setVisibility(View.INVISIBLE);
+        mRed10Tv10.setVisibility(View.INVISIBLE);
+        mRed10Tv11.setVisibility(View.INVISIBLE);
+        mRed9Tv0.setVisibility(View.INVISIBLE);
+        mRed9Tv1.setVisibility(View.INVISIBLE);
+        mRed9Tv2.setVisibility(View.INVISIBLE);
+        mRed9Tv3.setVisibility(View.INVISIBLE);
+        mRed9Tv4.setVisibility(View.INVISIBLE);
+        mRed9Tv5.setVisibility(View.INVISIBLE);
+        mRed9Tv6.setVisibility(View.INVISIBLE);
+        mRed9Tv7.setVisibility(View.INVISIBLE);
+        mRed9Tv8.setVisibility(View.INVISIBLE);
+        mRed9Tv9.setVisibility(View.INVISIBLE);
+        mRed9Tv10.setVisibility(View.INVISIBLE);
+        mRed9Tv11.setVisibility(View.INVISIBLE);
+        mRed8Tv0.setVisibility(View.INVISIBLE);
+        mRed8Tv1.setVisibility(View.INVISIBLE);
+        mRed8Tv2.setVisibility(View.INVISIBLE);
+        mRed8Tv3.setVisibility(View.INVISIBLE);
+        mRed8Tv4.setVisibility(View.INVISIBLE);
+        mRed8Tv5.setVisibility(View.INVISIBLE);
+        mRed8Tv6.setVisibility(View.INVISIBLE);
+        mRed8Tv7.setVisibility(View.INVISIBLE);
+        mRed8Tv8.setVisibility(View.INVISIBLE);
+        mRed8Tv9.setVisibility(View.INVISIBLE);
+        mRed8Tv10.setVisibility(View.INVISIBLE);
+        mRed8Tv11.setVisibility(View.INVISIBLE);
+        mRed7Tv0.setVisibility(View.INVISIBLE);
+        mRed7Tv1.setVisibility(View.INVISIBLE);
+        mRed7Tv2.setVisibility(View.INVISIBLE);
+        mRed7Tv3.setVisibility(View.INVISIBLE);
+        mRed7Tv4.setVisibility(View.INVISIBLE);
+        mRed7Tv5.setVisibility(View.INVISIBLE);
+        mRed7Tv6.setVisibility(View.INVISIBLE);
+        mRed7Tv7.setVisibility(View.INVISIBLE);
+        mRed7Tv8.setVisibility(View.INVISIBLE);
+        mRed7Tv9.setVisibility(View.INVISIBLE);
+        mRed7Tv10.setVisibility(View.INVISIBLE);
+        mRed7Tv11.setVisibility(View.INVISIBLE);
+        mRed6Tv0.setVisibility(View.INVISIBLE);
+        mRed6Tv1.setVisibility(View.INVISIBLE);
+        mRed6Tv2.setVisibility(View.INVISIBLE);
+        mRed6Tv3.setVisibility(View.INVISIBLE);
+        mRed6Tv4.setVisibility(View.INVISIBLE);
+        mRed6Tv5.setVisibility(View.INVISIBLE);
+        mRed6Tv6.setVisibility(View.INVISIBLE);
+        mRed6Tv7.setVisibility(View.INVISIBLE);
+        mRed6Tv8.setVisibility(View.INVISIBLE);
+        mRed6Tv9.setVisibility(View.INVISIBLE);
+        mRed6Tv10.setVisibility(View.INVISIBLE);
+        mRed6Tv11.setVisibility(View.INVISIBLE);
     }
 
     @Override
