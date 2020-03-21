@@ -101,11 +101,13 @@
                 android:gravity="center"
                 android:textColor="@color/white" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/shape_green_corner">
+                android:background="@drawable/shape_green_corner"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/menu_rl"
@@ -120,20 +122,32 @@
                         android:src="@drawable/menu" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/shooting_drone_tv"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="射击靶机倒"
-                    android:textColor="@color/white" />
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <Spinner
+                        android:id="@+id/time_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/shooting_drone_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="射击靶机倒"
+                        android:textColor="@color/white" />
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/shooting_drone_rl"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
                     android:layout_marginEnd="10dp">
 
                     <Switch
@@ -147,7 +161,7 @@
                         android:thumb="@null"
                         android:track="@null" />
                 </RelativeLayout>
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
