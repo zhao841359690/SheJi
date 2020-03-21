@@ -111,6 +111,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mTargetNumberTv;
     private TextView mDateTv;
     private TextView mTimeTv;
+    private TextView mIlluminationTv;
+    private RelativeLayout mIlluminationRl;
+    private Switch mIlluminationSwitch;
     private Switch mFireSwitch;
     private TextView mGunNumberTv;
     private TextView mCounterNumberTv;
@@ -379,6 +382,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mDateTv = findViewById(R.id.date_tv);
         mTimeTv = findViewById(R.id.time_tv);
 
+        mIlluminationTv = findViewById(R.id.illumination_tv);
+        mIlluminationRl = findViewById(R.id.illumination_rl);
+        mIlluminationRl.setOnClickListener(this);
+        mIlluminationSwitch = findViewById(R.id.illumination_switch);
+
         mFireSwitch = findViewById(R.id.fire_switch);
 
         mGunNumberTv = findViewById(R.id.gun_number_tv);
@@ -559,6 +567,69 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
                         sendByte[5] = (byte) Integer.parseInt("0A", 16);
                         sendByte[6] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
+                    }
+                }
+                break;
+            //控制靶机照明
+            case R.id.illumination_rl:
+                if (mIlluminationSwitch.isChecked()) {
+                    mIlluminationTv.setText("射击靶照明关");
+                    mIlluminationSwitch.setChecked(false);
+
+                    //TODO 控制靶机照明(打开)
+                    //控制靶机照明(打开)
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        byte[] sendByte = new byte[11];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DF", 16);
+
+                        int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
+                        String e = Integer.toHexString(equipment);
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+                        sendByte[5] = (byte) Integer.parseInt("00", 16);
+                        sendByte[6] = (byte) Integer.parseInt("00", 16);
+                        sendByte[7] = (byte) Integer.parseInt(e, 16);
+
+                        sendByte[8] = (byte) Integer.parseInt("01", 16);
+
+                        sendByte[9] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[10] = (byte) Integer.parseInt("0D", 16);
+
+                        SerialPortUtils.getInstance().sendSerialPort(sendByte);
+                    }
+                } else {
+                    mIlluminationTv.setText("射击靶照明开");
+                    mIlluminationSwitch.setChecked(true);
+                    //TODO 控制靶机照明(关闭)
+                    //控制靶机照明(关闭)
+                    if (SerialPortUtils.getInstance().openSerialPort() == null) {
+                        Toast.makeText(MainActivity.this, "设备打开异常,正在尝试重新打开设备", Toast.LENGTH_SHORT).show();
+                        SerialPortUtils.getInstance().openSerialPort();
+                    } else {
+                        byte[] sendByte = new byte[11];
+                        sendByte[0] = (byte) Integer.parseInt("CC", 16);
+                        sendByte[1] = (byte) Integer.parseInt("23", 16);
+                        sendByte[2] = (byte) Integer.parseInt("AA", 16);
+                        sendByte[3] = (byte) Integer.parseInt("DF", 16);
+
+                        int equipment = Integer.valueOf(SharedPreferencesUtils.getInstance().getEquipmentNumber());
+                        String e = Integer.toHexString(equipment);
+                        sendByte[4] = (byte) Integer.parseInt("00", 16);
+                        sendByte[5] = (byte) Integer.parseInt("00", 16);
+                        sendByte[6] = (byte) Integer.parseInt("00", 16);
+                        sendByte[7] = (byte) Integer.parseInt(e, 16);
+
+                        sendByte[8] = (byte) Integer.parseInt("00", 16);
+
+                        sendByte[9] = (byte) Integer.parseInt("0A", 16);
+                        sendByte[10] = (byte) Integer.parseInt("0D", 16);
 
                         SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }

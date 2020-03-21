@@ -197,18 +197,47 @@
                         android:textColor="@color/black" />
                 </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_weight="2"
                     android:background="@drawable/shape_green_corner"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/illumination_tv"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="射击靶照明关"
+                        android:textColor="@color/white" />
+
+                    <RelativeLayout
+                        android:id="@+id/illumination_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <Switch
+                            android:id="@+id/illumination_switch"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/switch_selector"
+                            android:checked="false"
+                            android:clickable="false"
+                            android:thumb="@null"
+                            android:track="@null" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="开始射击"
                         android:textColor="@color/white" />
 
@@ -216,15 +245,13 @@
                         android:id="@+id/fire_switch"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/switch_selector"
                         android:checked="false"
                         android:clickable="false"
                         android:thumb="@null"
                         android:track="@null" />
-                </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
