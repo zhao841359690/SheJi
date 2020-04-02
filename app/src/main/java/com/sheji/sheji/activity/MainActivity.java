@@ -126,6 +126,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mCumulativeShotNumberHeadTv;
     private TextView mCumulativeShotNumberContentTv;
     private TextView mCumulativeShotsTv;
+    private TextView mClearTv;
     private TextView mPositionTv;
     private RecyclerView mMainRv;
     private TextView mTotalTv;
@@ -441,6 +442,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mCumulativeShotNumberHeadTv = findViewById(R.id.cumulative_shot_number_head_tv);
         mCumulativeShotNumberContentTv = findViewById(R.id.cumulative_shot_number_content_tv);
         mCumulativeShotsTv = findViewById(R.id.cumulative_shots_tv);
+        mClearTv = findViewById(R.id.clear_tv);
+        mClearTv.setOnClickListener(this);
         mPositionTv = findViewById(R.id.position_tv);
 
         mMainRv = findViewById(R.id.main_rv);
@@ -697,6 +700,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         SerialPortUtils.getInstance().sendSerialPort(sendByte);
                     }
                 }
+                break;
+            case R.id.clear_tv:
+                //清空数据库
+                DaoUtil.deleteAll();
+                initData();
                 break;
             case R.id.pre_page_tv:
                 switch (pageType) {
