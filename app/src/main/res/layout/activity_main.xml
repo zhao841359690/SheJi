@@ -359,6 +359,16 @@
                         android:gravity="end"
                         android:text="累计射击发数"
                         android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/clear_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="end"
+                        android:text="数据清零"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
