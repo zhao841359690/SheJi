@@ -94,18 +94,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView mRed7Tv10;
     private TextView mRed7Tv11;
     private TextView mRed6Tv0;
-    private TextView mRed6Tv1;
-    private TextView mRed6Tv2;
     private TextView mRed6Tv3;
     private TextView mRed6Tv4;
     private TextView mRed6Tv5;
-    private TextView mRed6Tv6;
     private TextView mRed6Tv7;
     private TextView mRed6Tv8;
     private TextView mRed6Tv9;
-    private TextView mRed6Tv10;
-    private TextView mRed6Tv11;
-
 
     private TextView mHitTv;
     private RelativeLayout mMenuRl;
@@ -380,18 +374,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mRed7Tv11 = findViewById(R.id.red7_tv11);
 
         mRed6Tv0 = findViewById(R.id.red6_tv0);
-        mRed6Tv1 = findViewById(R.id.red6_tv1);
-        mRed6Tv2 = findViewById(R.id.red6_tv2);
         mRed6Tv3 = findViewById(R.id.red6_tv3);
         mRed6Tv4 = findViewById(R.id.red6_tv4);
         mRed6Tv5 = findViewById(R.id.red6_tv5);
-        mRed6Tv6 = findViewById(R.id.red6_tv6);
         mRed6Tv7 = findViewById(R.id.red6_tv7);
         mRed6Tv8 = findViewById(R.id.red6_tv8);
         mRed6Tv9 = findViewById(R.id.red6_tv9);
-        mRed6Tv10 = findViewById(R.id.red6_tv10);
-        mRed6Tv11 = findViewById(R.id.red6_tv11);
-
 
         mHitTv = findViewById(R.id.hit_tv);
         mTargetNumberTv = findViewById(R.id.target_number_tv);
@@ -1293,28 +1281,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             mRed7Tv11.setVisibility(View.VISIBLE);
         } else if ("0点钟6环".equals(precisionRingNumber)) {
             mRed6Tv0.setVisibility(View.VISIBLE);
-        } else if ("1点钟6环".equals(precisionRingNumber)) {
-            mRed6Tv1.setVisibility(View.VISIBLE);
-        } else if ("2点钟6环".equals(precisionRingNumber)) {
-            mRed6Tv2.setVisibility(View.VISIBLE);
         } else if ("3点钟6环".equals(precisionRingNumber)) {
             mRed6Tv3.setVisibility(View.VISIBLE);
         } else if ("4点钟6环".equals(precisionRingNumber)) {
             mRed6Tv4.setVisibility(View.VISIBLE);
         } else if ("5点钟6环".equals(precisionRingNumber)) {
             mRed6Tv5.setVisibility(View.VISIBLE);
-        } else if ("6点钟6环".equals(precisionRingNumber)) {
-            mRed6Tv6.setVisibility(View.VISIBLE);
         } else if ("7点钟6环".equals(precisionRingNumber)) {
             mRed6Tv7.setVisibility(View.VISIBLE);
         } else if ("8点钟6环".equals(precisionRingNumber)) {
             mRed6Tv8.setVisibility(View.VISIBLE);
         } else if ("9点钟6环".equals(precisionRingNumber)) {
             mRed6Tv9.setVisibility(View.VISIBLE);
-        } else if ("10点钟6环".equals(precisionRingNumber)) {
-            mRed6Tv10.setVisibility(View.VISIBLE);
-        } else if ("11点钟6环".equals(precisionRingNumber)) {
-            mRed6Tv11.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1368,17 +1346,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mRed7Tv10.setVisibility(View.INVISIBLE);
         mRed7Tv11.setVisibility(View.INVISIBLE);
         mRed6Tv0.setVisibility(View.INVISIBLE);
-        mRed6Tv1.setVisibility(View.INVISIBLE);
-        mRed6Tv2.setVisibility(View.INVISIBLE);
         mRed6Tv3.setVisibility(View.INVISIBLE);
         mRed6Tv4.setVisibility(View.INVISIBLE);
         mRed6Tv5.setVisibility(View.INVISIBLE);
-        mRed6Tv6.setVisibility(View.INVISIBLE);
         mRed6Tv7.setVisibility(View.INVISIBLE);
         mRed6Tv8.setVisibility(View.INVISIBLE);
         mRed6Tv9.setVisibility(View.INVISIBLE);
-        mRed6Tv10.setVisibility(View.INVISIBLE);
-        mRed6Tv11.setVisibility(View.INVISIBLE);
     }
 
     @Override
