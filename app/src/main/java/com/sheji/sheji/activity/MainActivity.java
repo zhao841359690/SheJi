@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -34,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author kk-zhaoqingfeng
@@ -162,6 +164,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private int size = 10;
 
     private int timePosition = 0;
+
+    private TextToSpeech textToSpeech = null;
 
     @SuppressLint("HandlerLeak")
     private Handler timeHandler = new Handler() {
@@ -292,8 +296,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             SerialPortUtils.getInstance().sendSerialPort(sendByte);
             SerialPortUtils.getInstance().setOnMainDataReceiveListener(this);
         }
+        initTextToSpeech();
         initView();
         initData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        textToSpeech.stop();
+        textToSpeech.shutdown();
     }
 
     @Override
@@ -305,6 +317,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         cyclesHandler.removeMessages(2);
         //TODO 关闭串口
         SerialPortUtils.getInstance().closeSerialPort();
+    }
+
+    private void initTextToSpeech() {
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                // 判断是否转化成功
+                if (status == TextToSpeech.SUCCESS) {
+                    //默认设定语言为中文，原生的android貌似不支持中文。
+                    int result = textToSpeech.setLanguage(Locale.CHINESE);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(MainActivity.this, "数据丢失或不支持", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //不支持中文就将语言设置为英文
+                        textToSpeech.setLanguage(Locale.US);
+                    }
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -1451,6 +1482,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setTabClick(pageType);
             }
         } else {//精准靶
+            startAuto(position);
+
             targetBean = new TargetBean();
             targetBean.setType(TargetBean.TYPE_PRECISION);
             targetBean.setNumber(DaoUtil.queryAllPrecisionTarget().size() + 1);
@@ -1475,5 +1508,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setTabClick(pageType);
             }
         }
+    }
+
+    private void startAuto(String data) {
+        textToSpeech.setPitch(1.0f);
+        textToSpeech.setSpeechRate(1.0f);
+        textToSpeech.speak(data, TextToSpeech.QUEUE_ADD, null);
     }
 }
